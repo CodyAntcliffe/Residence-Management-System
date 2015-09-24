@@ -5,5 +5,4 @@ A java implementation of a mock residence management system, similar to what wou
 
 This ReadMe will be updated as the project progresses.
 
-IGNORE THIS LINE.
 
