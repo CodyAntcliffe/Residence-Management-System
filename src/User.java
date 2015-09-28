@@ -1,5 +1,5 @@
 //Super class for Manager, Applicant and Resident
-//Test Line
+//Test Line 2
 public class User {
 	private String userName; // Can't change once registered, only accessible by log-in methods
 	private String passWord; // Can't change once registered, only accessible by log-in methods
