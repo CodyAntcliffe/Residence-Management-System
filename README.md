@@ -5,5 +5,6 @@ A java implementation of a mock residence management system, similar to what wou
 
 This ReadMe will be updated as the project progresses.
 
+Meeting Notes - https://docs.google.com/document/d/1exMEX-2oZxLu9yz_QXlMhUv8h5Lbk9fGlqXYAQq2Mbs/edit?usp=sharing
 
 !
