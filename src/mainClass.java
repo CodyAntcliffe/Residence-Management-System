@@ -1,6 +1,6 @@
 //Main class.
 //Use this for testing!
-//andrew
+//Peter
 public class mainClass {
 
 	
