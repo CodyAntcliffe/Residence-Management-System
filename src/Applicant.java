@@ -8,11 +8,15 @@ public class Applicant extends User {
 	int yearLevel;
 	String major;
 	
-	public Applicant(){
+	public Applicant(String UN, String PW){
 		
+		this.userName = UN;
+		this.passWord = PW;
 		this.accountType = "Applicant";
 	}
 	
-	
+	public static void main(String[] args){
+		
+	}
 	
 }

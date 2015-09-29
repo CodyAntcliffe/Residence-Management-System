@@ -1,8 +1,10 @@
 
 public class Manager extends User {
 
-	public Manager(){
+	public Manager(String UN, String PW){
 		
+		this.userName = UN;
+		this.passWord = PW;
 		this.accountType = "Manager";
 	}
 	
