@@ -1,8 +1,7 @@
 //Main class.
 //Use this for testing!
-//Peter
+//Cody 
 public class mainClass {
-
 	
 	public static void main(String[] args){
 		User U = new User();
