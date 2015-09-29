@@ -1,7 +1,6 @@
 //Main class.
 //Use this for testing!
-//Andrew is putting his name back in...
-//Cody test
+
 public class mainClass {
 	
 	public static void main(String[] args){
@@ -12,7 +11,6 @@ public class mainClass {
 		
 		U.verifyLogin("Cody", "Password");
 		
-		
-		//test line from Peter right here
 	}
 }
+//CODY ANTCLIFFE
