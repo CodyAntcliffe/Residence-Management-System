@@ -2,13 +2,11 @@
 public class Room {
 	
 	int number;
-	Facility fac;// Which facility it belongs to
 	Resident occupant; //Which Resident is currently in the room
 	
-	public Room(int rmNum, Facility F){
+	public Room(int rmNum){
 		
 		this.number = rmNum;
-		this.fac = F;
 		this.occupant = null; // Set to null since it hasn't been assigned 
 	}
 	

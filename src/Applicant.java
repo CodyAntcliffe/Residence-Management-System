@@ -15,15 +15,11 @@ public class Applicant extends User {
 		this.accountType = "Applicant";
 	}
 	
-	//This is incomplete example code.  Will need to access our database once it is implemented.
 	//Returns all available(empty) rooms.
-	public int[] getRooms(){
+	public int[] getRooms(Facility fac){
 		
-		int[] availRooms = new int[99];
-		return availRooms;
+		return fac.availRooms();
 	}
-	
-	
 	
 	public static void main(String[] args){
 		
