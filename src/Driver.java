@@ -12,7 +12,7 @@ public class Driver {
 	Connection connect(){
 		
 		try{
-			Connection myConn = DriverManager.getConnection(url, "root", "password");
+			Connection myConn = DriverManager.getConnection(url, dbUser, dbPass);
 			System.out.println("Connection succesful");
 			return myConn;
 		}
