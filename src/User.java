@@ -2,14 +2,17 @@
 //Super class for Manager, Applicant and Resident
 
 public class User {
+	
+	int userID; //Primary key for user related database
 	public String userName; // Can't change once registered, only accessible by log-in methods
 	public String passWord; // Can't change once registered, only accessible by log-in methods
 	
-	String accountType;
+	String accountType; //account type of the user
 	
 	public void register(String UN, String plainPW){
 		this.userName = UN;
 		this.passWord = this.encryptPassword(plainPW);
+		this.accountType = null;
 	}
 	
 	//Passwords should never be stored plain-text. We will use simple shift cipher as an example.

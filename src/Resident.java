@@ -7,8 +7,7 @@ public class Resident extends User {
 	int studentNum; //Identifier Variable
 	int age;
 	int yearLevel;
-	int phoneNumber; 
-	String major;
+
 	
 	public Resident(String UN, String PW){
 		
