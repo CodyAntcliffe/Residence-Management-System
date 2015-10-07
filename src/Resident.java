@@ -13,7 +13,7 @@ public class Resident extends User {
 		
 		this.userName = UN;
 		this.passWord = PW;
-		this.accountType = "Resident";
+		this.accountType = "resident";
 	}
 	
 	public static void main(String[] args){
