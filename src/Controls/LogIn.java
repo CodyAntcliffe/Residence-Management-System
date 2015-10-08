@@ -1,10 +1,11 @@
+package Controls;
 /* This class houses all of our log-in related methods*/
 
 import java.sql.*;
 
 public class LogIn {
 
-	//Checks if log-in was successful
+	//Checks if log-in was successful. 
 	public static Boolean checkLogin(String UN, String PW){
 		
 		Connection C = Driver.connect();
@@ -40,10 +41,10 @@ public class LogIn {
 				}
 			}
 		}
-	catch(Exception e){
-		e.printStackTrace();
-	}
-		return false;
+		catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	//Passwords should never be stored plain-text. We will use simple shift cipher as an example.
@@ -60,7 +61,7 @@ public class LogIn {
 	}
 		
 	//Returns the password in plainText
-	private static String decryptPassword(String cipherPW){
+	public static String decryptPassword(String cipherPW){
 		//Decrypt...
 		char[] cipherArray = cipherPW.toCharArray();
 		for(int i=0; i < cipherPW.length(); i++){
@@ -70,5 +71,4 @@ public class LogIn {
 		
 		return plainPW;
 	}
-	
 }

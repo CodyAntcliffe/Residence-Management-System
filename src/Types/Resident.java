@@ -1,3 +1,4 @@
+package Types;
 
 public class Resident extends User {
 
@@ -11,12 +12,8 @@ public class Resident extends User {
 	
 	public Resident(String UN, String PW){
 		
-		this.userName = UN;
-		this.passWord = PW;
+		super(UN, PW);
 		this.accountType = "resident";
-	}
-	
-	public static void main(String[] args){
 	}
 	
 	//Incomplete example code

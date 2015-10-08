@@ -1,3 +1,4 @@
+package Types;
 /* Holds info for the room */
 public class Room {
 	

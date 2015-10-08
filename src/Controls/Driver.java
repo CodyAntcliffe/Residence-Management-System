@@ -1,5 +1,6 @@
+package Controls;
 /* This class holds all of our Database related methods */
-
+import Types.*;
 import java.sql.*;
 
 public class Driver {
@@ -23,7 +24,7 @@ public class Driver {
 	}
 	
 	//Adds to the USERS table
-	public void addUser(User U){
+	public void addToDB(User U){
 		
 		Connection C = connect();
 		//Check if connection successful
@@ -54,7 +55,7 @@ public class Driver {
 	}
 	
 	//Adds to the APPLICANTS table
-	public void addApplicant(Applicant A){
+	public void addToDB(Applicant A){
 		
 		Connection C = connect();
 		//Check if connection successful
@@ -67,12 +68,12 @@ public class Driver {
 				ResultSet RS;
 				
 				//Check if the Applicant exists in table already...
-				String checkIfExists = "SELECT 1 FROM applicants where userName = '"+A.userName+"'";				
+				String checkIfExists = "SELECT 1 FROM applicant where userName = '"+A.userName+"'";				
 				RS = myStmt.executeQuery(checkIfExists);
 				
 				//Add the Applicant to the table otherwise
 				if(!RS.next()){
-					String sql = "insert into Applicants "+ " (userName, passWord, studentNum, age, fullName, yearLevel )" + " values ('"+A.userName+"', '"+A.passWord+"', '"+A.studentNum+"', '"+A.age+"', '"+A.name+"', '"+A.yearLevel+"' )";
+					String sql = "insert into Applicant "+ " (userName, passWord, studentNum, age, fullName, yearLevel )" + " values ('"+A.userName+"', '"+A.passWord+"', '"+A.studentNum+"', '"+A.age+"', '"+A.name+"', '"+A.yearLevel+"' )";
 					myStmt.executeUpdate(sql);
 					System.out.println("Added to table...");
 				}

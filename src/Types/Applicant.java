@@ -1,15 +1,15 @@
+package Types;
 
 public class Applicant extends User {
 	
-	String name; //Identifier Variable
-	int studentNum; //Identifier Variable
-	int age;
-	int yearLevel;
+	public String name; //Identifier Variable
+	public int studentNum; //Identifier Variable
+	public int age;
+	public int yearLevel;
 	
 	public Applicant(String UN, String PW, String aName, int SN, int uAge, int yrLvl){
 		
-		this.userName = UN;
-		this.passWord = PW;
+		super(UN, PW);
 		this.name = aName;
 		this.accountType = "applicant";
 		this.studentNum = SN;

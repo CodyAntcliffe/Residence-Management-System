@@ -1,10 +1,10 @@
+package Types;
 
 public class Manager extends User {
 
 	public Manager(String UN, String PW){
 		
-		this.userName = UN;
-		this.passWord = PW;
+		super(UN, PW);
 		this.accountType = "Manager";
 	}
 	

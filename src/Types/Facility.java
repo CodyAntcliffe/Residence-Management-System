@@ -1,3 +1,4 @@
+package Types;
 /* Each facility is a collection of rooms */
 public class Facility {
 
