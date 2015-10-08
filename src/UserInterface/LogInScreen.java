@@ -1,7 +1,7 @@
 package UserInterface;
-
 import Types.User;
 
+import javax.swing.*;
 public class LogInScreen {
 
 	User U;

@@ -2,25 +2,30 @@ package Types;
 
 public class Resident extends User {
 
-	String name; //Identifier Variable
-	Facility residence; //Which facility they occupy
-	int roomNum;// Identifier Variable
-	int studentNum; //Identifier Variable
-	int age;
-	int yearLevel;
+	public String name; //Identifier Variable
+	public Facility residence; //Which facility they occupy
+	public int roomNum;// Identifier Variable
+	public int studentNum; //Identifier Variable
+	public int age;
+	public int yearLevel;
 
 	
-	public Resident(String UN, String PW){
+	public Resident(String UN, String PW, String fullName, int SN, int Age, int year){
 		
 		super(UN, PW);
+		this.name = fullName;
 		this.accountType = "resident";
+		this.studentNum = SN;
+		this.age = Age;
+		this.yearLevel = year;
+		
+		//this.residence;
+		this.roomNum = 1;
 	}
 	
-	//Incomplete example code
 	//Changes room number.
 	public void changeRoom(int newRoom){
-		
-		this.roomNum = newRoom;
+	
 	}
 	
 	

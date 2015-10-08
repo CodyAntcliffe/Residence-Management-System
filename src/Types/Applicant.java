@@ -17,17 +17,7 @@ public class Applicant extends User {
 		this.yearLevel = yrLvl;
 	}
 	
-	public static void printUser(User U){
-		
-		if(U.accountType == "Applicant"){
-			printApplicant((Applicant) U);
-		}
-	}
 	
-	public static void printApplicant(Applicant A){
-		
-		System.out.println(A.yearLevel);
-	}
 	//Returns all available(empty) rooms.
 	public int[] getRooms(Facility fac){
 		

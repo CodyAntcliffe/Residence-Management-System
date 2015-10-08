@@ -1,4 +1,5 @@
 package Types;
+import Controls.*;
 
 public class Manager extends User {
 
@@ -19,6 +20,12 @@ public class Manager extends User {
 		R.roomNum = room;
 	}
 	
+	public static void acceptApplication(User U){
+		
+		Driver D = new Driver();
+		//D.addToDB(R);
+	}
+	
 	//Checks the info of a resident
 	public void getResidentInfo(Resident R){
 		
@@ -32,7 +39,5 @@ public class Manager extends User {
 		//check if room is empty
 		
 	}
-	public static void main(String[] args){
-		
-	}
+	
 }

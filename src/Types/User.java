@@ -4,7 +4,6 @@ import Controls.LogIn;
 
 public class User {
 	
-	int userID; //Primary key for user related database
 	public String userName; // Can't change once registered, only accessible by log-in methods
 	public String passWord; // Can't change once registered, only accessible by log-in methods
 	public String accountType; //account type of the user
@@ -13,7 +12,7 @@ public class User {
 		
 		this.userName = UN;
 		this.passWord = LogIn.encryptPassword(PW);
-		this.accountType = null;
+		this.accountType = "user";
 	}
 	
 }

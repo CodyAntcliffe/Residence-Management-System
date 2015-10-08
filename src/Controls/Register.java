@@ -34,6 +34,15 @@ public class Register {
 		D.addToDB(A);
 		return A;
 	}
+	
+	public static Resident acceptApplicant(Applicant A){
+		
+		Resident R = new Resident(A.userName, LogIn.decryptPassword(A.passWord), A.name, A.studentNum, A.age, A.yearLevel); //Testing
+		Driver D = new Driver();
+		D.addToDB(R);
+		return R;
+	}
+	
 		
 }
 	
