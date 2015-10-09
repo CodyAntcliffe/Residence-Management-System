@@ -7,7 +7,48 @@ import Types.*;
  * Applying for residence
  */
 public class Register {
+	
+	/*
+	 * ManagedBean standardized properties to read input from HTML file
+	 * Register.java class is now a 'managed bean' class
+	 * HTML code on page WebContent/register.xhtml automatically calls get and set methods depending on context of call
+	 * Careful formatting of the names of get and set functions is required
+	 * ManagedBean start
+	 */
+	private String userName;
+    private String password;
+    
+    public String getUserName ()
+    {
+        return userName;
+    }
+    
+    public void setUserName (final String userName)
+    {
+        this.userName = userName;
+    }
 
+    public String getPassword ()
+    {
+        return password;
+    }
+
+    public void setPassword (final String password)
+    {
+        this.password = password;
+    }
+	//Managed Bean end
+	
+    /*Methods can also be invoked from client.
+    *This method is invoked by WebContent/register.xhtml
+    *Command button calls it, returns the users info to the console as a proof of concept
+    *Data input can now be manipulated within the class, inserted into database
+    */
+	public void registerGUITest() {
+		System.out.println("User name: " + userName);
+		System.out.println("Password: " + password);
+	}
+	    
 	//Called when a new user decides to create a user account for first log in.
 	//UN and PW will taken from the relevant text field
 	public static User createNewAccount(String UN, String PW){

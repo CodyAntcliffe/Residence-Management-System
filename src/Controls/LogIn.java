@@ -4,11 +4,13 @@ package Controls;
 import java.sql.*;
 
 public class LogIn {
-
+    
 	//Checks if log-in was successful. 
 	public static Boolean checkLogin(String UN, String PW){
 		
 		Connection C = Driver.connect();
+		
+		
 		
 		try{
 			Statement myStmt = C.createStatement();
@@ -46,6 +48,7 @@ public class LogIn {
 			return false;
 		}
 	}
+	
 	
 	//Passwords should never be stored plain-text. We will use simple shift cipher as an example.
 	//Returns the password in cipher text for storing.
