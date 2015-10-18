@@ -11,12 +11,10 @@
         <h:form>
             <h:panelGrid columns="2">
                 <h:outputText value="UserName"></h:outputText>
-                <h:inputText value="#{register.userName}"></h:inputText>
+                <h:inputText value="#{logIn.userName}"></h:inputText>
                 <h:outputText value="Password"></h:outputText>
-                <h:inputSecret value="#{register.password}"></h:inputSecret>
-            </h:panelGrid><h:commandButton value="Register" action="register" style="width: 115px; "></h:commandButton><h:commandButton value="Login" action="login"></h:commandButton>
-            
-            
+                <h:inputSecret value="#{logIn.password}"></h:inputSecret>
+            </h:panelGrid><h:commandButton value="Login" action="#{logIn.tryLogin}" style="width: 115px; "></h:commandButton>
         </h:form>
     </ui:define>
 </ui:composition>

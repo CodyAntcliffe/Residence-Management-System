@@ -9,20 +9,34 @@
 		<managed-bean-class>Controls.Register</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>logIn</managed-bean-name>
+		<managed-bean-class>Controls.LogIn</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>welcomePageBean</managed-bean-name>
+		<managed-bean-class>ManagedBeans.WelcomePageBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
-		<display-name>login.xhtml</display-name>
-		<from-view-id>/login.xhtml</from-view-id>
+		<display-name>welcome.xhtml</display-name>
+		<from-view-id>/welcome.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>login</from-outcome>
-			<to-view-id>/welcome.xhtml</to-view-id>
+			<from-action>#{welcomePageBean.toLogin}</from-action>
+			<from-outcome>testing</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>login.xhtml</display-name>
-		<from-view-id>/login.xhtml</from-view-id>
+		<display-name>welcome.xhtml</display-name>
+		<from-view-id>/welcome.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>register</from-outcome>
+			<from-action>#{welcomePageBean.toRegister}</from-action>
+			<from-outcome>success</from-outcome>
 			<to-view-id>/register.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 

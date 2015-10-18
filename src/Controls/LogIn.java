@@ -5,12 +5,34 @@ import java.sql.*;
 
 public class LogIn {
     
+	//This bean is sessionScoped, private variables have life-span of single user session
+	//userName can be used to uniquely identify rows in database that are relevant to the user
+	
+	private String userName;
+	private String password;
+	
+	public void setUserName(final String userName) {
+		this.userName=userName;
+	}
+	public void setPassword(final String password) {
+		this.password=password;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public String getPassword(){
+		return password;
+	}
+	
+	public void tryLogin() {
+		System.out.println("User name: " + userName);
+		System.out.println("Password: " + password);
+	}
+	
 	//Checks if log-in was successful. 
 	public static Boolean checkLogin(String UN, String PW){
 		
 		Connection C = Driver.connect();
-		
-		
 		
 		try{
 			Statement myStmt = C.createStatement();
@@ -48,7 +70,6 @@ public class LogIn {
 			return false;
 		}
 	}
-	
 	
 	//Passwords should never be stored plain-text. We will use simple shift cipher as an example.
 	//Returns the password in cipher text for storing.
