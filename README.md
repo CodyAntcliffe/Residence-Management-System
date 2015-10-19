@@ -9,3 +9,6 @@ https://docs.google.com/document/d/1exMEX-2oZxLu9yz_QXlMhUv8h5Lbk9fGlqXYAQq2Mbs/
 
 JSF information from Java textbook:
 https://drive.google.com/file/d/0B-It-7iv4tCtOEU4cmRGeFlGVWc/view?usp=sharing
+
+Presentation Notes:
+https://docs.google.com/document/d/1MtIkF6Qy37nej4F2dbGhpsvrSCXEcFVuNPjLoXTTQKE/edit?ts=56252bbd
