@@ -1,6 +1,5 @@
 package Controls;
 import Types.*;
-import UserInterface.*;
 import Controls.*;
 /*THIS IS THE MAIN CLASS */
 
@@ -14,7 +13,9 @@ public class mainClass {
 		LogIn.checkLogin("Gregdd", "Ginnd");
 		
 		Applicant currentApplicant = Register.applyForResidence(currUser);
+		
 		Driver D = new Driver();
+		
 		Resident currentResident = Register.acceptApplicant(currentApplicant);
 		
 	

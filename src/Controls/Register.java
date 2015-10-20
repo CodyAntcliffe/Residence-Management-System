@@ -45,6 +45,7 @@ public class Register {
     *Data input can now be manipulated within the class, inserted into database
     */
 	public void registerGUITest() {
+		Register.createNewAccount(userName,password);
 		System.out.println("User name: " + userName);
 		System.out.println("Password: " + password);
 	}
