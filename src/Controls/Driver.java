@@ -6,6 +6,11 @@ import java.sql.*;
 
 public class Driver {
 	
+	
+	/*similarly to how the user type was consolidated from resident, applicant, and manager types,
+	we will do the same for the driver class. All DB driver methods here are only needed for the general
+	user class, as there is no database distinction between resident, applicant, or manager*/
+	
 	static String url = "jdbc:mysql://localhost:3306/residence";
 	static String dbUser = "root";
 	static String dbPass = "password";
@@ -44,6 +49,8 @@ public class Driver {
 				//Add the user to the table otherwise
 				if(!RS.next()){
 					String sql = "insert into Users "+ " (userName, passWord)" + " values ('"+U.userName+"', '"+U.passWord+"' )";
+					//String sql = "insert into resident "+ " (userName, passWord, userType studentNum, age, fullName, yearLevel, roomNum)" + " values ('"+R.userName+"', '"+R.passWord+"', '"+R.studentNum+"', '"+R.age+"', '"+R.name+"', '"+R.yearLevel+"', '"+R.roomNum+"' )";
+
 					myStmt.executeUpdate(sql);
 					System.out.println("Added to table...");
 				}
@@ -51,75 +58,6 @@ public class Driver {
 					System.out.println(U.userName+" already exists in USERS table");
 				
 				updateAccountType(U.userName, U.accountType);
-			}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-	}
-	
-	//Adds to the APPLICANTS table
-	public void addToDB(Applicant A){
-		
-		Connection C = connect();
-		//Check if connection successful
-		if(C == null){
-			System.out.println("Connection unsuccessful.");
-		}
-		else
-			try{
-				Statement myStmt = C.createStatement();
-				ResultSet RS;
-				
-				//Check if the Applicant exists in table already...
-				String checkIfExists = "SELECT 1 FROM applicant where userName = '"+A.userName+"'";				
-				RS = myStmt.executeQuery(checkIfExists);
-				
-				//Add the Applicant to the table otherwise
-				if(!RS.next()){
-					String sql = "insert into Applicant "+ " (userName, passWord, studentNum, age, fullName, yearLevel )" + " values ('"+A.userName+"', '"+A.passWord+"', '"+A.studentNum+"', '"+A.age+"', '"+A.name+"', '"+A.yearLevel+"' )";
-					myStmt.executeUpdate(sql);
-					System.out.println("Added to table...");
-				}
-				else
-					System.out.println(A.userName+" already exists in Applicants table");
-				
-				updateAccountType(A.userName, A.accountType);
-			}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-	}
-
-	public void addToDB(Resident R){
-		
-		Connection C = connect();
-		//Check if connection successful
-		if(C == null){
-			System.out.println("Connection unsuccessful.");
-		}
-		else
-			try{
-				Statement myStmt = C.createStatement();
-				ResultSet RS;
-				
-				//Check if the Applicant exists in table already...
-				String checkIfExists = "SELECT 1 FROM resident where userName = '"+R.userName+"'";				
-				RS = myStmt.executeQuery(checkIfExists);
-				
-				//Add the Applicant to the table otherwise
-				if(!RS.next()){
-					String sql = "insert into resident "+ " (userName, passWord, studentNum, age, fullName, yearLevel, roomNum)" + " values ('"+R.userName+"', '"+R.passWord+"', '"+R.studentNum+"', '"+R.age+"', '"+R.name+"', '"+R.yearLevel+"', '"+R.roomNum+"' )";
-					myStmt.executeUpdate(sql);
-					System.out.println("Added to table...");
-					
-				}
-				else
-					System.out.println(R.userName+" already exists in Resident table");
-				
-				removeFromTable(R.userName, "applicant");
-				updateAccountType(R.userName, R.accountType);
-				
-				
 			}
 		catch(Exception e){
 			e.printStackTrace();
