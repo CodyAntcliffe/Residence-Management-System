@@ -3,6 +3,6 @@
   <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="51" y="216" id="pf14443486104601" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14452030080360" path="/login.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="welcome.xhtml" x="40" y="24" id="pf14443486104613" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14452030080360 pf14452030080361" path="/welcome.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="register.xhtml" x="240" y="24" id="pf14443539990165" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14452030080361" path="/register.xhtml"/>
-  <links id="pf14452030080360" target="pf14443486104601" source="pf14443486104613" outcome="testing" redirect="true" fromaction="#{welcomePageBean.toLogin}"/>
-  <links id="pf14452030080361" target="pf14443539990165" source="pf14443486104613" outcome="success" redirect="true" fromaction="#{welcomePageBean.toRegister}"/>
+  <links id="pf14452030080360" target="pf14443486104601" source="pf14443486104613" outcome="login" redirect="true"/>
+  <links id="pf14452030080361" target="pf14443539990165" source="pf14443486104613" outcome="register" redirect="true"/>
 </pageflow:Pageflow>

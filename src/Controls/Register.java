@@ -17,6 +17,15 @@ public class Register {
 	 */
 	private String userName;
     private String password;
+    private String confirmPassword;
+    
+    private String name;
+    
+    private String email;
+    private String phone;
+    private String major;
+    private String yearLevel;
+    
     
     public String getUserName ()
     {
@@ -37,6 +46,39 @@ public class Register {
     {
         this.password = password;
     }
+    public String getConfirmPassword ()
+    {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword (final String confirmPassword)
+    {
+        this.confirmPassword = password;
+    }
+    
+    public String getName() {
+    	return name;
+    }
+    public void setName(final String name) {
+    	this.name=name;
+    }
+    
+    
+    public String getEmail() {
+    	return email;
+    }
+    public void setEmail(final String email) {
+    	this.email=email;
+    }
+    
+    public String getPhone() {
+    	return phone;
+    }
+    public void setPhone(final String phone) {
+    	this.email=phone;
+    }
+    
+    
 	//Managed Bean end
 	
     /*Methods can also be invoked from client.
@@ -44,10 +86,11 @@ public class Register {
     *Command button calls it, returns the users info to the console as a proof of concept
     *Data input can now be manipulated within the class, inserted into database
     */
-	public void registerGUITest() {
+	public String registerGUITest() {
 		Register.createNewAccount(userName,password);
 		System.out.println("User name: " + userName);
 		System.out.println("Password: " + password);
+		return "void";
 	}
 	    
 	//Called when a new user decides to create a user account for first log in.
