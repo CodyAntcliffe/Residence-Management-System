@@ -9,14 +9,12 @@ public class mainClass {
 	
 	public static void main(String[] args){
 	
-		User currUser = Register.createNewAccount("User", "User");
-		LogIn.checkLogin("Gregdd", "Ginnd");
+		StudentDriver SD = new StudentDriver();
+		SD.connect();
+		ManagerDriver MD = new ManagerDriver();
+		Register R = new Register();
 		
-		Applicant currentApplicant = Register.applyForResidence(currUser);
-		
-		Driver D = new Driver();
-		
-		Resident currentResident = Register.acceptApplicant(currentApplicant);
+		Student S = MD.getStudentInfo("Cody Antcliffe");
 		
 		/*
 		 * Login and register should be within driver class
@@ -32,6 +30,7 @@ public class mainClass {
 		 * As many driver access methods as we can think of.
 		 * test
 		 */
+		
 	
 	}
 }

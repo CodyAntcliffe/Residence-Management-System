@@ -12,7 +12,6 @@ public class User {
 		
 		this.userName = UN;
 		this.passWord = LogIn.encryptPassword(PW);
-		this.accountType = "user";
 	}
 	
 }
