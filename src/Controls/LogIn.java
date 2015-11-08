@@ -1,8 +1,9 @@
 package Controls;
 /* This class houses all of our log-in related methods*/
 
-import java.sql.*;
 
+import javax.faces.bean.ManagedBean;
+@ManagedBean(name="logIn")
 public class LogIn {
     
 	//This bean is sessionScoped, private variables have life-span of single user session
@@ -10,7 +11,7 @@ public class LogIn {
 	
 	private String userName;
 	private String password;
-	
+	private String userType = "Student";//need method to get accountype from DB
 	public void setUserName(final String userName) {
 		this.userName=userName;
 	}
@@ -23,16 +24,20 @@ public class LogIn {
 	public String getPassword(){
 		return password;
 	}
-	
-	public void tryLogin() {
-		System.out.println("User name: " + userName);
-		System.out.println("Password: " + password);
+	public String getUserType() {
+		System.out.println("Trying to get userType from LoginBean");
+		return userType;
 	}
-	
-	//Checks if log-in was successful. 
-	public static Boolean checkLogin(String UN, String PW){
-		
-		return Driver.checkLogin(UN, PW);
+	public void setUserType(final String userType){
+		this.userType = userType;
+	}
+	public String tryLogin() {
+		if (Driver.checkLogin(userName, password)) {
+			System.out.println(userName + " logged in.");
+			//**TODO** assign account type from db
+			return "toHome";
+		}
+		return null;
 	}
 	
 	//Passwords should never be stored plain-text. We will use simple shift cipher as an example.

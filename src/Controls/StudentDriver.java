@@ -28,7 +28,7 @@ public class StudentDriver extends Driver {
 				
 				//Add the user to the table otherwise
 				if(!RS.next()){
-					String sql = "insert into users "+ " (userName, passWord, accountType, name, phone, major, email, studentNumber, yearLevel)" + " values ('"+R.getUserName()+"', '"+R.getPassword()+"', 'student', '"+R.getName()+"', '"+R.getPhone()+"', '"+R.getMajor()+"', '"+R.getEmail()+"', '"+R.getStudentNumber()+"', '"+R.getYearLevel()+"' )";
+					String sql = "insert into users "+ " (userName, passWord, accountType, name, phone, major, email, studentNumber, yearLevel)" + " values ('"+R.getUserName()+"', '"+LogIn.encryptPassword(R.getPassword())+"', 'student', '"+R.getName()+"', '"+R.getPhone()+"', '"+R.getMajor()+"', '"+R.getEmail()+"', '"+R.getStudentNumber()+"', '"+R.getYearLevel()+"' )";
 					myStmt.executeUpdate(sql);
 					System.out.println("Added to table...");
 				}
@@ -43,6 +43,6 @@ public class StudentDriver extends Driver {
 	
 	
 		
-	}
+}
 	
 	

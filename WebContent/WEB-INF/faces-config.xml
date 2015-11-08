@@ -19,11 +19,21 @@
 		<managed-bean-class>Controls.LogIn</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<description>Page bean to control the get room list function.</description>
+		<managed-bean-name>roomPageBean</managed-bean-name>
+		<managed-bean-class>ManagedBeans.RoomPageBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+		<managed-property>
+        	<property-name>userType</property-name>
+        	<value>#{logIn.userType}</value>
+    	</managed-property>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>welcome.xhtml</display-name>
 		<from-view-id>/welcome.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>login</from-outcome>
+			<from-outcome>toLogin</from-outcome>
 			<to-view-id>/login.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
@@ -32,9 +42,79 @@
 		<display-name>welcome.xhtml</display-name>
 		<from-view-id>/welcome.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>register</from-outcome>
+			<from-outcome>toRegister</from-outcome>
 			<to-view-id>/register.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>register.xhtml</display-name>
+		<from-view-id>/register.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>registered</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
 			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>toHome</from-outcome>
+			<to-view-id>/Home.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Home.xhtml</display-name>
+		<from-view-id>/Home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>toStudentsPage</from-outcome>
+			<to-view-id>/StudentsPage.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Home.xhtml</display-name>
+		<from-view-id>/Home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>toApplicationsPage</from-outcome>
+			<to-view-id>/ApplicationsPage.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Home.xhtml</display-name>
+		<from-view-id>/Home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>toMyApplicationsPage</from-outcome>
+			<to-view-id>/MyApplicationsPage.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Home.xhtml</display-name>
+		<from-view-id>/Home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>toMyRoomPage</from-outcome>
+			<to-view-id>/MyRoomPage.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Home.xhtml</display-name>
+		<from-view-id>/Home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>toRoomPage</from-outcome>
+			<to-view-id>/roomPage.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>register.xhtml</display-name>
+		<from-view-id>/register.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>notRegistered</from-outcome>
+			<to-view-id>/register.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

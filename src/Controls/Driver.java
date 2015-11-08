@@ -47,7 +47,8 @@ public class Driver {
 				}
 				//Now check to make sure the password matches the stored encrypted password.
 				else{
-					String checkPW = "SELECT 1 FROM users where passWord = '"+LogIn.encryptPassword(PW)+"'";	
+					String checkPW = "SELECT 1 FROM users where passWord = '"+LogIn.encryptPassword(PW)+"'";
+					System.out.println(LogIn.encryptPassword(PW));
 					RS = myStmt.executeQuery(checkPW);
 					
 					//If does not match
@@ -71,7 +72,7 @@ public class Driver {
 	
 	public static void removeFromTable(String userName, String tableName){
 		
-		Connection C = connect();
+		Connection C = connect(null, null);
 		//Check if connection successful
 		if(C == null){
 			System.out.println("Connection unsuccessful.");

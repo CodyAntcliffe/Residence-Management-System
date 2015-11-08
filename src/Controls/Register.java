@@ -97,34 +97,22 @@ public class Register {
 
 	
 	public String validateRegistration() {
-		
-		SD.addRegistration(this);
-		
-		
 		//for successful registration, the following are required:
-		//1 - username does not already exist
-		//2 - studentNumber is not already in database
+		//1 - username does not already exist - handled in driver
 		//3 - password and confirmPassword match
-		//4 - email does not already exist
-		
-		//pass userName, studentNumber and email to driver function
-		//driver function scans database, returns a string based on what is found
 		
 		//function parses string and returns relevant info for page redirect
-		if (password !=null || confirmPassword!=null) {
-			if (!password.equals(confirmPassword)) {
-				return getPassword() + " Password Mismatch";
+		if (password != null || confirmPassword !=null) {
+			if (password.equals(confirmPassword)) {
+				SD.addRegistration(this);
+				return "registered";
 			}
 			else{
-				
-				return "";
+				return "notRegistered";
 			}
 		}else{
-			return "";
+			return "null password";
 		}
 	}
-   
-	
-	
 }
 	

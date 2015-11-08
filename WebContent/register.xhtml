@@ -103,8 +103,7 @@
 	                </h:selectOneMenu>
 	                
 	            	</h:panelGrid>
-	            	<h:commandButton value="Register"/>
-	            	<h:outputText value="#{register.validateRegistration()}"/>
+	            	<h:commandButton value="Register" action="#{register.validateRegistration}"/>
 	    	</h:form>
 		</ui:define>
 	</ui:composition>
