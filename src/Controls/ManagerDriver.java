@@ -197,7 +197,6 @@ public class ManagerDriver extends Driver {
 				applicants[j] = getStudentInfo(studentNames[i]);
 				j++;
 			}
-
 		return applicants;
 	}
 	

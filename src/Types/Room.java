@@ -10,6 +10,10 @@ public class Room {
 		this.roomNum = rmNum;
 		this.occupant = null; // Set to null since it hasn't been assigned 	
 	}
+	public Room(int rmNum) {
+		this.roomNum = Integer.toString(rmNum);
+		this.occupant = null;
+	}
 	
 	public Room(String rmNum, String name){
 		this.roomNum = rmNum;
@@ -26,6 +30,8 @@ public class Room {
 			return true;
 	}
 	
-
+	public String toString() {
+		return roomNum;
+	}
 
 }

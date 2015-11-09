@@ -14,7 +14,7 @@ public class mainClass {
 		ManagerDriver MD = new ManagerDriver();
 		
 		Driver D = new Driver();
-		
+		D.checkLogin("manager", "password");
 		
 		/*
 		 * All driver call should be encapsulated by a method call in Student or Manager or User.

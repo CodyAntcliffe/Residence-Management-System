@@ -11,11 +11,12 @@ public class LogIn {
 	Driver D = new Driver();
 	private String userName;
 	private String password;
-	private String userType = "Student";//need method to get accountype from DB
+	private String userType;//need method to get accountType from DB
 	public void setUserName(final String userName) {
 		this.userName=userName;
 	}
 	public void setPassword(final String password) {
+		System.out.print("Password: " + password);
 		this.password=password;
 	}
 	public String getUserName() {
@@ -35,8 +36,8 @@ public class LogIn {
 		if (Driver.checkLogin(userName, password)) {
 			System.out.println(userName + " logged in.");
 			
-			String userAccountType = D.getAccountTypeByUserName(userName);
-
+			String userType = D.getAccountTypeByUserName(userName);
+			System.out.println("Usertype for " + userName + " :" + userType);
 			return "toHome";
 		}
 		return null;

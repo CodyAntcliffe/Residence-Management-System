@@ -102,7 +102,6 @@ public class Register {
     *Command button calls it, returns the users info to the console as a proof of concept
     *Data input can now be manipulated within the class, inserted into database
     */
-
 	
 	public String validateRegistration() {
 		//for successful registration, the following are required:
