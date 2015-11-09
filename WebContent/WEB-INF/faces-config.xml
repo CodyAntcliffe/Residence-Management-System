@@ -28,6 +28,15 @@
         	<property-name>userType</property-name>
         	<value>#{logIn.userType}</value>
     	</managed-property>
+    	<managed-property>
+        	<property-name>userName</property-name>
+        	<value>#{logIn.userName}</value>
+    	</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>studentPageBean</managed-bean-name>
+		<managed-bean-class>ManagedBeans.StudentPageBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
 		<display-name>welcome.xhtml</display-name>

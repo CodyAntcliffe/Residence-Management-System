@@ -44,6 +44,8 @@ public class Student extends User {
 		System.out.println("age:"+age);
 	}
 	
-    
+    public String toString(){
+    	return name;
+    }
 }
 

@@ -8,7 +8,20 @@
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
-	    This page will have very similar functionality to RoomPage.xhtml
+	
+	    <h:selectOneMenu id='StudentSelect' value="#{studentPageBean.studentSelected}">
+	    	<f:selectItems value = "#{studentPageBean.studentNameList}"/>
+	    </h:selectOneMenu>
+	    
+	    <h:commandButton value="View">
+	    	<f:ajax render="studentTable" execute="@this"/>
+	    </h:commandButton>
+	    
+	    <h:dataTable id="studentTable" value="#{studentPageBean.selectedStudentObject}" var="student">
+	    	<h:column headerText = "Student Name">
+	    		<h:outputText value="#{student.name}"/>	
+			</h:column>
+		</h:dataTable>
 	</ui:define>
 </ui:composition>
 </html>
