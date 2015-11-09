@@ -23,7 +23,7 @@ public class Register {
     private String major;
     private String yearLevel;
     private String studentNumber;
-    
+    private String age;
     
     StudentDriver SD = new StudentDriver();
     
@@ -34,6 +34,14 @@ public class Register {
     public void setUserName (final String userName)
     {
         this.userName = userName;
+    }
+    public String getAge ()
+    {
+        return age;
+    }
+    public void setAge (final String age)
+    {
+        this.age = age;
     }
     public String getPassword ()
     {

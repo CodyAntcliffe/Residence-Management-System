@@ -47,6 +47,14 @@
 	                </h:inputText>
 	                <h:message for="name" styleClass="error"/>
 	                
+	                <h:outputText value="Age"></h:outputText>
+	                <h:inputText id = "age" value="#{register.age}" required="true"
+	                	requiredMessage="Please enter your age"
+	                	validatorMessage="Name must be between 2 characters">
+	                	<f:validateLength minimum="2" maximum="2"/>
+	                </h:inputText>
+	                <h:message for="age" styleClass="error"/>
+	                
 	                <h:outputText value="Student Number"></h:outputText>
 	                <h:inputText id = "studentNumber" value="#{register.studentNumber}" required="true"
 	                	requiredMessage="Please enter your student number"
