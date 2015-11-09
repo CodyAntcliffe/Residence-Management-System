@@ -10,11 +10,17 @@ public class mainClass {
 	public static void main(String[] args){
 	
 		StudentDriver SD = new StudentDriver();
-		SD.connect();
-		ManagerDriver MD = new ManagerDriver();
-		Register R = new Register();
 		
-		Student S = MD.getStudentInfo("Cody Antcliffe");
+		ManagerDriver MD = new ManagerDriver();
+		
+		Driver D = new Driver();
+		
+		
+		
+		
+		
+		
+		
 		
 		/*
 		 * Login and register should be within driver class

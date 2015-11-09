@@ -8,7 +8,7 @@ public class LogIn {
     
 	//This bean is sessionScoped, private variables have life-span of single user session
 	//userName can be used to uniquely identify rows in database that are relevant to the user
-	
+	Driver D = new Driver();
 	private String userName;
 	private String password;
 	private String userType = "Student";//need method to get accountype from DB
@@ -34,7 +34,9 @@ public class LogIn {
 	public String tryLogin() {
 		if (Driver.checkLogin(userName, password)) {
 			System.out.println(userName + " logged in.");
-			//**TODO** assign account type from db
+			
+			String userAccountType = D.getAccountTypeByUserName(userName);
+
 			return "toHome";
 		}
 		return null;

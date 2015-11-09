@@ -2,14 +2,18 @@ package Types;
 /* Holds info for the room */
 public class Room {
 	
-	int number;
-	Student occupant; //Which Resident is currently in the room
+	public String roomNum;
+	public String occupant; //Which Resident is currently in the room
 	
-	public Room(int rmNum){
+	public Room(String rmNum){
 		
-		this.number = rmNum;
-		this.occupant = null; // Set to null since it hasn't been assigned 
-		
+		this.roomNum = rmNum;
+		this.occupant = null; // Set to null since it hasn't been assigned 	
+	}
+	
+	public Room(String rmNum, String name){
+		this.roomNum = rmNum;
+		this.occupant = name;
 	}
 	
 	//Check if room is currently occupied

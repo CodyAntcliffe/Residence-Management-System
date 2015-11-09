@@ -18,13 +18,46 @@ public class Driver {
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection myConn = DriverManager.getConnection(url, dbUser, dbPass);
-			System.out.println("Connection succesful");
 			return myConn;
 		}
 		catch(Exception e){
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	//Gets accountType by userName
+	public String getAccountTypeByUserName(String UN){
+		
+		Connection C = connect(dbUser,dbPass);
+		UN = "'"+UN+"'";
+		//System.out.println(studentName);
+		//Check if connection successful
+		if(C == null){
+			System.out.println("Connection unsuccessful.");
+		}
+		else
+
+			try{
+				Statement myStmt = C.createStatement();
+				ResultSet RS;
+
+				//Check if the user exists
+				
+				String getNames  = "SELECT * FROM users where userName = "+UN;	
+				RS = myStmt.executeQuery(getNames);
+			
+				while(RS.next()){
+					return RS.getString("accountType");
+				}
+
+				return null;
+				
+			}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	//Checks if log-in was successful. 
@@ -101,37 +134,82 @@ public class Driver {
 		}
 	}
 	
-	//Update accountType in Users table
-	public void updateAccountType(String UN, String accT){
-		
+	//Returns all rooms
+	public Room[] getAllRooms(){
 		Connection C = connect(dbUser, dbPass);
-		//Check if connection successful
 		if(C == null){
 			System.out.println("Connection unsuccessful.");
 		}
 		else
+
 			try{
 				Statement myStmt = C.createStatement();
 				ResultSet RS;
 				
-				//Check if the user even exists...
-				String checkIfExists = "SELECT 1 FROM users where userName = '"+UN+"'";				
-				RS = myStmt.executeQuery(checkIfExists);
+				String getRooms  = "SELECT * FROM rooms";	
+				RS = myStmt.executeQuery(getRooms);
 				
-				//Update the accountType field in Users
-				if(!RS.next()){
-					System.out.println(UN+" is not a User.  Please begin registration process.");
+				String info[] = {"roomNum","occupant"};
+				Room[] rooms = new Room[10];
+				int x = 0;
+				while(RS.next()){
+					Room R = new Room(RS.getString(info[0]),RS.getString(info[1]));
+					rooms[x] = R;
+					x++;
+					
 				}
-				else{
-					String sql = "update Users set accountType='"+accT+"' where userName='"+UN+"'";
-					myStmt.executeUpdate(sql);
-					System.out.println("Updated users table with account type");
-				}
+				return rooms;
+				
 			}
 		catch(Exception e){
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
+	//Returns all available rooms
+	public Room[] getAvailRooms(){
+		
+		Room[] allRooms = getAllRooms();
+		
+		int count = 0;
+		for(int i= 0; i<allRooms.length;i++){
+			if(!allRooms[i].isOccupied())
+				count++;
+		}
+		
+		Room[] availRooms = new Room[count];
+		int x = 0;
+		for(int i= 0; i<allRooms.length;i++){
+			if(!allRooms[i].isOccupied()){
+				availRooms[x] = allRooms[i];
+				x++;
+			}
+		}
+		
+		return availRooms;
+	}
 
+	//Returns all rooms that are occupied
+	public Room[] getOccupiedRooms(){
+		
+		Room[] allRooms = getAllRooms();
+		
+		int count = 0;
+		for(int i= 0; i<allRooms.length;i++){
+			if(allRooms[i].isOccupied())
+				count++;
+		}
+		Room[] occRooms = new Room[count];
+		
+		int x = 0;
+		for(int j= 0; j<allRooms.length;j++){
+			if(allRooms[j].isOccupied()){
+				occRooms[x] = allRooms[j];
+				x++;
+			}
+		}
+		return occRooms;
+		
+	}
 }
