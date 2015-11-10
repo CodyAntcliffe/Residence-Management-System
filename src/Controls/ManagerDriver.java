@@ -39,6 +39,29 @@ public class ManagerDriver extends Driver {
 		}
 		return roomRequests;
 	}
+	
+	public void setRoomNull(String name){
+
+		Connection C = connect();
+		name = "'"+name+"'";
+		if(C == null){
+			System.out.println("Connection unsuccessful.");
+		}
+		else
+			try{
+				Statement myStmt = C.createStatement();
+				ResultSet RS;
+
+				//Set the roomNum in the Users table
+				String sql = "update Users set roomNum= null where name= "+name;
+				myStmt.executeUpdate(sql);
+
+			}
+
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 
 	public Student getStudentFromRoom(String roomNum) {
 
@@ -97,9 +120,9 @@ public class ManagerDriver extends Driver {
 				System.out.println("Assigned roomNum to Student");
 			}
 
-			catch (Exception e) {
-				e.printStackTrace();
-			}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	// Returns a list of all registered student's names

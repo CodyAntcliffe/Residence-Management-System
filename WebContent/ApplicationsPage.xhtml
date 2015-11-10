@@ -12,12 +12,13 @@
 		    <h:panelGrid  columns="2">
 		    
 		    	<h:selectOneMenu id="applicationSelect" value="#{applicationsPageBean.applicationSelected}">
-		    		<f:selectItems value = "#{applicationsPageBean.appliedStudents}"/>
+		    		<f:selectItems value = "#{applicationsPageBean.studentName}"/>
 		    	</h:selectOneMenu>
 		    	
 		    	<h:commandButton value="Accept Application" action="#{applicationsPageBean.acceptApplication}"/>
 		    	<h:commandButton value="Reject Application" action="#{applicationsPageBean.rejectApplication}"/>
 		    </h:panelGrid>
+		    
 	   </h:form>
 	</ui:define>
 </ui:composition>

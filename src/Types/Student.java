@@ -5,16 +5,16 @@ public class Student extends User {
 	public Facility residence; //Which facility they occupy
 	public String roomNum;// Identifier Variable
 	public String userName;
-    public String password;
-    public String confirmPassword;
-    public String name;
-    public String email;
-    public String phone;
-    public String major;
-    public String yearLevel;
-    public String studentNumber;
-    public String age;
-    
+	public String password;
+	public String confirmPassword;
+	public String name;
+	public String email;
+	public String phone;
+	public String major;
+	public String yearLevel;
+	public String studentNumber;
+	public String age;
+
 	public Student(String UN, String PW, String AT, String N, String E, String P, String M, String Y, String SN, String RN, String AGE ) {
 		super(UN, PW);
 		this.userName = UN;
@@ -43,7 +43,7 @@ public class Student extends User {
 		this.roomNum = clone.roomNum;
 		this.age = clone.age;
 	}
-	
+
 	public void printStudent(){
 		System.out.println("User: "+userName);
 		System.out.println("PW:"+password);
@@ -57,19 +57,19 @@ public class Student extends User {
 		System.out.println("roomNum:"+roomNum);
 		System.out.println("age:"+age);
 	}
-	
-    public String toString(){
-    	return
-    		"Account status: " + accountType + "<br>" +
-	    	"Username: " + userName + "<br>" +
-			"Name: " + name + "<br>" +
-			"Email: " + email + "<br>" +
-			"Phone: " + phone + "<br>" +
-			"Major: " + major + "<br>" +
-			"Year Level: " + yearLevel + "<br>" +
-			"Student Number: " + studentNumber + "<br>" +
-			"Room Number: " + roomNum + "<br>" +
-			"Age: " + age;
-    }
+
+	public String toString(){
+		return
+				"Account status: " + accountType + "<br>" +
+				"Username: " + userName + "<br>" +
+				"Name: " + name + "<br>" +
+				"Email: " + email + "<br>" +
+				"Phone: " + phone + "<br>" +
+				"Major: " + major + "<br>" +
+				"Year Level: " + yearLevel + "<br>" +
+				"Student Number: " + studentNumber + "<br>" +
+				"Room Number: " + roomNum + "<br>" +
+				"Age: " + age;
+	}
 }
 
