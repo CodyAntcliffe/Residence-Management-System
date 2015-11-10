@@ -45,7 +45,15 @@ public class Student extends User {
 	}
 	
     public String toString(){
-    	return name;
+    	return
+	    	"Username: " + userName + "<br>" +
+			"Name: " + name + "<br>" +
+			"Email: " + email + "<br>" +
+			"Phone: " + phone + "<br>" +
+			"Major: " + major + "<br>" +
+			"Year Level: " + yearLevel + "<br>" +
+			"Student Number: " + studentNumber + "<br>" +
+			"Age: " + age;
     }
 }
 

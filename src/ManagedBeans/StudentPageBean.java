@@ -13,6 +13,7 @@ public class StudentPageBean {
 	private Student[] studentList;
 	private String studentSelected;
 	private Student selectedStudentObject;
+	private String studentOutput;
 	
 	private ManagerDriver managerDriver = new ManagerDriver();
 	
