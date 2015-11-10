@@ -8,7 +8,7 @@ import Controls.Driver;
 
 public class Driver {
 
-	static String url = "jdbc:mysql://10.100.51.115:3306/residence";
+	static String url = "jdbc:mysql://10.100.44.101:3306/residence";
 	static String dbUser = "user";
 	static String dbPass = "password";
 
