@@ -33,6 +33,15 @@
 		<managed-bean-class>ManagedBeans.StudentPageBean</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>studentInfo</managed-bean-name>
+		<managed-bean-class>ManagedBeans.StudentInfo</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+		<managed-property>
+        	<property-name>userName</property-name>
+        	<value>#{logIn.userName}</value>
+    	</managed-property>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>welcome.xhtml</display-name>
 		<from-view-id>/welcome.xhtml</from-view-id>
@@ -114,10 +123,10 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>register.xhtml</display-name>
-		<from-view-id>/register.xhtml</from-view-id>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>notRegistered</from-outcome>
+			<from-outcome>toRegister</from-outcome>
 			<to-view-id>/register.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>

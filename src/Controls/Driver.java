@@ -8,8 +8,8 @@ import Controls.Driver;
 
 public class Driver {
 	
-	static String url = "jdbc:mysql://10.100.44.55:3306/residence";
-	static String dbUser = "user";
+	static String url = "jdbc:mysql://localhost:3306/residence";
+	static String dbUser = "root";
 	static String dbPass = "password";
 	
 	//Attempts to connect to our database and returns the connection if successful, null if not
@@ -151,8 +151,9 @@ public class Driver {
 				
 				String info[] = {"roomNum","occupant"};
 				RS.last();
-				Room[] rooms = new Room[RS.getRow()-1];
-				RS.first();
+				System.out.print(RS.last());
+				Room[] rooms = new Room[RS.getRow()];
+				RS.beforeFirst();
 				int x = 0;
 				while(RS.next()){
 					Room R = new Room(RS.getString(info[0]),RS.getString(info[1]));

@@ -1,6 +1,8 @@
 package ManagedBeans;
 import Controls.Driver;
+import Controls.ManagerDriver;
 import Types.Room;
+import Types.Student;
 import Controls.StudentDriver;
 import javax.faces.bean.ManagedProperty;
 import java.util.Arrays;
@@ -8,10 +10,12 @@ import javax.annotation.PostConstruct;
 
 public class RoomPageBean{
 	//List for populating drop down menu
-	private Room[] roomList = new Room[18];
+	private Room[] roomList;
 	private String roomSelected;
+	private String occupant;
 	private StudentDriver studentDriver = new StudentDriver();
 	private Driver driver = new Driver();
+	private ManagerDriver managerDriver = new ManagerDriver();
 	/*Injects an instance variable from another bean class
 	 * Scope must be broader than this class
 	 * MANAGED PROPERTY TAG MUST BE ADDED MANUALLY TO FACES-CONFIG.XML
@@ -32,12 +36,12 @@ public class RoomPageBean{
 		
 		if (userType.equals("applicant") || userType.equals("resident")) {
 			//**TODO** Fill list with AVAILABLE ROOMS
-			roomList = driver.getAvailRooms();
+			roomList = driver.getAvailRooms().clone();
 		}
 		if (userType.equals("manager")) {
 			//**TODO** Call the function to fill list with ALL ROOMS
 			//test
-			roomList = driver.getAllRooms();
+			roomList = driver.getAllRooms().clone();
 		}
 	}
 	
@@ -59,16 +63,28 @@ public class RoomPageBean{
 		return roomList;
 	}	
 	public void setRoomSelected (final String roomSelected){
+		System.out.println("Writing roomSelected");
 		this.roomSelected = roomSelected;
 	}
 	public String getRoomSelected() {
 		return roomSelected;
 	}
-	
 	public void setUserName(final String userName) {
 		this.userName = userName;
 	}
 	public String getUserName() {
 		return userName;
+	}
+	public void setOccupant(final String occupant) {
+		this.occupant = occupant;
+	}
+	public String getOccupant() {
+		Student student=managerDriver.getStudentFromRoom(roomSelected);
+		if (student == null)
+			return"Room " + roomSelected + " has no occupants";
+		else {
+			occupant = student.toString();
+			return occupant;
+		}
 	}
 }

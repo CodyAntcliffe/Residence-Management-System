@@ -47,7 +47,6 @@ public class ManagerDriver extends Driver {
 			if(students[i].roomNum.equals(roomNum))
 				roomOcc = students[i];
 		}
-		
 		return roomOcc;
 	}
 
@@ -178,6 +177,8 @@ public class ManagerDriver extends Driver {
 		return null;
 
 	}
+	
+	
 	
 	//returns all applicants
 	public Student[] getApplicants(){

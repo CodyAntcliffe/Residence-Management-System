@@ -72,6 +72,41 @@ public class StudentDriver extends Driver {
 		
 	}
 	
+	//Returns instance of Student by studentName
+	public Student getStudentInfo(String userName){
+		
+		Connection C = connect();
+		userName = "'"+userName+"'";
+		//System.out.println(studentName);
+		//Check if connection successful
+		if(C == null){
+			System.out.println("Connection unsuccessful.");
+		}
+		else
+
+			try{
+				Statement myStmt = C.createStatement();
+				ResultSet RS;
+
+				String getNames  = "SELECT * FROM users where username = "+userName;	
+				RS = myStmt.executeQuery(getNames);
+				String info[] = {"userName","passWord","accountType","name","email","phone","major","yearLevel","studentNumber","roomNum","age"};
+
+				while(RS.next()){
+					Student S = new Student(RS.getString(info[0]),RS.getString(info[1]),RS.getString(info[2]),RS.getString(info[3]),RS.getString(info[4]),RS.getString(info[5]),RS.getString(info[6]),RS.getString(info[7]),RS.getString(info[8]),RS.getString(info[9]),RS.getString(info[10]));
+					return S;
+				}
+
+					return null;
+				
+			}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+	
 	
 		
 }

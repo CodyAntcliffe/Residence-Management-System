@@ -9,11 +9,10 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
     <ui:define name="content">
     	<h:form>
-            <h:button value="View Rooms" outcome="toRoomPage"/>
+            <h:button rendered="#{logIn.userType == 'applicant' or logIn.userType == 'manager'}" value="View Rooms" outcome="toRoomPage"/>
             <h:button rendered="#{logIn.userType == 'manager'}" value="View Pending Applications" outcome="toApplicationsPage"/>
             <h:button rendered="#{logIn.userType == 'manager'}" value="View Students" outcome="toStudentsPage"/>
-            <h:button rendered="#{logIn.userType == 'applicant' or logIn.userType == 'resident'}" value="View Pending Applications" outcome="toMyApplicationsPage"/>
-            <h:button rendered="#{logIn.userType == 'resident'}" value="Manage My Room" outcome="toMyRoomPage"/>
+            <h:button rendered="#{logIn.userType == 'resident' or logIn.userType == 'applicant'}" value="Account Status" outcome="toMyRoomPage"/>
         </h:form>
     </ui:define>
 </ui:composition>

@@ -29,6 +29,20 @@ public class Student extends User {
 		this.roomNum = RN;
 		this.age = AGE;
 	}
+	public Student(Student clone) {
+		super(clone.userName, clone.passWord);
+		this.userName = clone.userName;
+		this.password = clone.password;
+		this.accountType = clone.accountType;
+		this.name = clone.name;
+		this.email = clone.email;
+		this.phone = clone.phone;
+		this.major = clone.major;
+		this.yearLevel = clone.yearLevel;
+		this.studentNumber = clone.studentNumber;
+		this.roomNum = clone.roomNum;
+		this.age = clone.age;
+	}
 	
 	public void printStudent(){
 		System.out.println("User: "+userName);
@@ -46,6 +60,7 @@ public class Student extends User {
 	
     public String toString(){
     	return
+    		"Account status: " + accountType + "<br>" +
 	    	"Username: " + userName + "<br>" +
 			"Name: " + name + "<br>" +
 			"Email: " + email + "<br>" +
@@ -53,6 +68,7 @@ public class Student extends User {
 			"Major: " + major + "<br>" +
 			"Year Level: " + yearLevel + "<br>" +
 			"Student Number: " + studentNumber + "<br>" +
+			"Room Number: " + roomNum + "<br>" +
 			"Age: " + age;
     }
 }

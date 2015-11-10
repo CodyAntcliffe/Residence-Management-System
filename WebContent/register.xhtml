@@ -30,15 +30,6 @@
 	                <h:message for="password" styleClass="error"/>
 	                
 	                
-	                <h:outputText value="Confirm Password"></h:outputText>
-	                <h:inputSecret id="confirmPassword" value="#{register.confirmPassword}" required="true"
-	                	requiredMessage="Please confirm password"
-	                	validatorMessage="Doesn't match password">
-	                	<f:validateLength maximum="32" minumum="5"/>
-	                </h:inputSecret>
-	                <h:message for="confirmPassword" styleClass="error"/>
-	                
-	                
 	                <h:outputText value="Name"></h:outputText>
 	                <h:inputText id = "name" value="#{register.name}" required="true"
 	                	requiredMessage="Please enter your name"

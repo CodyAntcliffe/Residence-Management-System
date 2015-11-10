@@ -109,16 +109,12 @@ public class Register {
 		//3 - password and confirmPassword match
 		
 		//function parses string and returns relevant info for page redirect
-		if (password != null || confirmPassword !=null) {
-			if (password.equals(confirmPassword)) {
-				SD.addRegistration(this);
-				return "registered";
-			}
-			else{
-				return "notRegistered";
-			}
-		}else{
-			return "null password";
+		if (password != null) {
+			SD.addRegistration(this);
+			return "registered";
+		}
+		else{
+			return "notRegistered";
 		}
 	}
 }

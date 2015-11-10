@@ -39,5 +39,4 @@ public class Room {
 	public String toString() {
 		return roomNum;
 	}
-
 }
