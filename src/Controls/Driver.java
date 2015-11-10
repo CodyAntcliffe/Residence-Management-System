@@ -150,7 +150,9 @@ public class Driver {
 				RS = myStmt.executeQuery(getRooms);
 				
 				String info[] = {"roomNum","occupant"};
-				Room[] rooms = new Room[10];
+				RS.last();
+				Room[] rooms = new Room[RS.getRow()-1];
+				RS.first();
 				int x = 0;
 				while(RS.next()){
 					Room R = new Room(RS.getString(info[0]),RS.getString(info[1]));

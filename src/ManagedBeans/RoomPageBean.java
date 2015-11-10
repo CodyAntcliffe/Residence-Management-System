@@ -3,14 +3,12 @@ import Controls.Driver;
 import Types.Room;
 import Controls.StudentDriver;
 import javax.faces.bean.ManagedProperty;
-import java.util.ArrayList;
-import java.util.List;
-
-
+import java.util.Arrays;
 import javax.annotation.PostConstruct;
+
 public class RoomPageBean{
 	//List for populating drop down menu
-	private Room[] roomList;
+	private Room[] roomList = new Room[18];
 	private String roomSelected;
 	private StudentDriver studentDriver = new StudentDriver();
 	private Driver driver = new Driver();
@@ -26,12 +24,13 @@ public class RoomPageBean{
 	
 	//PostConstruct is called immediately after constructor, before page view is generated
 	//This allows List to be ready before page so it can show values, must return void, take no arguments
+	
 	@PostConstruct
 	public void init() {
 		System.out.println("RoomPage Postconstruct init called.");
 		System.out.println("Usertype is: " + userType + ".");
 		
-		if (userType.equals("applicant") | userType.equals("resident")) {
+		if (userType.equals("applicant") || userType.equals("resident")) {
 			//**TODO** Fill list with AVAILABLE ROOMS
 			roomList = driver.getAvailRooms();
 		}
@@ -64,5 +63,12 @@ public class RoomPageBean{
 	}
 	public String getRoomSelected() {
 		return roomSelected;
+	}
+	
+	public void setUserName(final String userName) {
+		this.userName = userName;
+	}
+	public String getUserName() {
+		return userName;
 	}
 }

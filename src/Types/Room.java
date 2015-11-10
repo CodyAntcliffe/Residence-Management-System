@@ -29,6 +29,12 @@ public class Room {
 		else
 			return true;
 	}
+	public Boolean notNull() {
+		if (this.roomNum == null) {
+			return false;
+		}else
+			return true;
+	}
 	
 	public String toString() {
 		return roomNum;

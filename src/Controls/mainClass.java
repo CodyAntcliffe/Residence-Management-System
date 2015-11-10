@@ -8,13 +8,16 @@ import Controls.*;
 public class mainClass {
 	
 	public static void main(String[] args){
-	
+		Room[] roomList;
 		StudentDriver SD = new StudentDriver();
 		
 		ManagerDriver MD = new ManagerDriver();
 		
 		Driver D = new Driver();
-		D.checkLogin("manager", "password");
+		roomList = D.getAvailRooms();
+		
+		for (int i=0;i<roomList.length;i++)
+			System.out.println(roomList[i]);
 		
 		/*
 		 * All driver call should be encapsulated by a method call in Student or Manager or User.

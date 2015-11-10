@@ -9,30 +9,14 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
 		<h:form>
-		
-		    <h:panelGrid  columns="3">
+		    <h:panelGrid  columns="2">
 		    
 		    	<h:selectOneMenu id="roomSelect" value="#{roomPageBean.roomSelected}">
-		    		<f:selectItems value = "#{roomPageBean.roomNames}"/>
+		    		<f:selectItems value = "#{roomPageBean.roomList}"/>
 		    	</h:selectOneMenu>
 		    	
-		    	<h:commandButton value="View">
-		    		<f:ajax render="roomTable" execute="@this"/>
-		    	</h:commandButton>
-		    	
-		    	<h:commandButton rendered="#{roomPageBean.userType == 'Student'}" value="Apply for Room" action="#{roomPageBean.applyForRoom}"/>
+		    	<h:commandButton rendered="#{roomPageBean.userType == 'applicant'}" value="Apply for Room" action="#{roomPageBean.applyForRoom}"/>
 		    </h:panelGrid>
-		    
-		    <h:dataTable id="roomTable" value="#{roomPageBean.roomNames}" var="room">
-			   <h:column>    				
-			      <f:facet name="header">Room Number</f:facet>    				
-			      it'll just be a one row table with room info
-			      <f:facet name="header">	Facility</f:facet> 
-			      test   
-			      <f:facet name="header">	etc.</f:facet>    
-			      test		
-			   </h:column>
-			</h:dataTable>
 	   </h:form> 
 	</ui:define>
 </ui:composition>

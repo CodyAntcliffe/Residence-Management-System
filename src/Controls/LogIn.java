@@ -36,7 +36,7 @@ public class LogIn {
 		if (Driver.checkLogin(userName, password)) {
 			System.out.println(userName + " logged in.");
 			
-			String userType = D.getAccountTypeByUserName(userName);
+			userType = D.getAccountTypeByUserName(userName);
 			System.out.println("Usertype for " + userName + " :" + userType);
 			return "toHome";
 		}
