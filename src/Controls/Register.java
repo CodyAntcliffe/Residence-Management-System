@@ -1,12 +1,14 @@
 package Controls;
-import Types.*;
+import javax.faces.application.FacesMessage;
+import javax.faces.validator.ValidatorException;
+
 
 /*
  * Contains methods relating to:
  * Register as a new user
  * Applying for residence
  */
-public class Register {
+public class Register{
 	/*
 	 * ManagedBean standardized properties to read input from HTML file
 	 * Register.java class is now a 'managed bean' class
@@ -24,9 +26,23 @@ public class Register {
 	private String yearLevel;
 	private String studentNumber;
 	private String age;
-
+	private String serverResponse;
 	StudentDriver SD = new StudentDriver();
 
+	public String validateRegistration() {
+		//function parses string and returns relevant info for page redirect
+		serverResponse = SD.addRegistration(this);
+		System.out.println(serverResponse);
+		return serverResponse;
+	}
+	
+	//Getters and setters
+	public String getServerResponse() {
+		return serverResponse;
+	}
+	public void setServerResponse(String serverResponse) {
+		this.serverResponse = serverResponse;
+	}
 	public String getUserName ()
 	{
 		return userName;
@@ -94,28 +110,6 @@ public class Register {
 	}
 	public void setMajor(final String major) {
 		this.major=major;
-	}
-
-	//Managed Bean end
-	/*Methods can also be invoked from client.
-	 *This method is invoked by WebContent/register.xhtml
-	 *Command button calls it, returns the users info to the console as a proof of concept
-	 *Data input can now be manipulated within the class, inserted into database
-	 */
-
-	public String validateRegistration() {
-		//for successful registration, the following are required:
-		//1 - username does not already exist - handled in driver
-		//3 - password and confirmPassword match
-
-		//function parses string and returns relevant info for page redirect
-		if (password != null) {
-			SD.addRegistration(this);
-			return "registered";
-		}
-		else{
-			return "notRegistered";
-		}
 	}
 }
 

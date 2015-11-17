@@ -8,8 +8,8 @@ import Controls.Driver;
 
 public class Driver {
 
-	static String url = "jdbc:mysql://10.100.44.101:3306/residence";
-	static String dbUser = "user";
+	static String url = "jdbc:mysql://localhost:3306/residence";
+	static String dbUser = "root";
 	static String dbPass = "password";
 
 	//Attempts to connect to our database and returns the connection if successful, null if not

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14443482492620" configfile="/Residence Management/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="422" y="252" id="pf14443486104601" referenceLink="//@navigationRule.9/@fromViewId|" outlinks="pf144695308144825 pf14471246213430" inlinks="pf14452030080360 pf14469427936772" path="/login.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="welcome.xhtml" x="411" y="36" id="pf14443486104613" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14452030080360 pf14452030080361" path="/welcome.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="register.xhtml" x="693" y="36" id="pf14443539990165" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" outlinks="pf14469427936772" inlinks="pf14452030080361 pf14471246213430" path="/register.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="Home.xhtml" x="419" y="384" id="pf144695308144826" referenceLink="//@navigationRule.8/@fromViewId|" outlinks="pf144695308144827 pf144695308144828 pf144695308144829 pf144695308144830 pf144695308144831" inlinks="pf144695308144825" path="/Home.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="ApplicationsPage.xhtml" x="120" y="549" id="pf144695308144832" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf144695308144828" path="/ApplicationsPage.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="MyApplicationsPage.xhtml" x="381" y="614" id="pf144695308144833" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" inlinks="pf144695308144829" path="/MyApplicationsPage.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="MyRoomPage.xhtml" x="693" y="549" id="pf144695308144834" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" inlinks="pf144695308144830" path="/MyRoomPage.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="roomPage.xhtml" x="800" y="288" id="pf144695308144935" referenceLink="//@navigationRule.8/@navigationCase.0/@toViewId|" inlinks="pf144695308144831" path="/roomPage.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="StudentsPage.xhtml" x="16" y="288" id="pf144695308144936" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf144695308144827" path="/StudentsPage.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="554" y="583" id="pf14443486104601" referenceLink="//@navigationRule.13/@navigationCase.0/@toViewId|" outlinks="pf144695308144825 pf14471246213430" inlinks="pf14452030080360 pf14469427936772 pf14473891104930 pf14474435606710 pf14474435606711" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="welcome.xhtml" x="122" y="380" id="pf14443486104613" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14452030080360 pf14452030080361" path="/welcome.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="register.xhtml" x="338" y="583" id="pf14443539990165" referenceLink="//@navigationRule.11/@navigationCase.0/@toViewId|" outlinks="pf14469427936772" inlinks="pf14452030080361 pf14471246213430 pf14473891104941" path="/register.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Home.xhtml" x="122" y="1009" id="pf144695308144826" referenceLink="//@navigationRule.11/@fromViewId|" outlinks="pf144695308144827 pf144695308144828 pf144695308144829 pf144695308144830 pf144695308144831 pf14473891104930 pf14473891104941" inlinks="pf144695308144825 pf14477223667580" path="/Home.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ApplicationsPage.xhtml" x="338" y="1009" id="pf144695308144832" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf144695308144828" path="/ApplicationsPage.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="MyApplicationsPage.xhtml" x="338" y="1393" id="pf144695308144833" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" inlinks="pf144695308144829" path="/MyApplicationsPage.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="MyRoomPage.xhtml" x="338" y="1777" id="pf144695308144834" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" inlinks="pf144695308144830" path="/MyRoomPage.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="roomPage.xhtml" x="338" y="2161" id="pf144695308144935" referenceLink="//@navigationRule.8/@navigationCase.0/@toViewId|" inlinks="pf144695308144831" path="/roomPage.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="StudentsPage.xhtml" x="338" y="2545" id="pf144695308144936" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf144695308144827" path="/StudentsPage.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="WEB-INF/templates/BasicTemplate.xhtml" x="122" y="1969" id="pf14473897158275" referenceLink="//@navigationRule.12/@fromViewId|" path="/faces/*"/>
+  <nodes xsi:type="pageflow:PFPage" name="WEB-INF/templates/BasicTemplate.xhtml" x="338" y="178" id="pf14474435606712" referenceLink="//@navigationRule.13/@fromViewId|" outlinks="pf14474435606710 pf14474435606711 pf14477223667580" path="*"/>
   <links id="pf14452030080360" target="pf14443486104601" source="pf14443486104613" outcome="toLogin" redirect="true"/>
   <links id="pf14452030080361" target="pf14443539990165" source="pf14443486104613" outcome="toRegister"/>
   <links id="pf14469427936772" target="pf14443486104601" source="pf14443539990165" outcome="registered" redirect="true"/>
@@ -19,4 +21,9 @@
   <links id="pf144695308144830" target="pf144695308144834" source="pf144695308144826" outcome="toMyRoomPage" redirect="true"/>
   <links id="pf144695308144831" target="pf144695308144935" source="pf144695308144826" outcome="toRoomPage" redirect="true"/>
   <links id="pf14471246213430" target="pf14443539990165" source="pf14443486104601" outcome="toRegister"/>
+  <links id="pf14473891104930" target="pf14443486104601" source="pf144695308144826" outcome="toLogin" redirect="true"/>
+  <links id="pf14473891104941" target="pf14443539990165" source="pf144695308144826" outcome="toRegister" redirect="true"/>
+  <links id="pf14474435606710" target="pf14443486104601" source="pf14474435606712" outcome="toLogin" redirect="true"/>
+  <links id="pf14474435606711" target="pf14443486104601" source="pf14474435606712" outcome="toLogin" redirect="true"/>
+  <links id="pf14477223667580" target="pf144695308144826" source="pf14474435606712" outcome="toHome"/>
 </pageflow:Pageflow>

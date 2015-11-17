@@ -11,7 +11,16 @@ public class LogIn {
 	Driver D = new Driver();
 	private String userName;
 	private String password;
-	private String userType;//need method to get accountType from DB
+	private String userType;
+	private String result;
+	
+	
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
+	}
 	public void setUserName(final String userName) {
 		this.userName=userName;
 	}
@@ -33,6 +42,7 @@ public class LogIn {
 		this.userType = userType;
 	}
 	public String tryLogin() {
+		System.out.println(userName + " attempting login.");
 		if (Driver.checkLogin(userName, password)) {
 			System.out.println(userName + " logged in.");
 
@@ -40,7 +50,17 @@ public class LogIn {
 			System.out.println("Usertype for " + userName + " :" + userType);
 			return "toHome";
 		}
+		result = "Invalid Username and/or Password";
 		return null;
+	}
+	
+	public String logOut() {
+		System.out.println("Logging " + userName + " out of system.");
+		userName=null;
+		userType=null;
+		password=null;
+		result=null;
+		return "toLogin";
 	}
 
 	//Passwords should never be stored plain-text. We will use simple shift cipher as an example.

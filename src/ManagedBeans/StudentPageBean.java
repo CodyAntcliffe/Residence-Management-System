@@ -16,7 +16,10 @@ public class StudentPageBean {
 	private String studentOutput;
 	
 	private ManagerDriver managerDriver = new ManagerDriver();
-	
+	//TODO the first name in the DB is being added to the list twice.
+	//If names are the same it will grab info of the person with the first username twice, instead of each once.
+	//We need to only use primary keys to grab people from the table.
+	//If we return a list of student objects, we can pick out the name for the list but always return the username to query the database.
 	@PostConstruct
 	public void init(){
 		System.out.println("StudentPage Postconstruct init called.");

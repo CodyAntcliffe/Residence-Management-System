@@ -36,12 +36,12 @@ public class StudentDriver extends Driver {
 	}
 	
 
-	public void addRegistration(Register R){
+	public String addRegistration(Register R){
 
 		Connection C = connect();
 		//Check if connection successful
 		if(C == null){
-			System.out.println("Connection unsuccessful.");
+			return "Could not connect to database. Registration Unsuccesful.";
 		}
 		else
 			try{
@@ -56,15 +56,16 @@ public class StudentDriver extends Driver {
 				if(!RS.next()){
 					String sql = "insert into users "+ " (userName, passWord, accountType, name, phone, major, email, studentNumber, yearLevel, age)" + " values ('"+R.getUserName()+"', '"+LogIn.encryptPassword(R.getPassword())+"', 'applicant', '"+R.getName()+"', '"+R.getPhone()+"', '"+R.getMajor()+"', '"+R.getEmail()+"', '"+R.getStudentNumber()+"', '"+R.getYearLevel()+"', '"+R.getAge()+"' )";
 					myStmt.executeUpdate(sql);
-					System.out.println("Added to table...");
+					return "Registration successful!";
 				}
 				else
-					System.out.println(R.getUserName()+" already exists in USERS table");
+					return (R.getUserName()+" already exists in USERS table. Registration Unsuccessful");
 
 			}
-		catch(Exception e){
-			e.printStackTrace();
-		}
+			catch(Exception e){
+				e.printStackTrace();
+				return "Lost conncetion to server. Registration unsuccessful.";
+			}
 	}
 
 

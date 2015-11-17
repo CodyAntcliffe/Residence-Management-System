@@ -10,13 +10,18 @@
 	<ui:define name="content">
         <h:form>
             <h:panelGrid columns="2">
-                <h:outputText value="UserName"></h:outputText>
+                <h:outputText value="Username"></h:outputText>
                 <h:inputText value="#{logIn.userName}"></h:inputText>
                 <h:outputText value="Password"></h:outputText>
                 <h:inputSecret value="#{logIn.password}"></h:inputSecret>
+	            <h:commandButton value="Login" action="#{logIn.tryLogin}" style="width: 75px; ">
+	            	<f:ajax render="resultGrid" action="@this"/>
+	            </h:commandButton>
+	            <h:button value="Register" outcome="toRegister" style="width: 75px; "/>
+	        </h:panelGrid>
+	        <h:panelGrid id="resultGrid" columns="2">
+	        	<h:outputText rendered="#{logIn.result != null}" id="loginResult" value="#{logIn.result}" style="color:red"></h:outputText>
             </h:panelGrid>
-            <h:commandButton value="Login" action="#{logIn.tryLogin}" style="width: 115px; "/>
-            <h:button value="Register" outcome="toRegister"/>
         </h:form>
     </ui:define>
 </ui:composition>

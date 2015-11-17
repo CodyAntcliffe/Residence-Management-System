@@ -7,7 +7,7 @@
 	<managed-bean>
 		<managed-bean-name>register</managed-bean-name>
 		<managed-bean-class>Controls.Register</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>logIn</managed-bean-name>
@@ -46,6 +46,11 @@
 		<managed-bean-name>applicationsPageBean</managed-bean-name>
 		<managed-bean-class>ManagedBeans.ApplicationsPageBean</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>validationBean</managed-bean-name>
+		<managed-bean-class>ManagedBeans.ValidationBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
 		<display-name>welcome.xhtml</display-name>
@@ -135,5 +140,48 @@
 			<to-view-id>/register.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-
+	<navigation-rule>
+		<display-name>Home.xhtml</display-name>
+		<from-view-id>/Home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>toLogin</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Home.xhtml</display-name>
+		<from-view-id>/Home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>toRegister</from-outcome>
+			<to-view-id>/register.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>WEB-INF/templates/BasicTemplate.xhtml</display-name>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>toLogin</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>WEB-INF/templates/BasicTemplate.xhtml</display-name>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>toLogin</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>WEB-INF/templates/BasicTemplate.xhtml</display-name>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>toHome</from-outcome>
+			<to-view-id>/Home.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>
