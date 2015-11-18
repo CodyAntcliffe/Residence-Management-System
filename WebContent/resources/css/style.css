@@ -1,0 +1,35 @@
+
+#page{
+	color: #333;
+	text-decoration: none;
+	font-weight: 700;
+	line-height: 30px;
+	font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	border: 3px solid #333;
+	width: 100%;	
+}
+
+
+#header, #footer{
+   background-color: #00FA9A;
+   box-shadow: 5px 5px 5px #888888;
+   width: 100%;
+   padding: 30px;
+   
+}
+
+
+#header{
+	height: 110px;
+}
+
+
+#content{
+	font-weight: 600;
+	width: 100%;
+	padding: 30px;
+}
+
+#footer{
+	height:80px;
+}
