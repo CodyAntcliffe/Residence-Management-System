@@ -7,11 +7,13 @@
 <body>
 
 <ui:composition>
-	<div><h2>Residence Management System</h2></div>
+	<div><h3>Residence Management System</h3></div>
 	<h:form>
+	<div class="titleButtons">
   		<h:button rendered="#{logIn.userType == null}" value="Login" outcome="toLogin"/>
   		<h:commandButton rendered="#{logIn.userType != null}" value="Logout" action="#{logIn.logOut}" outcome="toLogin"/>
   		<h:button rendered="#{logIn.userType != null}" value="Home" outcome="toHome"/>
+  	</div>
   	</h:form>
 	</ui:composition>
 </body>
