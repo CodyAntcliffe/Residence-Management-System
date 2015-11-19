@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://xmlns.jcp.org/jsf/html"
-	   xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <body>
 
-<ui:composition>
-	<div><h3>Residence Management System</h3></div>
-	<h5>Andrew Vester</h5>
-	<h5>Cody Antcliffe</h5>
-	<h5>Sean Chan</h5>
-	<h5>Peter Luft</h5>
-	
-	<h:form>
-	<div class="titleButtons">
-  		<h:button rendered="#{logIn.userType == null}" value="Login" outcome="toLogin"/>
-  		<h:commandButton rendered="#{logIn.userType != null}" value="Logout" action="#{logIn.logOut}" outcome="toLogin"/>
-  		<h:button rendered="#{logIn.userType != null}" value="Home" outcome="toHome"/>
-  	</div>
-  	</h:form>
+	<ui:composition>
+
+		<h:form>
+			<div class="titleButtons">
+				<h:button rendered="#{logIn.userType == null}" value="Login"
+					outcome="toLogin" />
+				<h:commandButton rendered="#{logIn.userType != null}" value="Logout"
+					action="#{logIn.logOut}" outcome="toLogin" />
+				<h:button rendered="#{logIn.userType != null}" value="Home"
+					outcome="toHome" />
+			</div>
+		</h:form>
+
+
+		<div id="footInfo">
+			
+			<h3>Residence Management System</h3>
+			<p>A project by Andrew Vester, Cody Antcliffe, Sean Chan, and Peter Luft</p>
+		</div>
 	</ui:composition>
 </body>
 </html>
