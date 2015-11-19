@@ -2,8 +2,6 @@ package Controls;
 /* This class houses all of our log-in related methods*/
 
 
-import javax.faces.bean.ManagedBean;
-@ManagedBean(name="logIn")
 public class LogIn {
 
 	//This bean is sessionScoped, private variables have life-span of single user session

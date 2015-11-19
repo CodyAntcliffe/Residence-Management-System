@@ -184,4 +184,12 @@
 			<to-view-id>/Home.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>roomPage.xhtml</display-name>
+		<from-view-id>/roomPage.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>toRoomSearchResults</from-outcome>
+			<to-view-id>/roomSearchResults.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>
