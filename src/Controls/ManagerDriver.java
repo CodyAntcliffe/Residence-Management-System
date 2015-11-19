@@ -204,14 +204,12 @@ public class ManagerDriver extends Driver {
 
 				String getNames = "SELECT * FROM users where name = " + studentName;
 				RS = myStmt.executeQuery(getNames);
-				String info[] = { "userName", "passWord", "accountType", "name", "email", "phone", "major", "yearLevel",
-						"studentNumber", "roomNum", "age" };
-
+				String info[] = {"userName","passWord","accountType","name","email","phone","major","yearLevel","studentNumber","roomNum","age", "facility"};
 				while (RS.next()) {
 					Student S = new Student(RS.getString(info[0]), RS.getString(info[1]), RS.getString(info[2]),
 							RS.getString(info[3]), RS.getString(info[4]), RS.getString(info[5]), RS.getString(info[6]),
 							RS.getString(info[7]), RS.getString(info[8]), RS.getString(info[9]),
-							RS.getString(info[10]));
+							RS.getString(info[10]),RS.getString(info[11]));
 					return S;
 				}
 

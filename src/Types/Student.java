@@ -4,6 +4,7 @@ public class Student extends User {
 
 	public Facility residence; //Which facility they occupy
 	public String roomNum;// Identifier Variable
+	public String facility;
 	public String userName;
 	public String password;
 	public String confirmPassword;
@@ -14,15 +15,15 @@ public class Student extends User {
 	public String yearLevel;
 	public String studentNumber;
 	public String age;
-	public String facility;
 
 	public String getFacility() {
 		return facility;
 	}
+	
 	public void setFacility(String facility) {
 		this.facility = facility;
 	}
-	public Student(String UN, String PW, String AT, String N, String E, String P, String M, String Y, String SN, String RN, String AGE ) {
+	public Student(String UN, String PW, String AT, String N, String E, String P, String M, String Y, String SN, String RN, String AGE, String FAC ) {
 		super(UN, PW);
 		this.userName = UN;
 		this.password = PW;
@@ -35,6 +36,7 @@ public class Student extends User {
 		this.studentNumber = SN;
 		this.roomNum = RN;
 		this.age = AGE;
+		this.facility = FAC;
 	}
 	public Student(Student clone) {
 		super(clone.userName, clone.passWord);
@@ -56,13 +58,15 @@ public class Student extends User {
 		System.out.println("PW:"+password);
 		System.out.println("AccountType:"+accountType);
 		System.out.println("name:"+name);
+		System.out.println("age:"+age);
 		System.out.println("email:"+email);
 		System.out.println("phone:"+phone);
 		System.out.println("major:"+major);
 		System.out.println("yearLevel:"+yearLevel);
 		System.out.println("studentNum:"+studentNumber);
 		System.out.println("roomNum:"+roomNum);
-		System.out.println("age:"+age);
+		System.out.println("facility:"+facility);
+		
 	}
 
 	public String toString(){

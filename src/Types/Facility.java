@@ -11,9 +11,7 @@ public class Facility {
 		//Create the rooms, assign room number to each
 		rooms = new Room[40];
 		occupiedRooms = 0;
-		for(int i=0; i<this.numberOfRooms; i++){
-			rooms[i] = new Room(i);
-		}
+		
 	}
 	
 	//returns an array of available rooms

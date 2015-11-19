@@ -11,11 +11,12 @@ public class StudentDriver extends Driver {
 	}
 
 	//Allows the logged-on applicant to request a room
-	public void requestRoom(String roomNum, String userName){
+	public void requestRoom(String facility, String roomNum, String userName){
 
 		Connection C = connect();
 		roomNum = "'"+roomNum+"'";
 		userName = "'"+userName+"'";
+		facility = "'"+facility+"'";
 		if(C == null){
 			System.out.println("Connection unsuccessful.");
 		}
@@ -25,7 +26,7 @@ public class StudentDriver extends Driver {
 				ResultSet RS;
 
 				//Set the roomNum in the Users table
-				String sql = "update Users set roomNum= "+roomNum+" where userName= "+userName;
+				String sql = "update Users set roomNum= "+roomNum+", facility = "+facility+" where userName= "+userName;
 				myStmt.executeUpdate(sql);
 
 			}
@@ -92,10 +93,10 @@ public class StudentDriver extends Driver {
 
 				String getNames  = "SELECT * FROM users where username = "+userName;	
 				RS = myStmt.executeQuery(getNames);
-				String info[] = {"userName","passWord","accountType","name","email","phone","major","yearLevel","studentNumber","roomNum","age"};
+				String info[] = {"userName","passWord","accountType","name","email","phone","major","yearLevel","studentNumber","roomNum","age", "facility"};
 
 				while(RS.next()){
-					Student S = new Student(RS.getString(info[0]),RS.getString(info[1]),RS.getString(info[2]),RS.getString(info[3]),RS.getString(info[4]),RS.getString(info[5]),RS.getString(info[6]),RS.getString(info[7]),RS.getString(info[8]),RS.getString(info[9]),RS.getString(info[10]));
+					Student S = new Student(RS.getString(info[0]),RS.getString(info[1]),RS.getString(info[2]),RS.getString(info[3]),RS.getString(info[4]),RS.getString(info[5]),RS.getString(info[6]),RS.getString(info[7]),RS.getString(info[8]),RS.getString(info[9]),RS.getString(info[10]),RS.getString(info[11]));
 					return S;
 				}
 

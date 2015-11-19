@@ -18,6 +18,7 @@ public class Driver {
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection myConn = DriverManager.getConnection(url, dbUser, dbPass);
+			System.out.println("Connection successful"); //Tells us if our db is working. Can remove before deployment.
 			return myConn;
 		}
 		catch(Exception e){
@@ -103,37 +104,6 @@ public class Driver {
 		}
 	}
 
-	public static void removeFromTable(String userName, String tableName){
-
-		Connection C = connect(null, null);
-		//Check if connection successful
-		if(C == null){
-			System.out.println("Connection unsuccessful.");
-		}
-		else
-			try{
-				Statement myStmt = C.createStatement();
-				ResultSet RS;
-
-				//Check if the Applicant exists in table already...
-				String checkIfExists = "SELECT 1 FROM "+tableName+" where userName = '"+userName+"'";				
-				RS = myStmt.executeQuery(checkIfExists);
-
-				//Add the Applicant to the table otherwise
-				if(RS.next()){
-					String sql = "Delete FROM "+tableName+" where userName = '"+userName+"'";
-					myStmt.executeUpdate(sql);
-					System.out.println("Removed "+userName+" from "+tableName+" table.");
-				}
-				else
-					System.out.println(userName+" is not in the "+tableName+" table.");
-
-			}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-	}
-
 	//Returns all rooms
 	public Room[] getAllRooms(){
 		Connection C = connect(dbUser, dbPass);
@@ -149,14 +119,14 @@ public class Driver {
 				String getRooms  = "SELECT * FROM rooms";	
 				RS = myStmt.executeQuery(getRooms);
 
-				String info[] = {"roomNum","occupant"};
+				String info[] = {"facility","roomNum","typeID","occupant1","occupant2","occupant3","occupant4"};
 				RS.last();
-				System.out.print(RS.last());
+				//System.out.print(RS.last());
 				Room[] rooms = new Room[RS.getRow()];
 				RS.beforeFirst();
 				int x = 0;
 				while(RS.next()){
-					Room R = new Room(RS.getString(info[0]),RS.getString(info[1]));
+					Room R = new Room(RS.getString(info[0]),RS.getString(info[1]), RS.getString(info[2]), RS.getString(info[3]), RS.getString(info[4]), RS.getString(info[5]), RS.getString(info[6]));
 					rooms[x] = R;
 					x++;
 
@@ -193,7 +163,7 @@ public class Driver {
 		return availRooms;
 	}
 
-	//Returns all rooms that are occupied
+	//Returns all rooms that are full 
 	public Room[] getOccupiedRooms(){
 
 		Room[] allRooms = getAllRooms();
@@ -215,4 +185,136 @@ public class Driver {
 		return occRooms;
 
 	}
+	
+	//Searches for a room by its roomNum
+	public Room getRoomByNumber(String roomNum){
+		
+		Room[] allRooms = getAllRooms();
+		
+		int i=0;
+		while(i<allRooms.length){
+			if(allRooms[i].roomNum.equals(roomNum))
+				return allRooms[i];
+			i++;
+		}
+		
+		System.out.println("Room with room number "+roomNum+" does not exist.");
+		return null;
+	}
+	
+	//Returns the image of the room, as it's image location and room number
+	public String getImageByRoomNum(String roomNum){
+		
+		String typeID = getRoomByNumber(roomNum).typeID;
+		
+		Connection C = connect(dbUser, dbPass);
+		if(C == null){
+			System.out.println("Connection unsuccessful.");
+		}
+		else
+
+			try{
+				Statement myStmt = C.createStatement();
+				ResultSet RS;
+
+				String getRooms  = "SELECT image FROM roomtype where typeID = '"+typeID+"'";	
+				RS = myStmt.executeQuery(getRooms);
+				while(RS.next()){
+					String image = RS.getString("image");
+					}
+			}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	//Gets image by roomType
+	public String getImageByRoomType(String typeID){
+		
+		RoomType[] R =  getAllRoomTypes();
+		
+		for(int i = 0; i < R.length; i++)
+			if(R[i].typeID.equals(typeID))
+				return R[i].image;
+		
+		return null;
+	}
+
+	//Gets all room types
+	public RoomType[] getAllRoomTypes(){
+		
+			Connection C = connect(dbUser, dbPass);
+			if(C == null){
+				System.out.println("Connection unsuccessful.");
+			}
+			else
+
+				try{
+					Statement myStmt = C.createStatement();
+					ResultSet RS;
+
+					String getRooms  = "SELECT * FROM roomtype";	
+					RS = myStmt.executeQuery(getRooms);
+
+					String info[] = {"typeID","name","capacity", "image", "accessible"};
+					RS.last();
+					
+					RoomType[] roomtypes = new RoomType[RS.getRow()];
+					RS.beforeFirst();
+					int x = 0;
+					while(RS.next()){
+						RoomType R = new RoomType(RS.getString(info[0]),RS.getString(info[1]), RS.getString(info[2]),RS.getString(info[3]),RS.getString(info[4]));
+						roomtypes[x] = R;
+						x++;
+
+					}
+					return roomtypes;
+
+				}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+			return null;
+		}
+	
+	//Gets roomtype info by the room number
+	public RoomType getRoomTypeInfoByRoomNum(String roomNum){
+		
+		RoomType[] RT = getAllRoomTypes();
+		Room R = getRoomByNumber(roomNum);
+		
+		for(int i=0; i<RT.length; i++)
+			if(R.typeID.equals(RT[i].typeID))
+				return RT[i];
+		
+		return null;
+		
+	}
+	//Gives a list of all rooms of a specific facility
+	public Room[] getRoomsByFacility(String facility){
+		
+		Room[] allRooms = getAllRooms();
+	
+		//Need to get room count t avoid putting in hard coded numbers
+		int count = 0;
+		for(int i=0; i<allRooms.length; i++){
+			if(allRooms[i].facility.equals(facility)){
+				count++;
+			}
+		}
+		Room[] facRooms = new Room[count];
+		int nRoom = 0;
+		for(int i=0; i<allRooms.length; i++){
+			if(allRooms[i].facility.equals(facility)){
+				facRooms[nRoom] = allRooms[i];
+				nRoom++;
+			}
+			if(nRoom==count)
+				return facRooms;
+		}
+		return facRooms;
+	}
+	
+
 }

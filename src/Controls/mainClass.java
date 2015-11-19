@@ -9,7 +9,16 @@ import ManagedBeans.ApplicationsPageBean;
 public class mainClass {
 	
 	public static void main(String[] args){	
-
+		
+		Driver D = new Driver();
+		ManagerDriver MD = new ManagerDriver();
+		StudentDriver SD = new StudentDriver();
+		//SD.requestRoom("Bartley", "10", "Cody");
+		Student S[] = MD.getAllRoomRequests();
+		S[0].printStudent();
+//		Room[] RT = D.getAllRooms();
+//		Room[] FR = D.getRoomsByFacility("Bartley");
+//		System.out.println(RT[0].isOccupied());
 	/*FRONT END
 	 *
 	 *-Make the bar across the top that is always there
@@ -28,9 +37,8 @@ public class mainClass {
 	 * -Rooms needs to be changed to simply hold different room types. Has correct image number, has occupant name if occupied.
 	 * -Facilities.  Name of facility, type (town house, apartment), picture of floor plan.  
 	 * -Images Table.  Holds image location, image number, description.
-	 * 
+	 *
 	 * DRIVERS:
-	 * -Convert image to bytearray, and vice versa.
 	 * -getRoomType(facilityName, roomNum), returns Room
 	 * -getImage(Room), returns the image location.
 	 * -getFacilityInfo
