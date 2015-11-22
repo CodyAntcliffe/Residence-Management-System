@@ -6,17 +6,18 @@ import Controls.Driver;
 public class Room {
 
 	public String roomNum;
+	
 	//Specific rooms can have up to four occupants.
 	public String occupant1; //Which Resident is currently in the room
 	public String occupant2;
 	public String occupant3;
 	public String occupant4;
+	
 	public String typeID; //Corresponds to a row in the roomtype table
 	public String facility;// Which facility the room is located in
 	
 	Driver D = new Driver();
 	
-	public String occupant;//Which Resident is currently in the room
 	private String roomType;//single, basic single or double
 	//private String facility;//name of the facility (these should be unique in the DB)
 	private boolean accessible;
@@ -32,6 +33,7 @@ public class Room {
 		this.facility = facility;
 	}
 	
+	//Prints the room info for testing purposes
 	public void printRoom(){
 		System.out.println("Room num: "+this.roomNum);
 		System.out.println("Occupant(s): "+this.occupant1+this.occupant2+this.occupant3+this.occupant4);
@@ -53,20 +55,13 @@ public class Room {
 			count++;
 		
 		return String.valueOf(count);
-}
-	public Room(String rmNum, String name){
-		this.roomNum = rmNum;
-		this.occupant = name;
-		this.setRoomType("Room Type");
-		this.setFacility("Facility Name");
-		this.setAccessible(false);
-		this.setDescription("Short description of the room to display on the page<br>Breaks should be used so they fit on the page<br>");
 	}
 	
 	//Check if room is currently occupied
 	public Boolean isOccupied(){
 		
-		RoomType RT = D.getRoomTypeInfoByRoomNum(this.roomNum);
+		RoomType RT = D.getRoomTypeInfoByRoomNum(this.roomNum, this.facility);
+
 		if(this.countOccupants().equals(RT.capacity)){
 			return true;
 		}

@@ -16,4 +16,9 @@ public class RoomType {
 		this.image = i;
 		this.accessible = a;
 	}
+	
+	public void printRoomType(){
+		System.out.println("TypeID: "+typeID);
+		
+	}
 }

@@ -3,6 +3,8 @@
 package Controls;
 import Types.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import Controls.Driver;
 
@@ -12,6 +14,8 @@ public class Driver {
 	static String dbUser = "root";
 	static String dbPass = "password";
 
+	public static Connection C = connect(dbUser,dbPass);
+	
 	//Attempts to connect to our database and returns the connection if successful, null if not
 	static Connection connect(String dbUser, String dbPass){
 
@@ -30,7 +34,8 @@ public class Driver {
 	//Gets accountType by userName
 	public String getAccountTypeByUserName(String UN){
 
-		Connection C = connect(dbUser,dbPass);
+		//Connection C = connect(dbUser,dbPass);
+		
 		UN = "'"+UN+"'";
 		//System.out.println(studentName);
 		//Check if connection successful
@@ -64,7 +69,7 @@ public class Driver {
 	//Checks if log-in was successful. 
 	public static Boolean checkLogin(String UN, String PW){
 
-		Connection C = Driver.connect(dbUser, dbPass);
+		//Connection C = Driver.connect(dbUser, dbPass);
 
 		try{
 			Statement myStmt = C.createStatement();
@@ -106,7 +111,8 @@ public class Driver {
 
 	//Returns all rooms
 	public Room[] getAllRooms(){
-		Connection C = connect(dbUser, dbPass);
+		
+		//Connection C = connect(dbUser, dbPass);
 		if(C == null){
 			System.out.println("Connection unsuccessful.");
 		}
@@ -144,20 +150,20 @@ public class Driver {
 	public Room[] getAvailRooms(){
 
 		Room[] allRooms = getAllRooms();
-
+		Room[] tempHold = new Room[1000];
+		
 		int count = 0;
 		for(int i= 0; i<allRooms.length;i++){
-			if(!allRooms[i].isOccupied())
+			if(!allRooms[i].isOccupied()){
+				tempHold[count] = allRooms[i];
 				count++;
+			}
 		}
 
 		Room[] availRooms = new Room[count];
-		int x = 0;
-		for(int i= 0; i<allRooms.length;i++){
-			if(!allRooms[i].isOccupied()){
-				availRooms[x] = allRooms[i];
-				x++;
-			}
+		
+		for(int i= 0; i<count;i++){
+			availRooms[i] = tempHold[i];
 		}
 
 		return availRooms;
@@ -187,10 +193,9 @@ public class Driver {
 	}
 	
 	//Searches for a room by its roomNum
-	public Room getRoomByNumber(String roomNum){
+	public Room getRoomByNumber(String roomNum, String facility){
 		
-		Room[] allRooms = getAllRooms();
-		
+		Room[] allRooms = getRoomsByFacility(facility);		
 		int i=0;
 		while(i<allRooms.length){
 			if(allRooms[i].roomNum.equals(roomNum))
@@ -203,11 +208,11 @@ public class Driver {
 	}
 	
 	//Returns the image of the room, as it's image location and room number
-	public String getImageByRoomNum(String roomNum){
+	public String getImageByRoomNum(String roomNum, String facility){
 		
-		String typeID = getRoomByNumber(roomNum).typeID;
+		String typeID = getRoomByNumber(roomNum, facility).typeID;
 		
-		Connection C = connect(dbUser, dbPass);
+		//Connection C = connect(dbUser, dbPass);
 		if(C == null){
 			System.out.println("Connection unsuccessful.");
 		}
@@ -244,7 +249,7 @@ public class Driver {
 	//Gets all room types
 	public RoomType[] getAllRoomTypes(){
 		
-			Connection C = connect(dbUser, dbPass);
+			//Connection C = connect(dbUser, dbPass);
 			if(C == null){
 				System.out.println("Connection unsuccessful.");
 			}
@@ -278,15 +283,16 @@ public class Driver {
 			return null;
 		}
 	
-	//Gets roomtype info by the room number
-	public RoomType getRoomTypeInfoByRoomNum(String roomNum){
+	//Gets roomtype info by the room number and facility
+	public RoomType getRoomTypeInfoByRoomNum(String roomNum, String facility){
 		
 		RoomType[] RT = getAllRoomTypes();
-		Room R = getRoomByNumber(roomNum);
+		Room R = getRoomByNumber(roomNum, facility);
 		
 		for(int i=0; i<RT.length; i++)
-			if(R.typeID.equals(RT[i].typeID))
+			if(R.typeID.equals(RT[i].typeID)){
 				return RT[i];
+			}
 		
 		return null;
 		
@@ -316,5 +322,132 @@ public class Driver {
 		return facRooms;
 	}
 	
+	//Gets a list of all available rooms by facility
+	public Room[] getAvailRoomsByFacility(String facility){
+		
+		Room[] allRooms = getRoomsByFacility(facility);
+		Room[] tempHold = new Room[100];
+		
+		int count = 0;
+		for(int i= 0; i<allRooms.length;i++){
+			if(!allRooms[i].isOccupied()){
+				tempHold[count] = allRooms[i];
+				count++;
+			}
+		}
 
+		Room[] availRooms = new Room[count];
+		
+		for(int i= 0; i<count;i++){
+			availRooms[i] = tempHold[i];
+		}
+
+		return availRooms;
+	}
+	
+	
+	//Returns all facilities
+	public Facility[] getAllFacilities(){
+		
+		if(C == null){
+			System.out.println("Connection unsuccessful.");
+		}
+		else
+
+			try{
+				Statement myStmt = C.createStatement();
+				ResultSet RS;
+
+				String getRooms  = "SELECT * FROM facilities";	
+				RS = myStmt.executeQuery(getRooms);
+
+				String info[] = {"name","type","image"};
+				RS.last();
+				//System.out.print(RS.last());
+				Facility[] facs = new Facility[RS.getRow()];
+				RS.beforeFirst();
+				int x = 0;
+				while(RS.next()){
+					Facility R = new Facility(RS.getString(info[0]),RS.getString(info[1]), RS.getString(info[2]));
+					facs[x] = R;
+					x++;
+
+				}
+				return facs;
+
+			}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+
+	
+	//Makes a new bulletin
+	public void postBulletin(String title, String date, String message){
+		
+		title = "'"+title+"'";
+		date = "'"+date+"'";
+		message = "'"+message+"'";
+		if(C == null){
+			System.out.println("Connection unsuccessful.");
+		}
+		else
+
+			try{
+				Statement myStmt = C.createStatement();
+				ResultSet RS;
+
+				String sql = "insert into bulletin (title, date, text)" + " values ("+title+","+ date+","+ message+")";
+				myStmt.executeUpdate(sql);
+
+				}
+
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void postBulletin(Bulletin B){
+		
+		postBulletin(B.title, B.date, B.text);
+	}
+	
+	//Gets all bulletins
+	public Bulletin[] getBulletins(){
+		
+		if(C == null){
+			System.out.println("Connection unsuccessful.");
+		}
+		else
+
+			try{
+				Statement myStmt = C.createStatement();
+				ResultSet RS;
+
+				String getRooms  = "SELECT * FROM bulletin";	
+				RS = myStmt.executeQuery(getRooms);
+
+				String info[] = {"title","date","text"};
+				RS.last();
+				//System.out.print(RS.last());
+				Bulletin[] buls = new Bulletin[RS.getRow()];
+				RS.beforeFirst();
+				int x = 0;
+				while(RS.next()){
+					Bulletin B = new Bulletin(RS.getString(info[0]),RS.getString(info[1]), RS.getString(info[2]));
+					buls[x] = B;
+					x++;
+
+				}
+				return buls;
+
+			}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 }

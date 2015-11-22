@@ -5,15 +5,21 @@ import java.util.Arrays;
 
 public class StudentDriver extends Driver {
 
+	public static Connection C;
+	
 	//Attempts to connect to our database and returns the connection if successful, null if not
 	public Connection connect(){
 		return super.connect(dbUser, dbPass);
 	}
 
+	public StudentDriver(){
+		
+		C = connect();
+	}
 	//Allows the logged-on applicant to request a room
 	public void requestRoom(String facility, String roomNum, String userName){
 
-		Connection C = connect();
+		//Connection C = connect();
 		roomNum = "'"+roomNum+"'";
 		userName = "'"+userName+"'";
 		facility = "'"+facility+"'";
@@ -39,7 +45,7 @@ public class StudentDriver extends Driver {
 
 	public String addRegistration(Register R){
 
-		Connection C = connect();
+		//Connection C = connect();
 		//Check if connection successful
 		if(C == null){
 			return "Could not connect to database. Registration Unsuccesful.";
@@ -78,7 +84,7 @@ public class StudentDriver extends Driver {
 	//Returns instance of Student by studentName
 	public Student getStudentInfo(String userName){
 
-		Connection C = connect();
+		//Connection C = connect();
 		userName = "'"+userName+"'";
 		//System.out.println(studentName);
 		//Check if connection successful

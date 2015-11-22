@@ -1,32 +1,33 @@
 package Types;
-/* Each facility is a collection of rooms */
-public class Facility {
 
-	Room[] rooms;
-	int numberOfRooms = 40; //40 rooms per facility
-	int occupiedRooms; //Keeps track of how many rooms are occupied
+import Controls.*;
+
+/* Each facility is a collection of rooms */
+
+public class Facility {
+	Driver D = new Driver(); //For accessing db info
 	
-	public Facility(){
+	public Room[] rooms; //The collection of rooms associated with the facility
+	public String name; //Name of the facility
+	public String type; //Apartment, residence hall, town-house etc.
+	public String image; //Location of image on disk
+	
+	public Facility(String name, String type, String image){
+
+		this.name = name;
+		this.type = type;
+		this.image = image;
 		
-		//Create the rooms, assign room number to each
-		rooms = new Room[40];
-		occupiedRooms = 0;
+		//Grabs all of the rooms
+		rooms = D.getRoomsByFacility(this.name);
 		
 	}
 	
-	//returns an array of available rooms
-	public int[] availRooms(){
-		
-		int[] roomsAvailable = new int[numberOfRooms-occupiedRooms];
-		int x = 0;//simple index for keeping track where we are in the int array
-		
-		for(int i=0; i<numberOfRooms; i++){
-			if(!rooms[i].isOccupied()){
-				roomsAvailable[x] = i;
-				x++;
-			}
-		}
-		return roomsAvailable;
+	//Prints info for testing purposes
+	public void printFacility(){
+		System.out.println("Name: "+this.name);
+		System.out.println("Type: "+this.type);
+		System.out.println("Image: "+this.image);
 	}
 	
 	

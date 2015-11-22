@@ -1,9 +1,9 @@
 package Types;
 
 public class Bulletin {
-	private String title;
-	private String date;
-	private String text;
+	public String title;
+	public String date;
+	public String text;
 	
 	public Bulletin (String title, String date, String text) {
 		this.title=title;
@@ -28,5 +28,12 @@ public class Bulletin {
 	}
 	public void setText(String text) {
 		this.text = text;
+	}
+	
+	public void printBulletin(){
+		
+		System.out.println("Title: "+title);
+		System.out.println("Date: "+date);
+		System.out.println("Text: "+text);
 	}
 }
