@@ -76,11 +76,6 @@ public class StudentDriver extends Driver {
 	}
 
 
-	public void assignRoom(int roomNum){
-
-
-	}
-
 	//Returns instance of Student by studentName
 	public Student getStudentInfo(String userName){
 

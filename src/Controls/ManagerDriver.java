@@ -70,23 +70,35 @@ public class ManagerDriver extends Driver {
 	}
 	
 	//Gets a specific student's info based on a roomNum
-	public Student getStudentFromRoom(String roomNum) {
-
+	public Student[] getStudentsFromRoom(String facility, String roomNum) {
 		Student[] students = getResidents();
-
-		Student roomOcc = null;
+		
+		int count = 0;
+		
+		Student[] temp = new Student[4];//Can have up to  people in a room
+		
+		//Count how many occupants are in the room
 		for (int i = 0; i < students.length; i++) {
-			if (students[i].roomNum.equals(roomNum))
-				roomOcc = students[i];
+			if (students[i].roomNum.equals(roomNum)&& students[i].facility.equals(facility)){
+				temp[count] = students[i];
+				count++;
 		}
-		return roomOcc;
+		}
+		
+		Student[] roomOccs = new Student[count];
+		
+		for (int i = 0; i < count; i++) {
+			roomOccs[i] = temp[i];
+		}
+		
+		return roomOccs;
 	}
 
 	// created this method to simply convert the student's type to resident
-	public void setApplicantToResident(String name) {
+	public void setApplicantToResident(String userName) {
 
 		//Connection C = connect();
-		name = "'" + name + "'";
+		userName = "'" + userName + "'";
 		if (C == null) {
 			System.out.println("Connection unsuccessful");
 		} else {
@@ -95,7 +107,7 @@ public class ManagerDriver extends Driver {
 				ResultSet RS;
 
 				// Update accountType to Resident
-				String sql = "update Users set accountType= 'resident' where name= " + name;
+				String sql = "update Users set accountType= 'resident' where userName= " + userName;
 				myStmt.executeUpdate(sql);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -104,7 +116,7 @@ public class ManagerDriver extends Driver {
 	}
 
 	//Assigns a room to a student
-	public void assignRoomToStudent(String facility, String roomNum, String name) {
+	public void assignRoomToStudent(String facility, String roomNum, String userName) {
 
 		//First check if the room is full
 		if(getRoomByNumber(roomNum, facility).isOccupied()){
@@ -114,7 +126,7 @@ public class ManagerDriver extends Driver {
 			
 		String slot = getAvailSlot(roomNum, facility);
 		roomNum = "'" + roomNum + "'";
-		name = "'" + name + "'";
+		userName = "'" + userName + "'";
 		facility = "'" + facility + "'";
 		
 		if (C == null) {
@@ -125,13 +137,13 @@ public class ManagerDriver extends Driver {
 				ResultSet RS;
 				
 				// Set the roomNum in the Users table
-				String sql = "update Users set roomNum= " + roomNum + ", facility= " + facility + " where name= " + name;
+				String sql = "update Users set roomNum= " + roomNum + ", facility= " + facility + " where userName= " + userName;
 				myStmt.executeUpdate(sql);
 				// Assign the student name to the room
-				sql = "update rooms set "+slot+"= " + name + " where roomNum= " + roomNum +"  AND facility= " + facility;
+				sql = "update rooms set "+slot+"= " + userName + " where roomNum= " + roomNum +"  AND facility= " + facility;
 				myStmt.executeUpdate(sql);
 				// Update accountType to Resident
-				sql = "update Users set accountType= 'resident' where name= " + name;
+				sql = "update Users set accountType= 'resident' where userName= " + userName;
 				myStmt.executeUpdate(sql);
 				System.out.println("Assigned roomNum to Student");
 			}
@@ -197,8 +209,6 @@ public class ManagerDriver extends Driver {
 		return slots;
 	}
 	
-		
-	
 	// Returns a list of all registered student's names
 	public String[] getAllStudentsNames() {
 
@@ -240,6 +250,19 @@ public class ManagerDriver extends Driver {
 			}
 		return null;
 	}
+	
+	//returns a list of all student user names
+	public String[] getAllUserNames(){
+		
+		Student[] S = getAllStudents();
+		
+		String[] userNames = new String[S.length];
+		
+		for(int i=0; i<S.length; i++)
+			userNames[i] = S[i].userName;
+		
+		return userNames;
+	}
 
 	// Returns all users with accountType==resident
 	public Student[] getResidents() {
@@ -261,6 +284,19 @@ public class ManagerDriver extends Driver {
 		return residents;
 	}
 
+	//Returns student based on userName
+	public Student getStudentInfoByUserName(String userName){
+		
+		Student[] S = getAllStudents();
+		
+		for(int i =0; i<S.length; i++)
+			if(S[i].userName.equals(userName))
+				return S[i];
+		
+		return null;
+	}
+	
+	
 	// Returns instance of Student by studentName
 	public Student getStudentInfo(String studentName) {
 
@@ -300,7 +336,6 @@ public class ManagerDriver extends Driver {
 	public Student[] getApplicants() {
 
 		String[] studentNames = getAllStudentsNames();
-		// System.out.println(studentNames.length);
 		int applicantCount = 0;
 
 		for (int i = 0; i < studentNames.length; i++) {
@@ -317,6 +352,7 @@ public class ManagerDriver extends Driver {
 		return applicants;
 	}
 
+	//Returns all students
 	public Student[] getAllStudents() {
 		String[] studentNames = getAllStudentsNames();
 
@@ -355,6 +391,7 @@ public class ManagerDriver extends Driver {
 			e.printStackTrace();
 		}
 	}
+	
 	//Creates a whole new facility
 	public void createFacility(String name, String facilityType, String roomTypeID){
 		
@@ -403,9 +440,10 @@ public class ManagerDriver extends Driver {
 		return studentEmailAddresses;
 	}
 	
-	public String getEmailByName(String studentName){
+	//Returns a specific email address
+	public String getEmailByName(String userName){
 		
-		Student S = getStudentInfo(studentName);
+		Student S = getStudentInfo(userName);
 		
 		return S.email;
 		

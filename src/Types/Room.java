@@ -81,7 +81,7 @@ public class Room {
 				"Room Type: " + roomType + "<br>" +
 				"Description: " + description + "<br>";
 	}
-
+	
 	public String toString() {
 		return roomNum;
 	}

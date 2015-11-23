@@ -408,7 +408,6 @@ public class Driver {
 			e.printStackTrace();
 		}
 	}
-	
 	public void postBulletin(Bulletin B){
 		
 		postBulletin(B.title, B.date, B.text);
