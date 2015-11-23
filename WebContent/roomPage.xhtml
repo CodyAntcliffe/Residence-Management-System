@@ -8,7 +8,7 @@
 <h:body>
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
-
+	<h1>Find Rooms</h1>
 		<h:form id="topLevel">
 
 			<h:panelGrid columns="3">
@@ -35,24 +35,25 @@
 					<h:selectManyCheckbox>
 						<f:selectItem itemLabel="Accessible" itemValue="accessible" />
 					</h:selectManyCheckbox>
+					</h:panelGrid>
+				</h:panelGrid>
+				
+				
+				<div class = "contentButtons">
 					<h:commandButton value="Search" action="#{roomPageBean.searchRooms}"/>
 					<h:commandButton rendered="#{roomPageBean.resultRoom != null}" value="Back to Results" action="#{roomPageBean.setResultRoom(null)}"/>
-				</h:panelGrid>
-
+				</div>
 				<h:inputTextarea rendered = "#{roomPageBean.userType == 'applicant' and roomPageBean.resultRoom != null}" style="width: 193px; height: 88px; "></h:inputTextarea>
 				<h:commandButton rendered = "#{roomPageBean.userType == 'applicant' and roomPageBean.resultRoom != null}" value="Apply For Room" action="#{roomPageBean.applyForRoom}"/>
-				
-			</h:panelGrid>
 			
 			<hr style="height: 1px; " />
-			
-
 		</h:form>
+
 
 		<h:form id="resultForm" style="height: 74px; ">
 
 			<h:panelGrid id="searchGrid" columns="2">
-
+				
 				<h:dataTable rendered="#{roomPageBean.roomList != null and roomPageBean.resultRoom == null}" id="roomSelection" value="#{roomPageBean.roomList}" border="1"
 					var="room" style="width: 540px; height: 137px; ">
 					
@@ -90,6 +91,7 @@
 
 			</h:panelGrid>
 		</h:form>
+		
 	</ui:define>
 </ui:composition>
 </h:body>

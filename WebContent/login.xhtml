@@ -9,16 +9,20 @@
 	<h:body>
 		<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">	
 			<ui:define name="content">
+				<h1>Login</h1>
 		        <h:form>
 		            <h:panelGrid columns="2">
 		                <h:outputText value="Username"/>
 		                <h:inputText value="#{logIn.userName}"/>
 		                <h:outputText value="Password"/>
 		                <h:inputSecret value="#{logIn.password}"/>
-			            <h:commandButton value="Login" action="#{logIn.tryLogin}" style="width: 75px; ">
+		            </h:panelGrid>
+		            
+		            <div class = "contentButtons">
+			            <h:commandButton value="Login" action="#{logIn.tryLogin}">
 			            </h:commandButton>
-			            <h:button value="Register" outcome="toRegister" style="width: 75px; "/>
-			        </h:panelGrid>
+			            <h:button value="Register" outcome="toRegister"/>
+			        </div>
 			        <h:panelGrid id="resultGrid" columns="2">
 			        	<h:outputText rendered="#{logIn.result != null}" id="loginResult" value="#{logIn.result}" style="color:red"/>
 		            </h:panelGrid>
