@@ -12,12 +12,12 @@
   		<h:button rendered="#{logIn.userType == null}" value="Login" outcome="toLogin"/>
   		<h:commandButton rendered="#{logIn.userType != null}" value="Logout" action="#{logIn.logOut}" outcome="toLogin"/>
   		<h:button rendered="#{logIn.userType != null}" value="Home" outcome="toHome"/>
+  		<h:button rendered="#{logIn.userType == 'applicant' or logIn.userType == 'manager'}" value="View Rooms" outcome="toRoomPage" />
+  		<h:button rendered="#{logIn.userType == 'manager'}" value="View Pending Applications" outcome="toApplicationsPage" />
+  		<h:button rendered="#{logIn.userType == 'resident' or logIn.userType == 'applicant'}" value="Account Status" outcome="toMyRoomPage" /> 
+  	
   	</div>
   	</h:form>
-	
-	
-	
-	
 	
 </ui:composition>
 
