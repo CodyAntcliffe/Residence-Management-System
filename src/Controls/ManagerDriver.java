@@ -266,18 +266,20 @@ public class ManagerDriver extends Driver {
 
 	// Returns all users with accountType==resident
 	public Student[] getResidents() {
-		String[] studentNames = getAllStudentsNames();
+		
+		Student[] allStudents = getAllStudents();
 		int residentCount = 0;
 
-		for (int i = 0; i < studentNames.length; i++) {
-			if (getStudentInfo(studentNames[i]).accountType.toString().equals("resident"))
+		for (int i = 0; i < allStudents.length; i++) {
+			if (allStudents[i].accountType.equals("resident"))
 				residentCount++;
 		}
 		Student[] residents = new Student[residentCount];
+		
 		int j = 0;
-		for (int i = 0; i < studentNames.length; i++)
-			if (getStudentInfo(studentNames[i]).accountType.toString().equals("resident")) {
-				residents[j] = getStudentInfo(studentNames[i]);
+		for (int i = 0; i < allStudents.length; i++)
+			if (allStudents[i].accountType.equals("resident")) {
+				residents[j] = allStudents[i];
 				j++;
 			}
 
@@ -422,6 +424,155 @@ public class ManagerDriver extends Driver {
 		catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	
+	//Deletes a facility
+	public void removeFacility(String facilityName){
+		
+		//Set all students back to applicant that are in that facility
+		Student[] residents = getResidents();
+		Student[] applicants = getApplicants();
+		
+		for(int i = 0; i< residents.length; i++){
+			if(residents[i].facility!=null)
+				if(residents[i].facility.equals(facilityName)){
+					removeStudentFromRoom(residents[i].userName);
+				}
+		}
+		for(int i = 0; i<applicants.length; i++)
+			if(applicants[i].facility!=null)
+				if(applicants[i].facility.equals(facilityName))
+					rejectRoomRequest(applicants[i].userName);
+		
+		//Remove all rooms that are part of facility
+		for(int i = 10; i<30; i++){
+			removeRoom(String.valueOf(i), facilityName);
+		}
+		
+		//Need to remove facility from facilities table
+		if(C == null){
+			System.out.println("Connection unsuccessful.");
+		}
+		else
+
+			try{
+				Statement myStmt = C.createStatement();
+				ResultSet RS;
+				facilityName = "'"+facilityName+"'";
+				String sql = "delete from facilities where name= "+facilityName;
+				myStmt.executeUpdate(sql);
+				}
+
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	//Removes room from facility
+	public void removeRoom(String roomNum, String facility){
+		
+		facility = "'"+facility+"'";
+		roomNum = "'"+roomNum+"'";
+		
+		if(C == null){
+			System.out.println("Connection unsuccessful.");
+		}
+		else
+
+			try{
+				Statement myStmt = C.createStatement();
+				ResultSet RS;
+
+				String sql = "delete from rooms where roomNum= "+roomNum+" AND facility ="+facility;
+				myStmt.executeUpdate(sql);
+				}
+
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	//Removes a student from a room and sets them back to applicant
+	public void removeStudentFromRoom(String userName){
+		
+		Student[] allResidents = getResidents();
+		
+		for(int i = 0; i<allResidents.length; i++){
+			if(allResidents[i].userName.equals(userName)){
+				if(C == null){
+					System.out.println("Connection unsuccessful.");
+				}
+				else
+					try{
+						
+						
+						Student S = getStudentInfoByUserName(userName);
+						Room R = getRoomByNumber(S.roomNum, S.facility);
+						String UN = userName;
+						userName = "'"+userName+"'";
+						
+						Statement myStmt = C.createStatement();
+						ResultSet RS;
+						//Make changes in users table
+						String sql = "update Users set roomNum= NULL, facility = NULL, accountType = 'applicant' where userName= "+userName;
+						myStmt.executeUpdate(sql);
+						
+						
+						//Make changes in Rooms table
+						String space = "";
+						
+						if(R.occupant1.equals(UN))
+							space = "occupant1";
+						else
+						if(R.occupant2.equals(UN))
+							space = "occupant2";
+						else
+						if(R.occupant3.equals(UN))
+							space = "occupant3";
+						else
+						if(R.occupant4.equals(UN))
+							space = "occupant4";
+						System.out.println(space);
+						sql = "update rooms set "+space+"= NULL where "+space+"= "+userName ;
+						myStmt.executeUpdate(sql);
+					}
+
+				catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	//Rejects a room request by userName
+	public void rejectRoomRequest(String userName){
+		
+		Student[] roomRequests = getAllRoomRequests();
+		
+		for(int i = 0; i<roomRequests.length; i++){
+			if(roomRequests[i].userName.equals(userName)){
+				if(C == null){
+					System.out.println("Connection unsuccessful.");
+				}
+				else
+					try{
+						userName = "'"+userName+"'";
+						Statement myStmt = C.createStatement();
+						ResultSet RS;
+
+						//Set the roomNum in the Users table
+						String sql = "update Users set roomNum= NULL, facility = NULL where userName= "+userName;
+						myStmt.executeUpdate(sql);
+					}
+
+				catch(Exception e){
+					e.printStackTrace();
+				}
+				
+				return;
+			}
+		}
+				
 	}
 	
 	//Gets a list of all student email addresses
