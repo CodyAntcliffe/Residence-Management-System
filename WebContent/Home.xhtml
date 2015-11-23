@@ -7,17 +7,28 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
-    <ui:define name="content">
-    	<h:form rendered="#{logIn.userType != null}">
-            <h:button rendered="#{logIn.userType == 'applicant' or logIn.userType == 'manager'}" value="View Rooms" outcome="toRoomPage"/>
-            <h:button rendered="#{logIn.userType == 'manager'}" value="View Pending Applications" outcome="toApplicationsPage"/>
-            <h:button rendered="#{logIn.userType == 'manager'}" value="View Students" outcome="toStudentsPage"/>
-            <h:button rendered="#{logIn.userType == 'resident' or logIn.userType == 'applicant'}" value="Account Status" outcome="toMyRoomPage"/>
-        </h:form>
-        <h:panelGrid rendered="#{logIn.userType == null}" columns="2">
-	        <h:button value="Login" outcome="toLogin"/>
-	        <h:button value="Register" outcome="toRegister"/>
-        </h:panelGrid>
-    </ui:define>
+	<ui:define name="content">
+		<h:form rendered="#{logIn.userType != null}">
+			<div class="contentButtons">
+				<h:button
+					rendered="#{logIn.userType == 'applicant' or logIn.userType == 'manager'}"
+					value="View Rooms" outcome="toRoomPage" /></div>
+			<div class="contentButtons">
+				<h:button rendered="#{logIn.userType == 'manager'}"
+					value="View Pending Applications" outcome="toApplicationsPage" /></div>
+					<div class="contentButtons">
+				<h:button rendered="#{logIn.userType == 'manager'}"
+					value="View Students" outcome="toStudentsPage" /></div>
+					<div class="contentButtons">
+				<h:button
+					rendered="#{logIn.userType == 'resident' or logIn.userType == 'applicant'}"
+					value="Account Status" outcome="toMyRoomPage" /></div>
+		</h:form>
+		<h:form id = "topLevel" rendered="#{logIn.userType == null}">
+			<h2>Not currently signed in.</h2>
+			<div><h:button value="Login" outcome="toLogin" /></div>
+			<div><h:button value="Register" outcome="toRegister" /></div>
+		</h:form>
+	</ui:define>
 </ui:composition>
 </html>
