@@ -5,41 +5,29 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
-<h:body>
+<h:body >
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
-
-		<h:form id="topLevel">
-
+		<h:form rendered="#{logIn.userType == null}">
+			<h1>Restricted: Please Log In</h1>
+		</h:form>
+		<h:form  rendered="#{logIn.userType != null}" id="topLevel">
+			<h2>Browse Available Rooms</h2>
+			
+			<h:outputText escape="false" value="Apartments and townhouses are only available to students in year 3 and 4."/>
+			<h:outputText escape="false" value="&lt;br/&gt;"/>
+		
+			<h:selectOneMenu id="facilityList" value="#{roomPageBean.stringFacility}">
+				<f:selectItems value="#{roomPageBean.facilityList}"/>
+			</h:selectOneMenu>
 			<h:panelGrid columns="3">
 				<h:panelGrid columns="2">
-				<h:outputText rendered="#{roomPageBean.userType == 'manager'}" value="Room Status: "/>
-					<h:selectOneRadio rendered="#{roomPageBean.userType == 'manager'}">
-						<f:selectItem itemLabel="Occupied" itemValue="residenceHall" />
-						<f:selectItem itemLabel="Available" itemValue="townHouse" />
-						<f:selectItem itemLabel="Flagged For Maintenance" itemValue="apartment" />
-					</h:selectOneRadio>
-					<h:outputText value="Living Style: " />
-					<h:selectOneRadio>
-						<f:selectItem itemLabel="Residence Hall" itemValue="residenceHall" />
-						<f:selectItem itemLabel="Town House" itemValue="townHouse" />
-						<f:selectItem itemLabel="Apartment" itemValue="apartment" />
-					</h:selectOneRadio>
-					<h:outputText value="Room Type: " />
-					<h:selectOneRadio>
-						<f:selectItem itemLabel="Single" itemValue="single" />
-						<f:selectItem itemLabel="Basic Single" itemValue="basicSingle" />
-						<f:selectItem itemLabel="Double" itemValue="double" />
-					</h:selectOneRadio>
-					<h:outputText value="Other:" />
-					<h:selectManyCheckbox>
-						<f:selectItem itemLabel="Accessible" itemValue="accessible" />
-					</h:selectManyCheckbox>
-					<h:commandButton value="Search" action="#{roomPageBean.searchRooms}"/>
+					
+				
+					<h:commandButton value="Search" action="#{roomPageBean.searchRooms()}"/>
 					<h:commandButton rendered="#{roomPageBean.resultRoom != null}" value="Back to Results" action="#{roomPageBean.setResultRoom(null)}"/>
 				</h:panelGrid>
-
-				<h:inputTextarea rendered = "#{roomPageBean.userType == 'applicant' and roomPageBean.resultRoom != null}" style="width: 193px; height: 88px; "></h:inputTextarea>
+				
 				<h:commandButton rendered = "#{roomPageBean.userType == 'applicant' and roomPageBean.resultRoom != null}" value="Apply For Room" action="#{roomPageBean.applyForRoom}"/>
 				
 			</h:panelGrid>
@@ -48,10 +36,10 @@
 			
 
 		</h:form>
-
-		<h:form id="resultForm" style="height: 74px; ">
-
-			<h:panelGrid id="searchGrid" columns="2">
+		<h3>Search Results</h3>
+		<h:form  rendered="#{logIn.userType != null}" id="resultForm" style="height: 74px; ">
+			
+			<h:panelGrid id="searchGrid" columns="1">
 
 				<h:dataTable rendered="#{roomPageBean.roomList != null and roomPageBean.resultRoom == null}" id="roomSelection" value="#{roomPageBean.roomList}" border="1"
 					var="room" style="width: 540px; height: 137px; ">
@@ -60,34 +48,41 @@
 						<f:facet name="header">View Room</f:facet>
 						<h:commandButton value="View" action="#{roomPageBean.getSearchResults(room.roomNum)}"/>
 					</h:column>
-					<h:column >
+					
+					<h:column>
 						<f:facet name="header">Facility</f:facet>
 						#{room.facility}
 					</h:column>
-						
 					<h:column>
 						<f:facet name="header">Room Number</f:facet>
 		    			#{room.roomNum}
 		    		</h:column>
-		    		<h:column rendered="#{roomPageBean.userType == 'Manager'}">
-						<f:facet name="header">Occupant</f:facet>
-		    			#{room.occupant}
+		    		<h:column rendered="#{roomPageBean.userType == 'manager'}">
+						<f:facet name="header">Occupants</f:facet>
+		    			#{room.occupant1}
 		    		</h:column>
-					<h:column>
-						<f:facet name="header">Room Type</f:facet>
-						#{room.roomType}
-					</h:column>
+		    		<h:column rendered="#{roomPageBean.userType == 'manager'}">
+		    			#{room.occupant2}
+		    		</h:column>
+		    		<h:column rendered="#{roomPageBean.userType == 'manager'}">
+		    			#{room.occupant3}
+		    		</h:column>
+		    		<h:column rendered="#{roomPageBean.userType == 'manager'}">
+		    			#{room.occupant4}
+		    		</h:column>
+		    		
 				</h:dataTable>
+				
+				
 
-				<h:panelGrid id="imageInfoPanel" columns="2" style="width: 700px; ">
-					<h:graphicImage rendered="#{roomPageBean.resultRoom != null and roomPageBean.roomSelected == '10'}"
-						value="https://www.lakeheadu.ca/sites/default/files/uploads/97/images/floorplans/Basic%20Single%202014%20-%20Web%20Small%20%281%29.jpg" style="width: 211px; height: 205px; "/>
-					<h:graphicImage rendered="#{roomPageBean.resultRoom != null and roomPageBean.roomSelected == '9'}"
-						value="https://www.lakeheadu.ca/sites/default/files/uploads/97/images/floorplans/Single%202014%20-%20Web%20Small%20%281%29.jpg" style="width: 211px; height: 205px; "/>
+				<h:panelGrid id="imageInfoPanel" columns="1" style="width: 700px; ">
+					<h:graphicImage rendered="#{roomPageBean.resultRoom != null}"
+						value="#{roomPageBean.resultRoomType.image}"/>
 					<h:outputText escape="false" rendered="#{roomPageBean.resultRoom != null}"
 						value="#{roomPageBean.resultRoom.roomInfo()}"/>
+						<h:outputText escape="false" rendered="#{roomPageBean.resultRoom != null}"
+						value="#{roomPageBean.resultRoomType.roomTypeInfo()}"/>
 				</h:panelGrid>
-
 			</h:panelGrid>
 		</h:form>
 	</ui:define>
