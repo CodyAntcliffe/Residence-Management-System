@@ -34,6 +34,7 @@ public class ApplicationsPageBean {
 	}
 
 	public void rejectApplication(){
+		System.out.println("Rejected application of selected student");
 		//remove student's selected room
 		//we can use the request room method, as all it does is set the student's room as null
 		managerDriver.setRoomNull(applicationSelected);
@@ -57,6 +58,8 @@ public class ApplicationsPageBean {
 	public void setStudentName (final String[] studentName) {
 		this.studentName = studentName;
 	}
+	
+	
 	public String[] getStudentName () {
 		studentName = new String[appliedStudents.length];
 		for (int i = 0; i< appliedStudents.length; i++) {
