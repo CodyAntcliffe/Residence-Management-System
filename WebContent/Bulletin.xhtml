@@ -50,10 +50,12 @@
 		</h:form>
 		<h2>Posted Bulletins</h2>
 		<h:form>
-			<h:dataTable value="#{BulletinPageBean.bulletinList}" var="bulletin" style="width: 500px; ">
+			<h:dataTable value="#{BulletinPageBean.bulletinList}" var="bulletin" style="width:80%; " border="1">
 				<h:column>
-					Date: #{bulletin.date}<br></br>
-					Body: #{bulletin.text}<br></br>
+					<h1>#{bulletin.title}</h1>
+					#{bulletin.date}<br></br>
+					<hr style="height: 1px; " />
+					#{bulletin.text}<br></br>
 				</h:column>
 			</h:dataTable>
 		

@@ -10,7 +10,8 @@ public class BulletinPageBean {
 	private String title;
 	private String date;
 	private String message;
-	private Bulletin[] bulletinList;
+	private Bulletin[] bulletinList = new Bulletin[3];
+	private Bulletin bulletin;
 	private String serverResponse;
 	private Driver driver = new Driver();
 	
