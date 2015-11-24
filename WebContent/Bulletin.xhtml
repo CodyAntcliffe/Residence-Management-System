@@ -2,62 +2,64 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+ xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+ xmlns:h="http://xmlns.jcp.org/jsf/html"
+ xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
     <ui:define name="content">
-    	<h:form>     
-    	    <h:panelGrid columns="3">
-    	    	
-    	    	<h:outputText value="Date"></h:outputText>
+     <h:form>     
+         <h:panelGrid columns="3">
+          
+          <h:outputText value="Date"></h:outputText>
                 <h:inputText id="date" 
-                	value="#{BulletinPageBean.date}" 
-                	required="true"
-                	requiredMessage="Please enter a date">
+                 value="#{BulletinPageBean.date}" 
+                 required="true"
+                 requiredMessage="Please enter a date">
                 </h:inputText>
                 <h:message for="date" style="color:red"/>
                 
                 <h:outputText value="Title"></h:outputText>
                 <h:inputText id="title" 
-                	value="#{BulletinPageBean.title}" 
-                	required="true"
-                	requiredMessage="Please enter a title">
+                 value="#{BulletinPageBean.title}" 
+                 required="true"
+                 requiredMessage="Please enter a title">
                 </h:inputText>
                 <h:message for="date" style="color:red"/>
                 
-			    <h:outputText value="Message"></h:outputText>
-			    <h:inputTextarea id="message" 
-			    	value="#{BulletinPageBean.message}" 
-			    	required="true"
-			    	requiredMessage="Please enter a bulletin"
-			    	rows="10" 
-			    	cols="40"
-			    	completeMethod="#{inputTextareaView.completeArea}" 
-			    	queryDelay="750" 
-			    	minQueryLength="4"/>
-			    <h:message for="message" style="color:red"/>
-		 		
-		 	</h:panelGrid>
-		 	<div class = "contentButtons">
-           	<h:commandButton value="Post Bulletin" action="#{BulletinPageBean.postBulletin}">
-           	</h:commandButton>
-           	</div>
-           	<h:panelGrid id="responseGrid" columns="2">
-           		<h:outputText rendered="#{BulletinPageBean.serverResponse != null}" value="#{BulletinPageBean.serverResponse}"/>
-           	</h:panelGrid>
-		</h:form>
-		<h2>Posted Bulletins</h2>
-		<h:form>
-			<h:dataTable value="#{BulletinPageBean.bulletinList}" var="bulletin" style="width: 500px; ">
-				<h:column>
-					Date: #{bulletin.date}<br></br>
-					Body: #{bulletin.text}<br></br>
-				</h:column>
-			</h:dataTable>
-		
-		</h:form>
+       <h:outputText value="Message"></h:outputText>
+       <h:inputTextarea id="message" 
+        value="#{BulletinPageBean.message}" 
+        required="true"
+        requiredMessage="Please enter a bulletin"
+        rows="10" 
+        cols="40"
+        completeMethod="#{inputTextareaView.completeArea}" 
+        queryDelay="750" 
+        minQueryLength="4"/>
+       <h:message for="message" style="color:red"/>
+     
+    </h:panelGrid>
+    <div class = "contentButtons">
+            <h:commandButton value="Post Bulletin" action="#{BulletinPageBean.postBulletin}">
+            </h:commandButton>
+            </div>
+            <h:panelGrid id="responseGrid" columns="2">
+             <h:outputText rendered="#{BulletinPageBean.serverResponse != null}" value="#{BulletinPageBean.serverResponse}"/>
+            </h:panelGrid>
+  </h:form>
+  <h2>Posted Bulletins</h2>
+  <h:form>
+   <h:dataTable value="#{BulletinPageBean.bulletinList}" var="bulletin" style="width:80%; " border="1">
+    <h:column>
+     <h1>#{bulletin.title}</h1>
+     #{bulletin.date}<br></br>
+     <hr style="height: 1px; " />
+     #{bulletin.text}<br></br>
+    </h:column>
+   </h:dataTable>
+  
+  </h:form>
     </ui:define>
 </ui:composition>
 </html>

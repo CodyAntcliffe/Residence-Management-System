@@ -9,10 +9,10 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
 		<h:form rendered="#{logIn.userType == null}">
-			<h1>Restricted: Please Log In</h1>
+		<h1>Restricted: Please Log In</h1>
 		</h:form>
 		<h:form  rendered="#{logIn.userType != null}" id="topLevel">
-			<h2>Browse Available Rooms</h2>
+			<h1>Browse Available Rooms</h1>
 			
 			<h:outputText escape="false" value="Apartments and townhouses are only available to students in year 3 and 4."/>
 			<h:outputText escape="false" value="&lt;br/&gt;"/>
@@ -36,7 +36,7 @@
 			
 
 		</h:form>
-		<h3>Search Results</h3>
+		<h1>Search Results</h1>
 		<h:form  rendered="#{logIn.userType != null}" id="resultForm" style="height: 74px; ">
 			
 			<h:panelGrid id="searchGrid" columns="1">

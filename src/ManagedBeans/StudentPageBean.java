@@ -7,13 +7,20 @@ public class StudentPageBean {
 	private Student[] studentList;
 	private Student resultStudent;
 	private String searchTerm="Search";
+	private String searchCriteria;
 	
 	private ManagerDriver managerDriver = new ManagerDriver();
 	//TODO the first name in the DB is being added to the list twice.
 	
 	public String searchStudents() {
 		resultStudent=null;
-		studentList = managerDriver.getAllStudents();
+		if(searchCriteria.equals("Residents")) {
+			studentList = managerDriver.getResidents();
+		}else if(searchCriteria.equals("Applicants")) {
+			studentList = managerDriver.getApplicants();
+		}else if(searchCriteria.equals("All")) {
+			studentList = managerDriver.getAllStudents();
+		}
 		return "";
 	}
 	
@@ -47,5 +54,13 @@ public class StudentPageBean {
 
 	public void setSearchTerm(String searchTerm) {
 		this.searchTerm = searchTerm;
+	}
+
+	public String getSearchCriteria() {
+		return searchCriteria;
+	}
+
+	public void setSearchCriteria(String searchCriteria) {
+		this.searchCriteria = searchCriteria;
 	}
 }

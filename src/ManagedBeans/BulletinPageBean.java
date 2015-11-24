@@ -30,6 +30,7 @@ public class BulletinPageBean {
 		serverResponse = null;
 		Bulletin bulletin = new Bulletin(title, date, message);
 		serverResponse = driver.postBulletin(bulletin);
+		bulletinList = driver.getBulletins();
 	}
 	
 	public Bulletin[] getBulletins(){
