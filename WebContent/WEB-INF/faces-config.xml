@@ -52,6 +52,11 @@
 		<managed-bean-class>ManagedBeans.ValidationBean</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>BulletinPageBean</managed-bean-name>
+		<managed-bean-class>ManagedBeans.BulletinPageBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>welcome.xhtml</display-name>
 		<from-view-id>/welcome.xhtml</from-view-id>
