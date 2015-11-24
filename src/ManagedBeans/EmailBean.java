@@ -24,7 +24,7 @@ public class EmailBean {
 	
 	
 
-	public void sendEmail() {
+	public void sendEmail(String sendTo, String subject, String body) {
 		Properties props = new Properties();
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.port", port);

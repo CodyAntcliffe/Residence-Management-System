@@ -29,7 +29,15 @@
 		</h:panelGrid>
 	    
 	    <h:commandButton rendered="#{studentInfo.myInfo.roomNum != 'No room assigned/requested' and logIn.userType == 'applicant' and studentInfo.myInfo.roomNum != null}" value="Cancel Request" action="#{studentInfo.leaveRoom}"/>
-	    <h:commandButton rendered="#{studentInfo.myInfo.roomNum != 'No room assigned/requested' and logIn.userType == 'resident' and studentInfo.myInfo.roomNum != null}" value="Vacate Room" action="#{studentInfo.leaveRoom}"/>
+	    
+	    
+	    
+	    <h:panelGrid colums="1'" rendered="#{studentInfo.myInfo.roomNum != 'No room assigned/requested' and logIn.userType == 'resident' and studentInfo.myInfo.roomNum != null}">
+	    	<h2>Leave Room</h2>
+	    	<p>You will have 3 days to vacate your room.</p>
+	    	<p>An email will be sent to you with further instructions.</p>
+	    	<h:commandButton rendered="#{studentInfo.myInfo.roomNum != 'No room assigned/requested' and logIn.userType == 'resident' and studentInfo.myInfo.roomNum != null}" value="Vacate Room" action="#{studentInfo.leaveRoom}"/>
+	    </h:panelGrid>
 	    </h:form>
 	</ui:define>
 </ui:composition>

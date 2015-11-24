@@ -16,6 +16,9 @@ public class StudentInfo {
 	@ManagedProperty(value="#{logIn.userName}")
 	private String userName;
 	
+	@ManagedProperty (value="{emailBean}")
+	EmailBean emailBeanInstance = new EmailBean();
+	
 	private String userType;
 	
 	@PostConstruct
@@ -36,6 +39,10 @@ public class StudentInfo {
 	}
 	
 	public void leaveRoom() {
+		String previousRoom = myInfo.getRoomNum();
+		String previousFacility = myInfo.getFacility();
+		
+		
 		if (userType.equals("resident"))
 			MD.removeStudentFromRoom(userName);
 		else
@@ -48,6 +55,7 @@ public class StudentInfo {
 			myInfo.setFacility("N/A");
 		}
 		userType = SD.getAccountTypeByUserName(userName);
+		emailBeanInstance.sendEmail(myInfo.email, "Vacating from " + previousFacility + " Room " + previousRoom, "You will have 3 days to vacate your room.");
 	}
 	
 	

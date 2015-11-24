@@ -647,7 +647,7 @@ public class ManagerDriver extends Driver {
 	//Returns a specific email address
 	public String getEmailByName(String userName){
 
-		Student S = getStudentInfo(userName);
+		Student S = getStudentInfoByUserName(userName);
 
 		return S.email;
 
