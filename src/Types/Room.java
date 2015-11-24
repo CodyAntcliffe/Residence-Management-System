@@ -31,6 +31,9 @@ public class Room {
 		this.occupant4 = occ4;
 		this.typeID = typeID;
 		this.facility = facility;
+		
+		description = "";
+		
 	}
 	
 	//Prints the room info for testing purposes
@@ -78,7 +81,6 @@ public class Room {
 	public String roomInfo() {
 		return "Facility: " + facility + "<br>" +
 				"Room Number: " + roomNum + "<br>" +
-				"Room Type: " + roomType + "<br>" +
 				"Description: " + description + "<br>";
 	}
 	
@@ -91,15 +93,47 @@ public class Room {
 	public void setRoomNum(String roomNum) {
 		this.roomNum = roomNum;
 	}
-	public String getOccupant() {
-		return occupant;
-	}
-	public void setOccupant(String occupant) {
-		this.occupant = occupant;
-	}
+//	public String getOccupant() {
+//		return occupant;
+//	}
+//	public void setOccupant(String occupant) {
+//		this.occupant = occupant;
+//	}
 	public String getRoomType() {
 		return roomType;
 	}
+	public String getOccupant1() {
+		return occupant1;
+	}
+
+	public void setOccupant1(String occupant1) {
+		this.occupant1 = occupant1;
+	}
+
+	public String getOccupant2() {
+		return occupant2;
+	}
+
+	public void setOccupant2(String occupant2) {
+		this.occupant2 = occupant2;
+	}
+
+	public String getOccupant3() {
+		return occupant3;
+	}
+
+	public void setOccupant3(String occupant3) {
+		this.occupant3 = occupant3;
+	}
+
+	public String getOccupant4() {
+		return occupant4;
+	}
+
+	public void setOccupant4(String occupant4) {
+		this.occupant4 = occupant4;
+	}
+
 	public void setRoomType(String roomType) {
 		this.roomType = roomType;
 	}

@@ -2,6 +2,7 @@ package ManagedBeans;
 import Controls.ManagerDriver;
 import Types.Facility;
 import Types.Room;
+import Types.RoomType;
 import Controls.StudentDriver;
 import javax.faces.bean.ManagedProperty;
 import javax.annotation.PostConstruct;
@@ -9,11 +10,16 @@ import javax.annotation.PostConstruct;
 public class RoomPageBean{
 	//List for populating drop down menu
 	private Room[] roomList;
+	private Facility[] facilityList;
+	private RoomType[] roomTypeList;
 	private String roomSelected;
 	private StudentDriver studentDriver = new StudentDriver();
 	private ManagerDriver managerDriver = new ManagerDriver();
 	private Facility facilitySelected;
 	private Room resultRoom;
+	private String stringFacility;
+	private RoomType resultRoomType;
+	private String yearLevel;
 	
 	//Criteria for the room search
 	private String roomType;//'Single', 'Double' or 'Basic Double'.
@@ -40,6 +46,15 @@ public class RoomPageBean{
 		System.out.println("Usertype is: " + userType + ".");
 		//**TODO** get facility types from the database
 		//Get facility names from the database
+		yearLevel = studentDriver.getStudentInfo(userName).getYearLevel();
+		if (!userType.equals("manager")) {
+			if (yearLevel.equals("1") || yearLevel.equals("2") ) {
+				facilityList = studentDriver.getLowerYearFacilities();
+			}else
+				facilityList = studentDriver.getAllFacilities();
+		}else{
+			facilityList = studentDriver.getAllFacilities();
+		}
 	}
 	
 	public String searchRooms() {
@@ -47,11 +62,11 @@ public class RoomPageBean{
 		resultRoom=null;
 		if (userType.equals("applicant") || userType.equals("resident")) {
 			//**TODO** Change the driver implementation to return rooms based on criteria in requirements (year level, accessibility etc.)
-			roomList = studentDriver.getAvailRooms().clone();
+			roomList = studentDriver.getAvailRoomsByFacility(stringFacility);
 		}
 		if (userType.equals("manager")) {
 			//**TODO** add new driver function
-			roomList = managerDriver.getAllRooms().clone();
+			roomList = managerDriver.getRoomsByFacility(stringFacility);
 		}
 		return "";
 	}
@@ -62,14 +77,16 @@ public class RoomPageBean{
 			if (roomList[i].roomNum.equals(roomSelected))
 				setResultRoom(roomList[i]);
 		}
+		resultRoomType = studentDriver.getRoomTypeInfoByRoomNum(resultRoom.roomNum, resultRoom.facility);
 		//call on driver function to get room based on roomNumber and facility
 		//set the return equal to room selected
 		//if successful return a string toRoomSearchResults
 		return "";
 	}
+	
 	public String applyForRoom() {
 		System.out.println(userType + " makes request to apply for " + roomSelected);
-		studentDriver.requestRoom(roomSelected, userName);//TODO Change so the primary key for the room is passed instead
+		studentDriver.requestRoom(resultRoom.facility, resultRoom.roomNum, userName);//TODO Change so the primary key for the room is passed instead
 		return "";
 	}
 	public void setUserType(String userType) {
@@ -143,5 +160,37 @@ public class RoomPageBean{
 
 	public void setResultRoom(Room resultRoom) {
 		this.resultRoom = resultRoom;
+	}
+
+	public String getStringFacility() {
+		return stringFacility;
+	}
+
+	public void setStringFacility(String stringFacility) {
+		this.stringFacility = stringFacility;
+	}
+
+	public Facility[] getFacilityList() {
+		return facilityList;
+	}
+
+	public void setFacilityList(Facility[] facilityList) {
+		this.facilityList = facilityList;
+	}
+
+	public RoomType getResultRoomType() {
+		return resultRoomType;
+	}
+
+	public void setResultRoomType(RoomType resultRoomType) {
+		this.resultRoomType = resultRoomType;
+	}
+
+	public RoomType[] getRoomTypeList() {
+		return roomTypeList;
+	}
+
+	public void setRoomTypeList(RoomType[] roomTypeList) {
+		this.roomTypeList = roomTypeList;
 	}
 }

@@ -344,7 +344,42 @@ public class Driver {
 
 		return availRooms;
 	}
-	
+	//Returns all facilities
+		public Facility[] getLowerYearFacilities(){
+			
+			if(C == null){
+				System.out.println("Connection unsuccessful.");
+			}
+			else
+
+				try{
+					Statement myStmt = C.createStatement();
+					ResultSet RS;
+
+					String getRooms  = "SELECT * FROM facilities WHERE type = 'Residence'";	
+					RS = myStmt.executeQuery(getRooms);
+
+					String info[] = {"name","type","image"};
+					RS.last();
+					//System.out.print(RS.last());
+					Facility[] facs = new Facility[RS.getRow()];
+					RS.beforeFirst();
+					int x = 0;
+					while(RS.next()){
+						Facility R = new Facility(RS.getString(info[0]),RS.getString(info[1]), RS.getString(info[2]));
+						facs[x] = R;
+						x++;
+
+					}
+					return facs;
+
+				}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+			return null;
+			
+		}
 	
 	//Returns all facilities
 	public Facility[] getAllFacilities(){

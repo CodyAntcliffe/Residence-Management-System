@@ -521,19 +521,19 @@ public class ManagerDriver extends Driver {
 						//Make changes in Rooms table
 						String space = "";
 						
-						if(R.occupant1.equals(UN))
+						if(R.occupant1.equals(S.getName()))
 							space = "occupant1";
 						else
-						if(R.occupant2.equals(UN))
+						if(R.occupant2.equals(S.getName()))
 							space = "occupant2";
 						else
-						if(R.occupant3.equals(UN))
+						if(R.occupant3.equals(S.getName()))
 							space = "occupant3";
 						else
-						if(R.occupant4.equals(UN))
+						if(R.occupant4.equals(S.getName()))
 							space = "occupant4";
 						System.out.println(space);
-						sql = "update rooms set "+space+"= NULL where "+space+"= "+userName ;
+						sql = "update rooms set "+space+"= NULL where "+space+"= "+"'" +S.getName() + "'";
 						myStmt.executeUpdate(sql);
 					}
 

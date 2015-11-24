@@ -21,4 +21,57 @@ public class RoomType {
 		System.out.println("TypeID: "+typeID);
 		
 	}
+	
+	public String roomTypeInfo() {
+		String niceName;
+		if (name.equals("bartleySingle"))
+			niceName = "Basic Single";
+		else
+			niceName = "Single";
+		return "Capacity:  " + capacity + "<br>" +
+				"Accessible:  " + accessible + "<br>" +
+				"Name:  " + niceName + "<br>";
+	}
+	
+	
+	
+	public String getTypeID() {
+		return typeID;
+	}
+
+	public void setTypeID(String typeID) {
+		this.typeID = typeID;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(String capacity) {
+		this.capacity = capacity;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getAccessible() {
+		return accessible;
+	}
+
+	public void setAccessible(String accessible) {
+		this.accessible = accessible;
+	}
 }
