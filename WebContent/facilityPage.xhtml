@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<h:form>
+		<h1>Create Facility</h1>
+			<h:outputText escape="false" value="Use the options below to create a new facility.&lt;br/&gt;"/>
+			
+			<h:panelGrid columns="2" >
+				<h:outputText value="Facility Name: "/>
+				<h:inputText value="#{facilityPageBean.facilityName}"/>
+				
+				<h:outputText value="Facility Type: "/>
+			    <h:selectOneMenu value="#{facilityPageBean.typeSelection}">
+			    	<f:selectItems value="#{facilityPageBean.facilityType}" />
+			    </h:selectOneMenu>
+		    	
+		    	<h:outputText value="Room Type: "/>
+			    <h:selectOneMenu value="#{facilityPageBean.roomTypeSelection}">
+			    	<f:selectItems value="#{facilityPageBean.roomType}" />
+			    </h:selectOneMenu>
+		    	
+		    	<h:outputText value="Accessible: "/>
+			    <h:selectOneMenu value="#{facilityPageBean.accessible}">
+			    	<f:selectItem itemValue="Accessible"/>
+			    	<f:selectItem itemValue="Not Accessible"/>
+			    </h:selectOneMenu>
+	   		 </h:panelGrid>
+	   		 <h:panelGrid columns ="1" >
+		    	<h:commandButton value="Create Facility" action="#{facilityPageBean.createFacility}"/>
+		    	<h:outputText rendered="#{facilityPageBean.createResponse != null}" value="#{facilityPageBean.createResponse}" style="color:red"/>
+	    		</h:panelGrid>
+	    </h:form>
+	    <h:form>
+		<h1>Remove Facility</h1>
+			<h:panelGrid columns="2">
+				<h:outputText escape="false" value="Remove the selected facility, send an email alert to all occupants.&lt;br/&gt;"/>
+		    	<h:outputText value="Facility Name: "/>
+			    <h:selectOneMenu value="#{facilityPageBean.removeFacility}">
+			    	<f:selectItem itemValue=""/>
+			    	<f:selectItems value="#{facilityPageBean.facilityList}" />
+			    </h:selectOneMenu>
+	    	</h:panelGrid>
+	    	<h:panelGrid columns="1">
+			    <h:commandButton value="Remove Facility" action="#{facilityPageBean.destroyFacility}"/>
+			    <h:outputText rendered="#{facilityPageBean.removeResponse != null}" value="#{facilityPageBean.removeResponse}" style="color:red"/>
+			</h:panelGrid>
+	    </h:form>
+	</ui:define>
+</ui:composition>
+</html>

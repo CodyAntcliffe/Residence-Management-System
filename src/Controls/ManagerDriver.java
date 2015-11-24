@@ -395,7 +395,7 @@ public class ManagerDriver extends Driver {
 	}
 	
 	//Creates a whole new facility
-	public void createFacility(String name, String facilityType, String roomTypeID){
+	public String createFacility(String name, String facilityType, String roomTypeID){
 		
 		name = "'"+name+"'";
 		facilityType = "'"+facilityType+"'";
@@ -419,15 +419,16 @@ public class ManagerDriver extends Driver {
 					myStmt.executeUpdate(sql);
 				}
 				
-				}
+			}
 
 		catch(Exception e){
 			e.printStackTrace();
 		}
+		return "Facility" + name + " created!";
 	}
 	
 	//Deletes a facility
-	public void removeFacility(String facilityName){
+	public String removeFacility(String facilityName){
 		
 		//Set all students back to applicant that are in that facility
 		Student[] residents = getResidents();
@@ -465,7 +466,9 @@ public class ManagerDriver extends Driver {
 
 		catch(Exception e){
 			e.printStackTrace();
+			return "";
 		}
+		return "Facility" + facilityName + " removed!";
 	}
 	
 	//Removes room from facility

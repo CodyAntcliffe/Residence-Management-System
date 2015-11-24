@@ -420,7 +420,7 @@ public class Driver {
 
 	
 	//Makes a new bulletin
-	public void postBulletin(String title, String date, String message){
+	public String postBulletin(String title, String date, String message){
 		
 		title = "'"+title+"'";
 		date = "'"+date+"'";
@@ -441,11 +441,14 @@ public class Driver {
 
 		catch(Exception e){
 			e.printStackTrace();
+			return "Something went wrong!";
 		}
+		return "Bulletin posted!";
 	}
-	public void postBulletin(Bulletin B){
-		
-		postBulletin(B.title, B.date, B.text);
+	public String postBulletin(Bulletin B){
+		String response;
+		response=postBulletin(B.title, B.date, B.text);
+		return response;
 	}
 	
 	//Gets all bulletins
@@ -473,7 +476,6 @@ public class Driver {
 					Bulletin B = new Bulletin(RS.getString(info[0]),RS.getString(info[1]), RS.getString(info[2]));
 					buls[x] = B;
 					x++;
-
 				}
 				return buls;
 

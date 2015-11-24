@@ -43,6 +43,11 @@
     	</managed-property>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>facilityPageBean</managed-bean-name>
+		<managed-bean-class>ManagedBeans.FacilityPageBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>applicationsPageBean</managed-bean-name>
 		<managed-bean-class>ManagedBeans.ApplicationsPageBean</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>

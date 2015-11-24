@@ -17,7 +17,7 @@ public class StudentDriver extends Driver {
 		C = connect();
 	}
 	//Allows the logged-on applicant to request a room
-	public void requestRoom(String facility, String roomNum, String userName){
+	public String requestRoom(String facility, String roomNum, String userName){
 
 		//Connection C = connect();
 		roomNum = "'"+roomNum+"'";
@@ -39,7 +39,9 @@ public class StudentDriver extends Driver {
 
 		catch(Exception e){
 			e.printStackTrace();
+			return "Something went wrong!";
 		}
+		return "Request Submitted!";
 	}
 	
 

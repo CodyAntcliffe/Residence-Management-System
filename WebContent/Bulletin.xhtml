@@ -15,7 +15,7 @@
                 <h:inputText id="date" 
                 	value="#{BulletinPageBean.date}" 
                 	required="true"
-                	requiredMessage="Please enter a username">
+                	requiredMessage="Please enter a date">
                 </h:inputText>
                 <h:message for="date" style="color:red"/>
                 
@@ -41,11 +41,11 @@
 		 		
 		 	</h:panelGrid>
 		 	<div class = "contentButtons">
-           	<h:commandButton value="Register" action="#{BulletinPageBean.postBulletin}">
+           	<h:commandButton value="Post Bulletin" action="#{BulletinPageBean.postBulletin}">
            	</h:commandButton>
            	</div>
            	<h:panelGrid id="responseGrid" columns="2">
-           		<h:outputText rendered="#{register.serverResponse != null}" value="#{register.serverResponse}"></h:outputText>
+           		<h:outputText rendered="#{BulletinPageBean.serverResponse != null}" value="#{BulletinPageBean.serverResponse}"/>
            	</h:panelGrid>
 		</h:form>
     </ui:define>

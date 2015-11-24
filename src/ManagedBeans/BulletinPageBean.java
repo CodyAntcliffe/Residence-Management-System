@@ -8,9 +8,8 @@ public class BulletinPageBean {
 	private String date;
 	private String message;
 	private Bulletin[] bulletinList;
-	
+	private String serverResponse;
 	private Driver driver = new Driver();
-	private Bulletin bulletin = new Bulletin(title, date, message);
 	
 	public void postBulletin(String title, String date, String message){
 		this.title = title;
@@ -20,8 +19,9 @@ public class BulletinPageBean {
 	}
 	
 	public void postBulletin(){
+		serverResponse = null;
 		Bulletin bulletin = new Bulletin(title, date, message);
-		driver.postBulletin(this.bulletin);
+		serverResponse = driver.postBulletin(bulletin);
 	}
 	
 	public Bulletin[] getBulletins(){
@@ -59,5 +59,13 @@ public class BulletinPageBean {
 	
 	public void setBulletinList(final Bulletin[] bulletinList){
 		this.bulletinList = bulletinList;
+	}
+
+	public String getServerResponse() {
+		return serverResponse;
+	}
+
+	public void setServerResponse(String serverReponse) {
+		this.serverResponse = serverReponse;
 	}
 }
