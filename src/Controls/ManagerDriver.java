@@ -602,4 +602,27 @@ public class ManagerDriver extends Driver {
 		return S.email;
 		
 	}
+	
+	//Removes a bulletin
+	public void removeBulletin(String title){
+		
+		title = "'"+title+"'";
+		
+		if(C == null){
+			System.out.println("Connection unsuccessful.");
+		}
+		else
+
+			try{
+				Statement myStmt = C.createStatement();
+				ResultSet RS;
+
+				String sql = "delete from bulletin where title= "+title;
+				myStmt.executeUpdate(sql);
+				}
+
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 }
