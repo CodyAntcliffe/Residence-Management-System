@@ -26,30 +26,28 @@
                  requiredMessage="Please enter a title">
                 </h:inputText>
                 <h:message for="date" style="color:red"/>
-                
-<<<<<<< HEAD
-       <h:outputText value="Message"></h:outputText>
-       <h:inputTextarea id="message" 
-        value="#{BulletinPageBean.message}" 
-        required="true"
-        requiredMessage="Please enter a bulletin"
-        rows="10" 
-        cols="40"
-        completeMethod="#{inputTextareaView.completeArea}" 
-        queryDelay="750" 
-        minQueryLength="4"/>
-       <h:message for="message" style="color:red"/>
+		       <h:outputText value="Message"></h:outputText>
+		       <h:inputTextarea id="message" 
+			        value="#{BulletinPageBean.message}" 
+			        required="true"
+			        requiredMessage="Please enter a bulletin"
+			        rows="10" 
+			        cols="40"
+			        completeMethod="#{inputTextareaView.completeArea}" 
+			        queryDelay="750" 
+			        minQueryLength="4"/>
+		       <h:message for="message" style="color:red"/>
      
     </h:panelGrid>
-    <div class = "contentButtons">
-            <h:commandButton value="Post Bulletin" action="#{BulletinPageBean.postBulletin}">
-            </h:commandButton>
-            </div>
-            <h:panelGrid id="responseGrid" columns="2">
-             <h:outputText rendered="#{BulletinPageBean.serverResponse != null}" value="#{BulletinPageBean.serverResponse}"/>
-            </h:panelGrid>
-  </h:form>
-  <h2>Posted Bulletins</h2>
+		    <div class = "contentButtons">
+		            <h:commandButton value="Post Bulletin" action="#{BulletinPageBean.postBulletin}">
+		            </h:commandButton>
+		            </div>
+		            <h:panelGrid id="responseGrid" columns="2">
+		             <h:outputText rendered="#{BulletinPageBean.serverResponse != null}" value="#{BulletinPageBean.serverResponse}"/>
+		            </h:panelGrid>
+		  </h:form>
+		  <h2>Posted Bulletins</h2>
   <h:form>
    <h:dataTable value="#{BulletinPageBean.bulletinList}" var="bulletin" style="width:80%; " border="1">
     <h:column>
@@ -61,41 +59,7 @@
    </h:dataTable>
   
   </h:form>
-=======
-			    <h:outputText value="Message"></h:outputText>
-			    <h:inputTextarea id="message" 
-			    	value="#{BulletinPageBean.message}" 
-			    	required="true"
-			    	requiredMessage="Please enter a bulletin"
-			    	rows="10" 
-			    	cols="40"
-			    	completeMethod="#{inputTextareaView.completeArea}" 
-			    	queryDelay="750" 
-			    	minQueryLength="4"/>
-			    <h:message for="message" style="color:red"/>
-		 		
-		 	</h:panelGrid>
-		 	<div class = "contentButtons">
-           	<h:commandButton value="Post Bulletin" action="#{BulletinPageBean.postBulletin}">
-           	</h:commandButton>
-           	</div>
-           	<h:panelGrid id="responseGrid" columns="2">
-           		<h:outputText rendered="#{BulletinPageBean.serverResponse != null}" value="#{BulletinPageBean.serverResponse}"/>
-           	</h:panelGrid>
-		</h:form>
-		<h2>Posted Bulletins</h2>
-		<h:form>
-			<h:dataTable value="#{BulletinPageBean.bulletinList}" var="bulletin" style="width:80%; " border="1">
-				<h:column>
-					<h1>#{bulletin.title}</h1>
-					#{bulletin.date}<br></br>
-					<hr style="height: 1px; " />
-					#{bulletin.text}<br></br>
-				</h:column>
-			</h:dataTable>
-		
-		</h:form>
->>>>>>> branch 'master' of https://github.com/CodyAntcliffe/Residence-Management-System.git
+			    
     </ui:define>
 </ui:composition>
 </html>

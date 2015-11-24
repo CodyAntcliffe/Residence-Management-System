@@ -23,6 +23,13 @@
 				<h:button
 					rendered="#{logIn.userType == 'resident' or logIn.userType == 'applicant'}"
 					value="Account Status" outcome="toMyRoomPage" /></div>
+					<div class="menuButtons">
+				<h:button
+					rendered="#{logIn.userType == 'manager'}"
+					value="Manage Facilities" outcome="toFacilityPage" /></div>
+					<div class="menuButtons">
+				<h:button
+					value="Bulletins" outcome="toBulletinPage" /></div>
 		</h:form>
 		<h:form rendered="#{logIn.userType == null}">
 			<h2>Not currently signed in.</h2>

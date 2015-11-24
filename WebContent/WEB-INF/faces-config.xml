@@ -181,6 +181,33 @@
 		<display-name>WEB-INF/templates/BasicTemplate.xhtml</display-name>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
+			<from-outcome>toApplicationsPage</from-outcome>
+			<to-view-id>/ApplicationsPage.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>WEB-INF/templates/BasicTemplate.xhtml</display-name>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>toMyRoomPage</from-outcome>
+			<to-view-id>/MyRoomPage.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>WEB-INF/templates/BasicTemplate.xhtml</display-name>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>toRoomPage</from-outcome>
+			<to-view-id>/roomPage.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>WEB-INF/templates/BasicTemplate.xhtml</display-name>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
 			<from-outcome>toLogin</from-outcome>
 			<to-view-id>/login.xhtml</to-view-id>
 			<redirect />
@@ -200,6 +227,24 @@
 		<navigation-case>
 			<from-outcome>toRoomSearchResults</from-outcome>
 			<to-view-id>/roomSearchResults.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Home.xhtml</display-name>
+		<from-view-id>/Home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>toBulletinPage</from-outcome>
+			<to-view-id>/Bulletin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Home.xhtml</display-name>
+		<from-view-id>/Home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>toFacilityPage</from-outcome>
+			<to-view-id>/facilityPage.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 </faces-config>
