@@ -48,6 +48,15 @@
            		<h:outputText rendered="#{BulletinPageBean.serverResponse != null}" value="#{BulletinPageBean.serverResponse}"/>
            	</h:panelGrid>
 		</h:form>
+		<h2>Posted Bulletins</h2>
+		<h:form>
+			<h:dataTable value="#{BulletinPageBean.bulletinList}" var="bulletin">
+				<h:column>
+					#{bulletin.text}
+				</h:column>
+			</h:dataTable>
+		
+		</h:form>
     </ui:define>
 </ui:composition>
 </html>

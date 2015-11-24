@@ -1,6 +1,9 @@
 package ManagedBeans;
 
 import Types.Bulletin;
+
+import javax.annotation.PostConstruct;
+
 import Controls.Driver;
 
 public class BulletinPageBean {
@@ -10,6 +13,11 @@ public class BulletinPageBean {
 	private Bulletin[] bulletinList;
 	private String serverResponse;
 	private Driver driver = new Driver();
+	
+	@PostConstruct
+	public void init(){
+		bulletinList = driver.getBulletins();
+	}
 	
 	public void postBulletin(String title, String date, String message){
 		this.title = title;
