@@ -20,12 +20,25 @@
 			<h:outputText value="Year Level: #{studentInfo.myInfo.yearLevel}"/>
 			<h:outputText value="Age: #{studentInfo.myInfo.age}"/>
 			<h:outputText escape="false" rendered="#{logIn.userType == 'applicant' and studentInfo.myInfo.roomNum != null}" value="&lt;br/&gt;"/>
+			
+			<!-- If User has applied, render the following block -->
+			
+		<h:panelGroup rendered="#{logIn.userType == 'applicant' and studentInfo.myInfo.roomNum != null}">	
+			<h1>Application Info</h1>
 			<h:outputText rendered="#{logIn.userType == 'applicant' and studentInfo.myInfo.roomNum != null}" value="Application Status: Pending"/>
 			<h:outputText rendered="#{logIn.userType == 'applicant' and studentInfo.myInfo.facility != null}" value="Facility: #{studentInfo.myInfo.facility}"/>
 			<h:outputText rendered="#{logIn.userType == 'applicant' and studentInfo.myInfo.roomNum != null}" value="Room #: #{studentInfo.myInfo.roomNum}"/>
+		</h:panelGroup>
 			
+			
+		<h:panelGroup rendered="#{login.userType == 'resident'}">
+			<h1>Room Info</h1>
 			<h:outputText rendered="#{logIn.userType == 'resident'}" value="Facility: #{studentInfo.myInfo.facility}"/>
 			<h:outputText rendered="#{logIn.userType == 'resident'}" value="Room #: #{studentInfo.myInfo.roomNum}"/>
+		</h:panelGroup>
+			
+			
+			
 		</h:panelGrid>
 	    
 	    <h:commandButton rendered="#{studentInfo.myInfo.roomNum != 'No room assigned/requested' and logIn.userType == 'applicant' and studentInfo.myInfo.roomNum != null}" value="Cancel Request" action="#{studentInfo.leaveRoom}"/>
