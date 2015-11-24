@@ -9,8 +9,13 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
 		<h:form rendered="#{logIn.userType == null}">
-		<h1>Restricted: Please Log In</h1>
+			<h1>Restricted: Please Log In</h1>
+			<div class = "homeButtons"><h:button value="Login" outcome="toLogin" /></div>
+			<div class = "homeButtons"><h:button value="Register" outcome="toRegister" /></div>
 		</h:form>
+		
+		
+		
 		<h:form  rendered="#{logIn.userType != null}" id="topLevel">
 			<h1>Browse Available Rooms</h1>
 			
@@ -34,12 +39,19 @@
 			
 			<hr style="height: 1px; " />
 			
-
+			
+				<h1>Search Results</h1>
+		
 		</h:form>
-		<h1>Search Results</h1>
+		
+		
+		
+		
 		<h:form  rendered="#{logIn.userType != null}" id="resultForm" style="height: 74px; ">
 			
 			<h:panelGrid id="searchGrid" columns="1">
+	
+			
 
 				<h:dataTable rendered="#{roomPageBean.roomList != null and roomPageBean.resultRoom == null}" id="roomSelection" value="#{roomPageBean.roomList}" border="1"
 					var="room" style="width: 540px; height: 137px; ">

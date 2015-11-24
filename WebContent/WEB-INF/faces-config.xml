@@ -88,6 +88,19 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
+	
+	<navigation-rule>
+		<display-name>register.xhtml</display-name>
+		<from-view-id>/roomPage.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>toRegister</from-outcome>
+			<to-view-id>/register.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	
 	<navigation-rule>
 		<display-name>login.xhtml</display-name>
 		<from-view-id>/login.xhtml</from-view-id>
