@@ -62,6 +62,11 @@
 		<managed-bean-class>ManagedBeans.BulletinPageBean</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>emailBean</managed-bean-name>
+		<managed-bean-class>ManagedBeans.EmailBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>welcome.xhtml</display-name>
 		<from-view-id>/welcome.xhtml</from-view-id>

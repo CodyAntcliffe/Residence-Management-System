@@ -116,12 +116,6 @@ p{
 	border: none;
 	border-radius: 3px;
 }
-
-
-
-
-
-
 #header {
 	/*NOTE height: 105px; if we want buttons to hang off edge */
 	height: 105px;
@@ -146,6 +140,7 @@ p{
 	padding: 30px;
 	margin-bottom: 40px;
 	height: 1000px;
+	overflow: auto;
 }
 
 #footer {
