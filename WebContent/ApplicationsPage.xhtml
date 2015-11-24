@@ -9,17 +9,61 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
 		<h:form>
-		    <h:panelGrid  columns="2">
-		    
-		    	<h:selectOneMenu id="applicationSelect" value="#{applicationsPageBean.applicationSelected}">
-		    		<f:selectItems value = "#{applicationsPageBean.studentName}"/>
-		    	</h:selectOneMenu>
-		    	
-		    	<h:commandButton value="Accept Application" action="#{applicationsPageBean.acceptApplication}"/>
-		    	<h:commandButton value="Reject Application" action="#{applicationsPageBean.rejectApplication}"/>
-		    </h:panelGrid>
-		    
-	   </h:form>
+			<h:dataTable value="#{ApplicationsPageBean.appliedStudents}"
+				var="application" style="width:80%; " border="1">
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+						#{application.name}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Username</f:facet>
+						#{application.userName}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Student Number</f:facet>
+						#{application.studentNumber}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Year Level</f:facet>
+						#{application.yearLevel}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Age</f:facet>
+						#{application.age}
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Facility</f:facet>
+					  	#{application.facility}
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Room Number</f:facet>
+						#{application.roomNum}
+				</h:column>
+				
+
+			</h:dataTable>
+
+		</h:form>
+
+
+		<h:form>
+			<h:panelGrid columns="2">
+
+				<h:selectOneMenu id="applicationSelect"
+					value="#{ApplicationsPageBean.applicationSelected}">
+					<f:selectItems value="#{ApplicationsPageBean.studentName}" />
+				</h:selectOneMenu>
+			</h:panelGrid>
+
+
+			<div class="contentButtons">
+				<h:commandButton value="Accept Application"
+					action="#{ApplicationsPageBean.acceptApplication}" />
+				<h:commandButton value="Reject Application"
+					action="#{ApplicationsPageBean.rejectApplication}" />
+			</div>
+
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>
