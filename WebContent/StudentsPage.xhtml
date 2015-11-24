@@ -13,7 +13,7 @@
 			<h:inputText id="searchBox" value="#{studentPageBean.searchTerm}" style="width: 335px; " required="true"/>
 			<h:panelGrid columns="2">
 				<h:outputText value="Search By:"/>
-				<h:selectOneRadio id="searchCriteria">
+				<h:selectOneRadio id="searchCriteria" value="#{studentPageBean.}">
 					<f:selectItem itemLabel="Name" itemValue="searchByName"/>
 					<f:selectItem itemLabel="Username" itemValue="searchByUserName"/>
 					<f:selectItem itemLabel="Facility" itemValue="searchByFacility"/>
