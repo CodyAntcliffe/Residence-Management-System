@@ -249,7 +249,7 @@
 	</navigation-rule>
 	<navigation-rule>
 		<display-name>Home.xhtml</display-name>
-		<from-view-id>/Home.xhtml</from-view-id>
+		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>toBulletinPage</from-outcome>
 			<to-view-id>/Bulletin.xhtml</to-view-id>

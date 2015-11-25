@@ -10,7 +10,9 @@
 	<ui:define name="content">
 		<h:form>
 		<h1>Create Facility</h1>
-			<p>Use the options below to create a new facility.</p>
+			<p>Use the options below to create a new facility.
+			<br></br>Accessibility applies only to townhouses and apartments.
+			<br></br>Room type only applies to residences.</p>
 			
 			<h:panelGrid columns="2" >
 				<h:outputText value="Facility Name: "/>
@@ -43,13 +45,14 @@
 		<h1>Remove Facility</h1>
 			<div>
 			<p>Remove the selected facility, send an email alert to all occupants.</p>
+			<p>May take a few seconds.</p>
 		   	</div>
 		   		<h:panelGrid columns = "2">
 		   		Facility Name:
 						
 			    <h:selectOneMenu value="#{facilityPageBean.removeFacility}">
 			    	<f:selectItem itemValue=""/>
-			    	<f:selectItems value="#{facilityPageBean.facilityList}" />
+			    	<f:selectItems value="#{facilityPageBean.facilityList}"/>
 			    </h:selectOneMenu>
 			    
 			    </h:panelGrid>

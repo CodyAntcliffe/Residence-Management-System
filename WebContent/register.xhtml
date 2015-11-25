@@ -78,7 +78,7 @@
 	                <h:inputText id = "phone" value="#{register.phone}" required="true"
 	                	requiredMessage="Please enter a phone number"
 	                	validatorMessage="Invalid phone number">
-	                <f:validateRegex pattern="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"/>
+	                <f:validateRegex pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"/>
 	                </h:inputText>
 	                <h:message for="phone" style="color:red"/>
 	                

@@ -1,6 +1,9 @@
 package Controls;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.validator.ValidatorException;
+
+import ManagedBeans.EmailBean;
 
 
 /*
@@ -28,10 +31,19 @@ public class Register{
 	private String age;
 	private String serverResponse;
 	StudentDriver SD = new StudentDriver();
-
+	
+	
+	@ManagedProperty(value="#{emailBean}")
+	EmailBean emailBeanInstance = new EmailBean();
+	
+	
 	public String validateRegistration() {
 		//function parses string and returns relevant info for page redirect
 		serverResponse = SD.addRegistration(this);
+		if (serverResponse.equals("Registration successful!")){
+			emailBeanInstance.sendEmail(email, "Residence Managemeny System Registration", "You have registered successfully!\r\n Save this email somewhere safe so you have a copy of your personal info.\r\nUsername: " + userName + "\r\nEmail: " + email + "\r\nName: " + name+ "\r\nStudent Number: " + studentNumber);
+		}
+		
 		System.out.println(serverResponse);
 		return serverResponse;
 	}

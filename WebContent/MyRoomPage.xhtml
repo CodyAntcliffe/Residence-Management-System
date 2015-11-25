@@ -31,9 +31,9 @@
 		</h:panelGroup>
 			
 			
-		<h:panelGroup rendered="#{login.userType == 'resident'}">
+		<h:panelGroup rendered="#{logIn.userType == 'resident'}">
 			<h1>Room Info</h1>
-			<h:outputText rendered="#{logIn.userType == 'resident'}" value="Facility: #{studentInfo.myInfo.facility}"/>
+			<h:outputText rendered="#{logIn.userType == 'resident'}" value="Facility: #{studentInfo.myInfo.facility}"/><br></br>
 			<h:outputText rendered="#{logIn.userType == 'resident'}" value="Room #: #{studentInfo.myInfo.roomNum}"/>
 		</h:panelGroup>
 			
@@ -47,8 +47,7 @@
 	    
 	    <h:panelGrid colums="1'" rendered="#{studentInfo.myInfo.roomNum != 'No room assigned/requested' and logIn.userType == 'resident' and studentInfo.myInfo.roomNum != null}">
 	    	<h2>Leave Room</h2>
-	    	<p>You will have 3 days to vacate your room.</p>
-	    	<p>An email will be sent to you with further instructions.</p>
+	    	<p>You will have 3 days to vacate your room.<br></br>An email will be sent to you with further instructions.</p>
 	    	<h:commandButton rendered="#{studentInfo.myInfo.roomNum != 'No room assigned/requested' and logIn.userType == 'resident' and studentInfo.myInfo.roomNum != null}" value="Vacate Room" action="#{studentInfo.leaveRoom}"/>
 	    </h:panelGrid>
 	    </h:form>

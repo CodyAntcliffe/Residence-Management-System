@@ -40,6 +40,7 @@ public class ManagerDriver extends Driver {
 		for (int i = 0; i < allApplicants.length; i++) {
 			if (allApplicants[i].roomNum != null) {
 				roomRequests[j] = allApplicants[i];
+				System.out.println(roomRequests[j]);
 				j++;
 			}
 		}
@@ -311,7 +312,6 @@ public class ManagerDriver extends Driver {
 				residents[j] = allStudents[i];
 				j++;
 			}
-
 		return residents;
 	}
 
@@ -474,7 +474,7 @@ public class ManagerDriver extends Driver {
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		return "Facility" + name + " created!";
+		return "Facility " + name + " created!";
 	}
 
 	//Deletes a facility
@@ -518,7 +518,7 @@ public class ManagerDriver extends Driver {
 			e.printStackTrace();
 			return "";
 		}
-		return "Facility" + facilityName + " removed!";
+		return "Facility " + facilityName + " removed!";
 	}
 
 	//Removes room from facility
@@ -674,5 +674,27 @@ public class ManagerDriver extends Driver {
 		catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	public Student[] getResidentsByFacility(String facilityName) {
+		Student[] residentList = getResidents();
+		Student tempHold[] = new Student[residentList.length];
+		
+		//Find all residents in the facility given
+		int count=0;
+		for (int i = 0; i< residentList.length; i++) {
+			if (residentList[i].getFacility().equals(facilityName)){
+				tempHold[count] = residentList[i];
+				count++;
+				System.out.println(count);
+			}
+		}
+		
+		//Make a properly sized array and fill it with residents
+		Student[] facilityResidents = new Student[count];
+		
+		for (int i=0; i < count; i++) {
+			facilityResidents[i]=tempHold[i];
+		}
+		return facilityResidents;
 	}
 }

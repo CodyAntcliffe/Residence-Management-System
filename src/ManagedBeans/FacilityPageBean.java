@@ -1,9 +1,11 @@
 package ManagedBeans;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedProperty;
 
 import Controls.ManagerDriver;
 import Types.Facility;
+import Types.Student;
 
 public class FacilityPageBean {
 	private String[] facilityType = new String[3];//used for drop down menu
@@ -16,8 +18,12 @@ public class FacilityPageBean {
 	private String removeFacility;
 	private String createResponse;
 	private String removeResponse;
+	private Student[] evictedStudents;
 	
 	ManagerDriver md = new ManagerDriver();
+	
+	@ManagedProperty(value="#{emailBean}")
+	EmailBean emailBeanInstance = new EmailBean();
 	
 	@PostConstruct
 	public void init() {
@@ -70,6 +76,10 @@ public class FacilityPageBean {
 	
 	public void destroyFacility() {
 		removeResponse=null;
+		evictedStudents = md.getResidentsByFacility(removeFacility);
+			for (int i=0; i< evictedStudents.length; i++) {
+				emailBeanInstance.sendEmail(evictedStudents[i].email, evictedStudents[i].getFacility() + " is being shut down.", "Transitioning to a new room can be done from the Residence Management System. We are sorry for the inconvenience.");
+			}
 		removeResponse = md.removeFacility(removeFacility);
 		if (removeResponse==null){
 			removeResponse = "Something went wrong, facility was not removed.";
@@ -156,5 +166,13 @@ public class FacilityPageBean {
 
 	public void setRemoveResponse(String removeResponse) {
 		this.removeResponse = removeResponse;
+	}
+
+	public Student[] getEvictedStudents() {
+		return evictedStudents;
+	}
+
+	public void setEvictedStudents(Student[] evictedStudents) {
+		this.evictedStudents = evictedStudents;
 	}
 }

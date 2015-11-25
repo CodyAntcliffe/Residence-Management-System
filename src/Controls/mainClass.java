@@ -13,7 +13,7 @@ public class mainClass {
 		Driver D = new Driver();
 		ManagerDriver MD = new ManagerDriver();
 		StudentDriver SD = new StudentDriver();
-
+		Student[] students =MD.getAllRoomRequests();
 	/*FRONT END
 	 *
 	 *-Make the bar 

@@ -93,12 +93,6 @@ public class Room {
 	public void setRoomNum(String roomNum) {
 		this.roomNum = roomNum;
 	}
-//	public String getOccupant() {
-//		return occupant;
-//	}
-//	public void setOccupant(String occupant) {
-//		this.occupant = occupant;
-//	}
 	public String getRoomType() {
 		return roomType;
 	}

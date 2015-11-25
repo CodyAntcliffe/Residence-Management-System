@@ -1,8 +1,5 @@
 package ManagedBeans;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedProperty;
@@ -16,8 +13,10 @@ public class ApplicationsPageBean {
 	private String[] studentName;
 
 	private ManagerDriver managerDriver = new ManagerDriver();
-	private Driver driver = new Driver();
-
+	
+	@ManagedProperty(value="#{emailBean}")
+	EmailBean emailBeanInstance = new EmailBean();
+	
 	@PostConstruct
 	public void init(){
 		System.out.println("ApplicationsPage PostConstructor init called");
@@ -37,7 +36,7 @@ public class ApplicationsPageBean {
 		System.out.println("Rejected application of selected student");
 		//remove student's selected room
 		//we can use the request room method, as all it does is set the student's room as null
-		managerDriver.setRoomNull(applicationSelected);
+		managerDriver.rejectRoomRequest(applicationSelected);
 	}
 
 	public String getApplicationSelected(){
