@@ -11,7 +11,7 @@ public class ApplicationsPageBean {
 	private String applicationSelected;
 	private Student[] appliedStudents;
 	private String[] studentName;
-
+	private Student acceptedStudent;
 	private ManagerDriver managerDriver = new ManagerDriver();
 	
 	@ManagedProperty(value="#{emailBean}")
@@ -27,16 +27,27 @@ public class ApplicationsPageBean {
 	public void acceptApplication(){
 		System.out.println("Accepted application of selected student");
 		//change student's account type to resident. Now is assigned to specific room
-
+		for (int i =0; i< appliedStudents.length; i++) {
+			if (appliedStudents[i].getName().equals(applicationSelected))
+				acceptedStudent = appliedStudents[i];
+		}
 		//use driver method to just change its user type
-		managerDriver.setApplicantToResident(applicationSelected);
+		emailBeanInstance.sendEmail(acceptedStudent.getEmail(), "Application for " + acceptedStudent.getFacility() + " Room: " + acceptedStudent.getRoomNum() + " ACCEPTED", "Were are pleased to inform you your application was accepted by the manager. Your move in data will be forwarded to you when it is available.");
+		managerDriver.setApplicantToResident(acceptedStudent.getUserName());
+		appliedStudents = managerDriver.getAllRoomRequests();
 	}
 
 	public void rejectApplication(){
 		System.out.println("Rejected application of selected student");
 		//remove student's selected room
 		//we can use the request room method, as all it does is set the student's room as null
-		managerDriver.rejectRoomRequest(applicationSelected);
+		for (int i =0; i< appliedStudents.length; i++) {
+			if (appliedStudents[i].getName().equals(applicationSelected))
+				acceptedStudent = appliedStudents[i];
+		}
+		emailBeanInstance.sendEmail(acceptedStudent.getEmail(), "Application for " + acceptedStudent.getFacility() + " Room: " + acceptedStudent.getRoomNum() + " REJECTED", "Were are sorry to inform you your application was rejected by the manager. Feel free to make another application whenever you please.");
+		managerDriver.rejectRoomRequest(acceptedStudent.getUserName());
+		appliedStudents = managerDriver.getAllRoomRequests();
 	}
 
 	public String getApplicationSelected(){

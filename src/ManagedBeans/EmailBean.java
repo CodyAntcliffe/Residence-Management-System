@@ -58,7 +58,7 @@ public class EmailBean {
 		    message.setRecipients(Message.RecipientType.TO, address);
 		    message.setSubject(subject);
 		    message.setSentDate(new Date());
-		    message.setText(body);
+		    message.setText(body + "\r\n\r\nYou can reply to this email to speak with the Residence Manager, and they will get back to you ASAP.\r\nHave a nice day.");
 		    Transport.send(message);
 		} catch (MessagingException ex) {
 		    ex.printStackTrace();

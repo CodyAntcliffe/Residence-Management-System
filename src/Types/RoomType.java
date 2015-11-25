@@ -8,13 +8,15 @@ public class RoomType {
 	public String capacity; //How many people can be in a specific room
 	public String image; //Location of the image
 	public String accessible; //Whether the room is accessible
+	public String description;//What the room contains for furniture, internet, etc.
 	
-	public RoomType(String t, String n, String c, String i, String a){
+	public RoomType(String t, String n, String c, String i, String a, String d){
 		this.typeID = t;
 		this.name = n;
 		this.capacity = c;
 		this.image = i;
 		this.accessible = a;
+		this.description = d;
 	}
 	
 	public void printRoomType(){
@@ -57,6 +59,14 @@ public class RoomType {
 
 	public void setCapacity(String capacity) {
 		this.capacity = capacity;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getImage() {

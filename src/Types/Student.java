@@ -7,6 +7,7 @@ public class Student extends User {
 	public String facility;
 	public String userName;
 	public String password;
+	public String accountType;
 	public String confirmPassword;
 	public String name;
 	public String email;
@@ -153,6 +154,14 @@ public class Student extends User {
 	}
 	public void setAge(String age) {
 		this.age = age;
+	}
+
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
 	}
 }
 

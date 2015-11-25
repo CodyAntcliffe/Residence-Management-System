@@ -35,7 +35,14 @@
 				
 				<h:commandButton rendered = "#{roomPageBean.userType == 'applicant' and roomPageBean.resultRoom != null}" value="Apply For Room" action="#{roomPageBean.applyForRoom}"/>
 				
+				
+			
 			</h:panelGrid>
+			
+			<h:panelGrid rendered="#{logIn.userType == 'manager'}">
+				
+			</h:panelGrid>
+			
 			<h:outputText rendered = "#{roomPageBean.serverResponse != null}" value="#{roomPageBean.serverResponse}" style="color:red"/>
 			<hr style="height: 1px; " />
 			
@@ -90,8 +97,9 @@
 						value="#{roomPageBean.resultRoomType.image}"/>
 						<h:outputText escape="false" rendered="#{roomPageBean.resultRoom != null}"
 						value="#{roomPageBean.resultRoom.roomInfo()}"/>
+						<h2>Description:</h2>
 						<h:outputText escape="false" rendered="#{roomPageBean.resultRoom != null}"
-						value="#{roomPageBean.resultRoomType.roomTypeInfo()}"/>
+						value="#{roomPageBean.resultRoomType.description}"/>
 				</h:panelGrid>
 			</h:panelGrid>
 		</h:form>

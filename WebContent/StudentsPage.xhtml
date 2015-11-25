@@ -65,6 +65,16 @@
 					<h:outputText value="Facility: #{studentPageBean.resultStudent.facility}"/>
 					<h:outputText value="Room #: #{studentPageBean.resultStudent.roomNum}"/>
 				</h:panelGrid>
+				
+				<h:panelGrid rendered="#{studentPageBean.resultStudent.accountType == 'resident'}" columns="1">
+					<h2>Evict Student</h2>
+					<h3>Evicted students will be sent an email alert with details on leaving residence.</h3>
+					<h:commandButton value="Evict Student" action="#{studentPageBean.evictStudent}"/>
+				</h:panelGrid>
+				<h:panelGrid id="resultGrid" columns="2">
+			        <h:outputText rendered="#{studentPageBean.serverResponse != null}" value="#{studentPageBean.serverResponse}" style="color:red"/>
+		        </h:panelGrid>
+				
 			</h:panelGrid>
 		</h:form>
 	</ui:define>

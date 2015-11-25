@@ -9,7 +9,7 @@ import Types.Student;
 
 public class FacilityPageBean {
 	private String[] facilityType = new String[3];//used for drop down menu
-	private String[] roomType = new String[2];//used for the room type drop down
+	private String[] roomType = new String[3];//used for the room type drop down
 	private String accessible;
 	private String facilityName;//Stores the name of the new facility
 	private String typeSelection;
@@ -33,6 +33,7 @@ public class FacilityPageBean {
 		
 		roomType[0] = "Basic Single";
 		roomType[1] = "Single";
+		roomType[2] = "Double";
 		
 		facilityList=md.getAllFacilities();
 	}
@@ -47,6 +48,8 @@ public class FacilityPageBean {
 			}else if(roomTypeSelection.equals("Single")) {
 				System.out.println(facilityName + typeSelection + roomTypeSelection + accessible);
 				createResponse = md.createFacility(facilityName, "Residence", "6");
+			}else if (roomTypeSelection.equals("Double")){
+				createResponse = md.createFacility(facilityName, "Residence", "9");
 			}
 		}
 		if (typeSelection.equals("Apartment")) {
@@ -86,7 +89,6 @@ public class FacilityPageBean {
 		}
 		facilityList=md.getAllFacilities();
 	}
-	
 	
 	public String[] getFacilityType() {
 		return facilityType;

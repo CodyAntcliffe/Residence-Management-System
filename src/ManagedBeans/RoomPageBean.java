@@ -3,6 +3,7 @@ import Controls.ManagerDriver;
 import Types.Facility;
 import Types.Room;
 import Types.RoomType;
+import Types.Student;
 import Controls.StudentDriver;
 import javax.faces.bean.ManagedProperty;
 import javax.annotation.PostConstruct;
@@ -76,6 +77,7 @@ public class RoomPageBean{
 		//call on driver function to get room based on roomNumber and facility
 		//set the return equal to room selected
 		//if successful return a string toRoomSearchResults
+		System.out.println(resultRoom.occupant1 + resultRoom.occupant2 + resultRoom.occupant3 + resultRoom.occupant4);
 	}
 	
 	public void applyForRoom() {

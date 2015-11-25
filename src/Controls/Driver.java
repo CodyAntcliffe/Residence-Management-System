@@ -262,14 +262,14 @@ public class Driver {
 					String getRooms  = "SELECT * FROM roomtype";	
 					RS = myStmt.executeQuery(getRooms);
 
-					String info[] = {"typeID","name","capacity", "image", "accessible"};
+					String info[] = {"typeID","name","capacity", "image", "accessible", "description"};
 					RS.last();
 					
 					RoomType[] roomtypes = new RoomType[RS.getRow()];
 					RS.beforeFirst();
 					int x = 0;
 					while(RS.next()){
-						RoomType R = new RoomType(RS.getString(info[0]),RS.getString(info[1]), RS.getString(info[2]),RS.getString(info[3]),RS.getString(info[4]));
+						RoomType R = new RoomType(RS.getString(info[0]),RS.getString(info[1]), RS.getString(info[2]),RS.getString(info[3]),RS.getString(info[4]),RS.getString(info[5]));
 						roomtypes[x] = R;
 						x++;
 
