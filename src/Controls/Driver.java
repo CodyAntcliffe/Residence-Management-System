@@ -5,6 +5,7 @@ import Types.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import Controls.Driver;
 
@@ -421,6 +422,33 @@ public class Driver {
 	
 	//Makes a new bulletin
 	public String postBulletin(String title, String date, String message){
+		
+		String newtitle = "";		
+		String[] parts = title.split("");
+		for(int i=0;i<parts.length;i++){
+			if(parts[i].equals("'"))
+				parts[i] = "''";
+			newtitle = newtitle+parts[i];
+		}
+		title= newtitle;
+		
+		newtitle = "";		
+		parts = date.split("");
+		for(int i=0;i<parts.length;i++){
+			if(parts[i].equals("'"))
+				parts[i] = "''";
+			newtitle = newtitle+parts[i];
+		}
+		date = newtitle;
+		
+		newtitle = "";		
+		parts = message.split("");
+		for(int i=0;i<parts.length;i++){
+			if(parts[i].equals("'"))
+				parts[i] = "''";
+			newtitle = newtitle+parts[i];
+		}
+		message = newtitle;
 		
 		title = "'"+title+"'";
 		date = "'"+date+"'";
