@@ -53,6 +53,18 @@
 		            </h:panelGrid>
 		  </h:form>
 		  
+		  
+		  <h:form rendered="#{BulletinPageBean.bulletinTitles != null and logIn.userType == 'manager'}">
+		  	<h:selectOneMenu value="#{BulletinPageBean.removedBulletinTitle}"> 
+		  		<f:selectItems value="#{BulletinPageBean.bulletinTitles}"/>
+		  	</h:selectOneMenu>
+		  	<div class="contentButtons">	
+		  		<h:commandButton value ="Remove Bulletin" action="#{BulletinPageBean.removeBulletin}"/>
+		  	</div>
+		  </h:form>
+		  
+		  
+		  
   <h:form rendered="#{logIn.userType != null}">
   <h1>Posted Bulletins</h1>
    <h:dataTable value="#{BulletinPageBean.bulletinList}" var="bulletin" style="width:80%; " border="1">
