@@ -8,8 +8,13 @@
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
+		<h:form rendered="#{logIn.userType == null}">
+			<h1>Restricted: Please Log In</h1>
+			<div class = "homeButtons"><h:button value="Login" outcome="toLogin" /></div>
+			<div class = "homeButtons"><h:button value="Register" outcome="toRegister" /></div>
+		</h:form>
+		<h:form rendered="#{logIn.userType == 'manager'}">
 		<h1>Search Students</h1>
-		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputText value="Search By:"/>
 				<h:selectOneRadio id="searchCriteria" value="#{studentPageBean.searchCriteria}">
@@ -24,7 +29,7 @@
 			<h:commandButton rendered="#{studentPageBean.resultStudent != null}" value="Back to Results" action="#{studentPageBean.setResultStudent(null)}"/>
 			</div>
 		</h:form>
-		<h:form id="resultForm" style="height: 74px; ">
+		<h:form id="resultForm" style="height: 74px; " rendered="#{logIn.userType == 'manager'}">
 
 			<h:panelGrid id="searchGrid" columns="2">
 

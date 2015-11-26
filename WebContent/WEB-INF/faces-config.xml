@@ -235,6 +235,15 @@
 		<display-name>WEB-INF/templates/BasicTemplate.xhtml</display-name>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
+			<from-outcome>toRegister</from-outcome>
+			<to-view-id>/register.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>WEB-INF/templates/BasicTemplate.xhtml</display-name>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
 			<from-outcome>toHome</from-outcome>
 			<to-view-id>/Home.xhtml</to-view-id>
 		</navigation-case>

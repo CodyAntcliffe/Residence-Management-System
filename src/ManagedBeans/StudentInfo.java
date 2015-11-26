@@ -32,10 +32,6 @@ public class StudentInfo {
 			myInfo.setFacility("N/A");
 		}
 		userType = SD.getAccountTypeByUserName(userName);
-		
-		
-		
-		
 	}
 	
 	public void leaveRoom() {
@@ -57,8 +53,6 @@ public class StudentInfo {
 		userType = SD.getAccountTypeByUserName(userName);
 		emailBeanInstance.sendEmail(myInfo.email, "Vacating from " + previousFacility + " Room " + previousRoom, "You will have 3 days to vacate your room.");
 	}
-	
-	
 	
 	
 	public void setUserName (final String username) {

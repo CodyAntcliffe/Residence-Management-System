@@ -8,7 +8,12 @@
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
-		<h:form>
+		<h:form rendered="#{logIn.userType == null}">
+			<h1>Restricted: Please Log In</h1>
+			<div class = "homeButtons"><h:button value="Login" outcome="toLogin" /></div>
+			<div class = "homeButtons"><h:button value="Register" outcome="toRegister" /></div>
+		</h:form>
+		<h:form rendered="#{logIn.userType == 'manager'}">
 		<h1>Create Facility</h1>
 			<p>Use the options below to create a new facility.
 			<br></br>Accessibility applies only to townhouses and apartments.
@@ -41,7 +46,7 @@
 		  
 		    	<h:outputText rendered="#{facilityPageBean.createResponse != null}" value="#{facilityPageBean.createResponse}" style="color:red"/>
 	    </h:form>
-	    <h:form>
+	    <h:form rendered="#{logIn.userType == 'manager'}">
 		<h1>Remove Facility</h1>
 			<div>
 			<p>Remove the selected facility, send an email alert to all occupants.</p>

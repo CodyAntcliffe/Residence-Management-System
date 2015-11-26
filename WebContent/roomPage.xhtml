@@ -14,8 +14,6 @@
 			<div class = "homeButtons"><h:button value="Register" outcome="toRegister" /></div>
 		</h:form>
 		
-		
-		
 		<h:form  rendered="#{logIn.userType != null}" id="topLevel">
 			<h1>Browse Available Rooms</h1>
 			
@@ -92,14 +90,11 @@
 		    		
 				</h:dataTable>
 
-				<h:panelGrid id="imageInfoPanel" columns="1" style="width: 700px; ">
-					<h:graphicImage rendered="#{roomPageBean.resultRoom != null}"
-						value="#{roomPageBean.resultRoomType.image}"/>
-						<h:outputText escape="false" rendered="#{roomPageBean.resultRoom != null}"
-						value="#{roomPageBean.resultRoom.roomInfo()}"/>
+				<h:panelGrid rendered="#{roomPageBean.resultRoom != null}" id="imageInfoPanel" columns="1" style="width: 700px; ">
+					<h:graphicImage value="#{roomPageBean.resultRoomType.image}"/>
+						<h:outputText escape="false" value="#{roomPageBean.resultRoom.roomInfo()}"/>
 						<h2>Description:</h2>
-						<h:outputText escape="false" rendered="#{roomPageBean.resultRoom != null}"
-						value="#{roomPageBean.resultRoomType.description}"/>
+						<h:outputText escape="false" value="#{roomPageBean.resultRoomType.description}"/>
 				</h:panelGrid>
 			</h:panelGrid>
 		</h:form>
