@@ -33,7 +33,7 @@ public class ApplicationsPageBean {
 		}
 		//use driver method to just change its user type
 		emailBeanInstance.sendEmail(acceptedStudent.getEmail(), "Application for " + acceptedStudent.getFacility() + " Room: " + acceptedStudent.getRoomNum() + " ACCEPTED", "Were are pleased to inform you your application was accepted by the manager. Your move in data will be forwarded to you when it is available.");
-		managerDriver.setApplicantToResident(acceptedStudent.getUserName());
+		managerDriver.assignRoomToStudent(acceptedStudent.getFacility(), acceptedStudent.getRoomNum(), acceptedStudent.getUserName());
 		appliedStudents = managerDriver.getAllRoomRequests();
 	}
 
