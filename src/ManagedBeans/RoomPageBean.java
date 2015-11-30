@@ -8,25 +8,32 @@ import javax.faces.bean.ManagedProperty;
 import javax.annotation.PostConstruct;
 
 public class RoomPageBean{
-	//List for populating drop down menu
+	
 	private Room[] roomList;
 	private Facility[] facilityList;
 	private RoomType[] roomTypeList;
+	
+	//holds the value user selects from the page
 	private String roomSelected;
-	private StudentDriver studentDriver = new StudentDriver();
-	private ManagerDriver managerDriver = new ManagerDriver();
-	private Facility facilitySelected;
+	private String facilitySelected;
+	
+	//contains information related to user's selection
 	private Room resultRoom;
-	private String stringFacility;
 	private RoomType resultRoomType;
-	private String yearLevel;
+	
+	//Holds whatever value needs to be shown to the user as feedback for their actions
 	private String serverResponse;
 	
-	String requestEmailText = "Your request has been submitted. Give the manager a few days to review your request. You will recieve a new email letting you know if you were accepted or rejected.";
+	//Driver instances
+	private StudentDriver studentDriver = new StudentDriver();
+	private ManagerDriver managerDriver = new ManagerDriver();
 	
-	/*Injects an instance variable from another bean class
-	 * Scope must be broader than this class
-	 * MANAGED PROPERTY TAG MUST BE ADDED MANUALLY TO FACES-CONFIG.XML
+	//Body text for the room request sent email
+	private String requestEmailText = "Your request has been submitted. Give the manager a few days to review your request. You will recieve a new email letting you know if you were accepted or rejected.";
+	
+	/*/
+	 * Usertype and username are pulled from the logIn session bean which holds session info
+	 * Both are used for conditional rendering of html elements and querying the database
 	 */
 	@ManagedProperty(value="#{logIn.userType}")
 	private String userType;
@@ -34,57 +41,58 @@ public class RoomPageBean{
 	@ManagedProperty(value="#{logIn.userName}")
 	private String userName;
 	
+	//Creates an instance of emailBean so an email can be sent to the user when they apply for a room
 	@ManagedProperty(value="#{emailBean}")
 	EmailBean emailBeanInstance = new EmailBean();
 	
-	//PostConstruct is called immediately after constructor, before page view is generated
-	//This allows List to be ready before page so it can show values, must return void, take no arguments
-	
+	//Fills the list of facilities before the page is rendered
+	//Facility names are used in a drop down menu for the page's search function
 	@PostConstruct
 	public void init() {
-		//Get facilities from the database
-		yearLevel = studentDriver.getStudentInfo(userName).getYearLevel();
-		if (!userType.equals("manager")) {
-			if (yearLevel.equals("1") || yearLevel.equals("2") ) {
+		
+		if (userType.equals("applicant")){
+			String yearLevel= studentDriver.getStudentInfo(userName).getYearLevel();
+			if (yearLevel.equals("1") || yearLevel.equals("2") )
 				facilityList = studentDriver.getLowerYearFacilities();
-			}else
+			else
 				facilityList = studentDriver.getAllFacilities();
-		}else{
+		}else
 			facilityList = studentDriver.getAllFacilities();
+	}
+	
+	public void searchRooms() {
+		//Calls function to return a list of rooms matching the criteria of user's search
+		resultRoom=null;
+		if (userType.equals("applicant")) {
+			roomList = studentDriver.getAvailRoomsByFacility(facilitySelected);
+		}
+		if (userType.equals("manager")) {
+			roomList = managerDriver.getRoomsByFacility(facilitySelected);
 		}
 	}
 	
-	public String searchRooms() {
-		//Calls function to return a list of rooms matching the criteria of user's search
-		resultRoom=null;
-		if (userType.equals("applicant") || userType.equals("resident")) {
-			roomList = studentDriver.getAvailRoomsByFacility(stringFacility);
-		}
-		if (userType.equals("manager")) {
-			roomList = managerDriver.getRoomsByFacility(stringFacility);
-		}
-		return "";
-	}
+	/*
+	 * User's selection from the page can only be sent back as a string, so string must be used
+	 * to find the room and roomType in the arrays
+	 */
 	public void getSearchResults(String roomNumber) {
-		System.out.println(roomNumber);
 		roomSelected=roomNumber;
 		for (int i=0; i < roomList.length; i++) {
 			if (roomList[i].roomNum.equals(roomSelected))
 				setResultRoom(roomList[i]);
 		}
 		resultRoomType = studentDriver.getRoomTypeInfoByRoomNum(resultRoom.roomNum, resultRoom.facility);
-		//call on driver function to get room based on roomNumber and facility
-		//set the return equal to room selected
-		//if successful return a string toRoomSearchResults
-		System.out.println(resultRoom.occupant1 + resultRoom.occupant2 + resultRoom.occupant3 + resultRoom.occupant4);
 	}
 	
+	//Calls on the driver to make a row in the database. Sends an email to the user if successful
 	public void applyForRoom() {
 		serverResponse = studentDriver.requestRoom(resultRoom.facility, resultRoom.roomNum, userName);
 		if (serverResponse.equals("Request Submitted!")) {
 			emailBeanInstance.sendEmail(managerDriver.getEmailByName(userName), "Application for " +resultRoom.facility + " Room: " + resultRoom.roomNum, requestEmailText);
 		}
 	}
+	
+	//Getters and setters
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
@@ -110,30 +118,18 @@ public class RoomPageBean{
 	public String getUserName() {
 		return userName;
 	}
-	public Facility getFacilitySelected() {
-		return facilitySelected;
-	}
-
-	public void setFacilitySelected(Facility facilitySelected) {
-		this.facilitySelected = facilitySelected;
-	}
-
-
-
 	public Room getResultRoom() {
 		return resultRoom;
 	}
-
 	public void setResultRoom(Room resultRoom) {
 		this.resultRoom = resultRoom;
 	}
-
 	public String getStringFacility() {
-		return stringFacility;
+		return facilitySelected;
 	}
 
 	public void setStringFacility(String stringFacility) {
-		this.stringFacility = stringFacility;
+		this.facilitySelected = stringFacility;
 	}
 
 	public Facility[] getFacilityList() {

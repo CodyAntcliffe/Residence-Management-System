@@ -43,10 +43,8 @@ public class FacilityPageBean {
 		createResponse=null;
 		if (typeSelection.equals("Residence")) {
 			if (roomTypeSelection.equals("Basic Single")) {
-				System.out.println(facilityName + typeSelection + roomTypeSelection + accessible);
 				createResponse = md.createFacility(facilityName, "Residence", "5");
 			}else if(roomTypeSelection.equals("Single")) {
-				System.out.println(facilityName + typeSelection + roomTypeSelection + accessible);
 				createResponse = md.createFacility(facilityName, "Residence", "6");
 			}else if (roomTypeSelection.equals("Double")){
 				createResponse = md.createFacility(facilityName, "Residence", "9");
@@ -54,19 +52,15 @@ public class FacilityPageBean {
 		}
 		if (typeSelection.equals("Apartment")) {
 			if (accessible.equals("Accessible")) {
-				System.out.println(facilityName + typeSelection + roomTypeSelection + accessible);
 				createResponse = md.createFacility(facilityName, "Apartment", "1");
 			}else{
-				System.out.println(facilityName + typeSelection + roomTypeSelection + accessible);
 				createResponse = md.createFacility(facilityName, "Apartment", "2");
 			}
 		}
 		if (typeSelection.equals("Townhouse")) {
 			if (accessible.equals("Accessible")) {
-				System.out.println(facilityName + typeSelection + roomTypeSelection + accessible);
 				createResponse = md.createFacility(facilityName, "Townhouse", "3");
 			}else{
-				System.out.println(facilityName + typeSelection + roomTypeSelection + accessible);
 				createResponse = md.createFacility(facilityName, "Townhouse", "4");
 			}
 		}
@@ -74,7 +68,6 @@ public class FacilityPageBean {
 			createResponse = "Something went wrong, facility was not created.";
 		}
 		facilityList=md.getAllFacilities();
-		System.out.println("Created?");
 	}
 	
 	public void destroyFacility() {
@@ -90,6 +83,8 @@ public class FacilityPageBean {
 		facilityList=md.getAllFacilities();
 	}
 	
+	
+	//Getters and setters
 	public String[] getFacilityType() {
 		return facilityType;
 	}

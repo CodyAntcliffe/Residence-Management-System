@@ -11,8 +11,8 @@ import Controls.Driver;
 
 public class Driver {
 
-	static String url = "jdbc:mysql://10.100.65.95:3306/residence";
-	static String dbUser = "user";
+	static String url = "jdbc:mysql://localhost:3306/residence";
+	static String dbUser = "root";
 	static String dbPass = "password";
 
 	public static Connection C = connect(dbUser,dbPass);

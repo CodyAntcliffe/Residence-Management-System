@@ -18,12 +18,7 @@ public class EmailBean {
 	private Protocol protocol = Protocol.SMTPS;
 	private boolean debug = true;
 	
-	private String sendTo;
-	private String subject;
-	private String body;
-	
-	
-
+	//Everything to do with sending an email. Always called from another class through an EmailBean instance.
 	public void sendEmail(String sendTo, String subject, String body) {
 		Properties props = new Properties();
 		props.put("mail.smtp.host", host);
@@ -64,94 +59,4 @@ public class EmailBean {
 		    ex.printStackTrace();
 		}
 	}
-
-	public int getPort() {
-		return port;
-	}
-
-	public void setPort(int port) {
-		this.port = port;
-	}
-
-	public String getHost() {
-		return host;
-	}
-
-	public void setHost(String host) {
-		this.host = host;
-	}
-
-	public String getFrom() {
-		return from;
-	}
-
-	public void setFrom(String from) {
-		this.from = from;
-	}
-
-	public boolean isAuth() {
-		return auth;
-	}
-
-	public void setAuth(boolean auth) {
-		this.auth = auth;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Protocol getProtocol() {
-		return protocol;
-	}
-
-	public void setProtocol(Protocol protocol) {
-		this.protocol = protocol;
-	}
-
-	public boolean isDebug() {
-		return debug;
-	}
-
-	public void setDebug(boolean debug) {
-		this.debug = debug;
-	}
-	
-	public String getSendTo() {
-		return sendTo;
-	}
-
-	public void setSendTo(String sendTo) {
-		this.sendTo = sendTo;
-	}
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
-	public String getBody() {
-		return body;
-	}
-
-	public void setBody(String body) {
-		this.body = body;
-	}
-	
-	
 }
