@@ -1,5 +1,8 @@
 package ManagedBeans;
-
+/**
+ * This class handles all the functionality found on the facility web page
+ * It uses methods found in the ManagerDriver class.
+ */
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedProperty;
 
@@ -8,6 +11,9 @@ import Types.Facility;
 import Types.Student;
 
 public class FacilityPageBean {
+	/**
+	 * Variables used by FacilityPageBean
+	 */
 	private String[] facilityType = new String[3];//used for drop down menu
 	private String[] roomType = new String[3];//used for the room type drop down
 	private String accessible;
@@ -22,9 +28,15 @@ public class FacilityPageBean {
 	
 	ManagerDriver md = new ManagerDriver();
 	
+	/**
+	 * Creates a new instance of EmailBean
+	 */
 	@ManagedProperty(value="#{emailBean}")
 	EmailBean emailBeanInstance = new EmailBean();
 	
+	/**
+	 * PostConstruct so init is called before injection of webpage
+	 */
 	@PostConstruct
 	public void init() {
 		facilityType[0]="Residence";
@@ -38,6 +50,11 @@ public class FacilityPageBean {
 		facilityList=md.getAllFacilities();
 	}
 	
+	/**
+	 * Creates a facility of the user's choosing
+	 * Could be residence, apartment or townhouse
+	 * each facility type have certain features such as accessibility etc.
+	 */
 	public void createFacility() {
 		System.out.println(facilityName + typeSelection + roomTypeSelection + accessible);
 		createResponse=null;
@@ -70,6 +87,9 @@ public class FacilityPageBean {
 		facilityList=md.getAllFacilities();
 	}
 	
+	/**
+	 * removes a facility from the database, in the process students are evicted so an email is sent.
+	 */
 	public void destroyFacility() {
 		removeResponse=null;
 		evictedStudents = md.getResidentsByFacility(removeFacility);
@@ -83,8 +103,9 @@ public class FacilityPageBean {
 		facilityList=md.getAllFacilities();
 	}
 	
-	
-	//Getters and setters
+	/**
+	 * get and set methods
+	 */
 	public String[] getFacilityType() {
 		return facilityType;
 	}

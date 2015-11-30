@@ -1,5 +1,9 @@
 package ManagedBeans;
-
+/**
+ * This class is used multiple times throughout our Residence Management System
+ * to send email notifications to users of the program when certain transactions
+ * occur that involve that user.
+ */
 import java.util.Date;
 import java.util.Properties;
 
@@ -9,6 +13,9 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailBean {
 	
+	/**
+	 * Variables used by EmailBean
+	 */
 	private int port = 465;
 	private String host = "smtp.gmail.com";
 	private String from = "luresidencemanagement@gmail.com";
@@ -18,7 +25,13 @@ public class EmailBean {
 	private Protocol protocol = Protocol.SMTPS;
 	private boolean debug = true;
 	
-	//Everything to do with sending an email. Always called from another class through an EmailBean instance.
+	/**
+	 * Everything to do with sending an email.
+	 * Always called from another class through an EmailBean instance.
+	 * @param sendTo
+	 * @param subject
+	 * @param body
+	 */
 	public void sendEmail(String sendTo, String subject, String body) {
 		Properties props = new Properties();
 		props.put("mail.smtp.host", host);

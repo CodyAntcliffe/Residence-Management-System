@@ -1,7 +1,7 @@
 package ManagedBeans;
 /**
  * This class handles all the functionality found on the Applications web page
- * It uses functions found in the ManagerDriver class
+ * It uses methods found in the ManagerDriver class
  */
 
 import javax.annotation.PostConstruct;

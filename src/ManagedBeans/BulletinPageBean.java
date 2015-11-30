@@ -1,7 +1,7 @@
 package ManagedBeans;
 /**
  * This class handles all the functionality found on the bulletin web page
- * It uses functions found in the Driver class and ManagerDriver class.
+ * It uses methods found in the Driver class and ManagerDriver class.
  */
 import Types.Bulletin;
 
