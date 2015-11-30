@@ -1,6 +1,7 @@
-package Controls;
+package ManagedBeans;
 /* This class houses all of our log-in related methods*/
 
+import Controls.Driver;
 
 public class LogIn {
 
