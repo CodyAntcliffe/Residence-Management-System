@@ -1,9 +1,9 @@
-package Controls;
+package ManagedBeans;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.validator.ValidatorException;
 
-import ManagedBeans.EmailBean;
+import Controls.StudentDriver;
 
 
 /*

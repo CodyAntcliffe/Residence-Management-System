@@ -1,6 +1,5 @@
 package Types;
-import Controls.LogIn;
-//Super class for Manager, Applicant and Resident
+import ManagedBeans.LogIn;
 
 public class User {
 	

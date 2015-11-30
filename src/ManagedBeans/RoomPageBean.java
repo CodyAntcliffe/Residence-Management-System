@@ -7,46 +7,69 @@ import Controls.StudentDriver;
 import javax.faces.bean.ManagedProperty;
 import javax.annotation.PostConstruct;
 
+
+/**
+ * Controls logic for roomPage.xhtml, calls on driver functions
+ * for database access. Manipulates objects in the data model
+ * so they are properly formatted for display and saving to DB.
+ */
 public class RoomPageBean{
 	
 	private Room[] roomList;
 	private Facility[] facilityList;
 	private RoomType[] roomTypeList;
 	
-	//holds the value user selects from the page
+	/**
+	 * Holds the value user selects from the page
+	 */
 	private String roomSelected;
 	private String facilitySelected;
 	
-	//contains information related to user's selection
+	/**
+	 * Contains information related to user's selection
+	 */
 	private Room resultRoom;
 	private RoomType resultRoomType;
 	
-	//Holds whatever value needs to be shown to the user as feedback for their actions
+	/**
+	 * Holds whatever value needs to be shown to the user as feedback for their actions
+	 */
 	private String serverResponse;
 	
-	//Driver instances
+	/**
+	 * Driver instances
+	 */
 	private StudentDriver studentDriver = new StudentDriver();
 	private ManagerDriver managerDriver = new ManagerDriver();
 	
-	//Body text for the room request sent email
+	/**
+	 * Body text for the room request sent email
+	 */
 	private String requestEmailText = "Your request has been submitted. Give the manager a few days to review your request. You will recieve a new email letting you know if you were accepted or rejected.";
 	
-	/*/
-	 * Usertype and username are pulled from the logIn session bean which holds session info
-	 * Both are used for conditional rendering of html elements and querying the database
+	/**
+	 * Usertype is pulled from the logIn session bean, used to control access to elements of page
 	 */
 	@ManagedProperty(value="#{logIn.userType}")
 	private String userType;
 	
+	/**
+	 * userName is the primary key for the users table in DB, so it is pulled from the
+	 * logIn bean so it can be used to query the database.
+	 */
 	@ManagedProperty(value="#{logIn.userName}")
 	private String userName;
 	
-	//Creates an instance of emailBean so an email can be sent to the user when they apply for a room
+	/**
+	 * An instance of emailBean used to send a confirmation email to the user
+	 */
 	@ManagedProperty(value="#{emailBean}")
 	EmailBean emailBeanInstance = new EmailBean();
 	
-	//Fills the list of facilities before the page is rendered
-	//Facility names are used in a drop down menu for the page's search function
+	/** Fills the list of facilities before the page is rendered
+	*   Facility names are used in a drop down menu for the page's search function
+	*	@return void
+	**/
 	@PostConstruct
 	public void init() {
 		
@@ -60,6 +83,10 @@ public class RoomPageBean{
 			facilityList = studentDriver.getAllFacilities();
 	}
 	
+	/** Fills a list of rooms based on user type and facility selected
+	 *  Calls on getAvailRoomsByFacility or getRoomsByFacility from Controls
+	 * @return void
+	 */
 	public void searchRooms() {
 		//Calls function to return a list of rooms matching the criteria of user's search
 		resultRoom=null;
@@ -71,9 +98,10 @@ public class RoomPageBean{
 		}
 	}
 	
-	/*
+	/**
 	 * User's selection from the page can only be sent back as a string, so string must be used
-	 * to find the room and roomType in the arrays
+	 * to find the room and roomType in the object arrays.
+	 * @return void
 	 */
 	public void getSearchResults(String roomNumber) {
 		roomSelected=roomNumber;
@@ -84,7 +112,10 @@ public class RoomPageBean{
 		resultRoomType = studentDriver.getRoomTypeInfoByRoomNum(resultRoom.roomNum, resultRoom.facility);
 	}
 	
-	//Calls on the driver to make a row in the database. Sends an email to the user if successful
+	/**
+	 * Calls on the driver to make a row in the database. Sends an email to the user if successful
+	 * @return void
+	 */
 	public void applyForRoom() {
 		serverResponse = studentDriver.requestRoom(resultRoom.facility, resultRoom.roomNum, userName);
 		if (serverResponse.equals("Request Submitted!")) {

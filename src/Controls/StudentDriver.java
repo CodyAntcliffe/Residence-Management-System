@@ -3,6 +3,9 @@ import Types.*;
 import java.sql.*;
 import java.util.Arrays;
 
+import ManagedBeans.LogIn;
+import ManagedBeans.Register;
+
 public class StudentDriver extends Driver {
 
 	public static Connection C;

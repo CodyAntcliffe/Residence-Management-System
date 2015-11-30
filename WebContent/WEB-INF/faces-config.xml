@@ -6,12 +6,12 @@
     version="2.2">
 	<managed-bean>
 		<managed-bean-name>register</managed-bean-name>
-		<managed-bean-class>Controls.Register</managed-bean-class>
+		<managed-bean-class>ManagedBeans.Register</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>logIn</managed-bean-name>
-		<managed-bean-class>Controls.LogIn</managed-bean-class>
+		<managed-bean-class>ManagedBeans.LogIn</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
