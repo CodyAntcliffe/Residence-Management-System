@@ -17,7 +17,12 @@ public class Driver {
 
 	public static Connection C = connect(dbUser,dbPass);
 	
-	//Attempts to connect to our database and returns the connection if successful, null if not
+	/**
+	 * Attempts to connect to our database and returns the connection if successful, null if not
+	 * @param dbUser
+	 * @param dbPass
+	 * @return
+	 */
 	static Connection connect(String dbUser, String dbPass){
 
 		try{
@@ -32,13 +37,15 @@ public class Driver {
 		}
 	}
 
-	//Gets accountType by userName
+	/**
+	 * Gets accountType by userName
+	 * @param UN
+	 * @return
+	 */
 	public String getAccountTypeByUserName(String UN){
 
-		//Connection C = connect(dbUser,dbPass);
 		
 		UN = "'"+UN+"'";
-		//System.out.println(studentName);
 		//Check if connection successful
 		if(C == null){
 			System.out.println("Connection unsuccessful.");
@@ -67,10 +74,14 @@ public class Driver {
 		return null;
 	}
 
-	//Checks if log-in was successful. 
+	/**
+	 * Checks if log-in was successful. 
+	 * @param UN
+	 * @param PW
+	 * @return
+	 */
 	public static Boolean checkLogin(String UN, String PW){
 
-		//Connection C = Driver.connect(dbUser, dbPass);
 
 		try{
 			Statement myStmt = C.createStatement();
@@ -110,10 +121,12 @@ public class Driver {
 		}
 	}
 
-	//Returns all rooms
+	/**
+	 * Returns all rooms as room objects
+	 * @return
+	 */
 	public Room[] getAllRooms(){
 		
-		//Connection C = connect(dbUser, dbPass);
 		if(C == null){
 			System.out.println("Connection unsuccessful.");
 		}
@@ -128,7 +141,6 @@ public class Driver {
 
 				String info[] = {"facility","roomNum","typeID","occupant1","occupant2","occupant3","occupant4"};
 				RS.last();
-				//System.out.print(RS.last());
 				Room[] rooms = new Room[RS.getRow()];
 				RS.beforeFirst();
 				int x = 0;
@@ -147,7 +159,12 @@ public class Driver {
 		return null;
 	}
 
-	//Returns all available rooms
+	/**Returns all available rooms.
+	 * An available room is one which has either no occupant, or an empty space
+	 * 
+	 * @return
+	 */
+	
 	public Room[] getAvailRooms(){
 
 		Room[] allRooms = getAllRooms();
@@ -170,7 +187,10 @@ public class Driver {
 		return availRooms;
 	}
 
-	//Returns all rooms that are full 
+	/**
+	 * Returns all rooms that have at least one occupant
+	 * @return
+	 */
 	public Room[] getOccupiedRooms(){
 
 		Room[] allRooms = getAllRooms();
@@ -193,7 +213,12 @@ public class Driver {
 
 	}
 	
-	//Searches for a room by its roomNum
+	/**
+	 * Searches for a room by its roomNum
+	 * @param roomNum
+	 * @param facility
+	 * @return
+	 */
 	public Room getRoomByNumber(String roomNum, String facility){
 		
 		Room[] allRooms = getRoomsByFacility(facility);		
@@ -208,7 +233,12 @@ public class Driver {
 		return null;
 	}
 	
-	//Returns the image of the room, as it's image location and room number
+	/**
+	 * Returns the image of the room, as it's image location and room number
+	 * @param roomNum
+	 * @param facility
+	 * @return
+	 */
 	public String getImageByRoomNum(String roomNum, String facility){
 		
 		String typeID = getRoomByNumber(roomNum, facility).typeID;
@@ -235,7 +265,11 @@ public class Driver {
 		return null;
 	}
 	
-	//Gets image by roomType
+	/**
+	 * Gets image by roomType
+	 * @param typeID
+	 * @return
+	 */
 	public String getImageByRoomType(String typeID){
 		
 		RoomType[] R =  getAllRoomTypes();
@@ -247,10 +281,12 @@ public class Driver {
 		return null;
 	}
 
-	//Gets all room types
+	/**
+	 * Gets all room types
+	 * @return
+	 */
 	public RoomType[] getAllRoomTypes(){
 		
-			//Connection C = connect(dbUser, dbPass);
 			if(C == null){
 				System.out.println("Connection unsuccessful.");
 			}
@@ -284,7 +320,12 @@ public class Driver {
 			return null;
 		}
 	
-	//Gets roomtype info by the room number and facility
+	/**
+	 * Gets roomtype info by the room number and facility
+	 * @param roomNum
+	 * @param facility
+	 * @return
+	 */
 	public RoomType getRoomTypeInfoByRoomNum(String roomNum, String facility){
 		
 		RoomType[] RT = getAllRoomTypes();
@@ -298,12 +339,15 @@ public class Driver {
 		return null;
 		
 	}
-	//Gives a list of all rooms of a specific facility
+	/**
+	 * Gives a list of all rooms of a specific facility
+	 * @param facility
+	 * @return
+	 */
 	public Room[] getRoomsByFacility(String facility){
 		
 		Room[] allRooms = getAllRooms();
 	
-		//Need to get room count t avoid putting in hard coded numbers
 		int count = 0;
 		for(int i=0; i<allRooms.length; i++){
 			if(allRooms[i].facility.equals(facility)){
@@ -323,7 +367,11 @@ public class Driver {
 		return facRooms;
 	}
 	
-	//Gets a list of all available rooms by facility
+	/**
+	 * Gets a list of all available rooms by facility
+	 * @param facility
+	 * @return
+	 */
 	public Room[] getAvailRoomsByFacility(String facility){
 		
 		Room[] allRooms = getRoomsByFacility(facility);
@@ -345,7 +393,11 @@ public class Driver {
 
 		return availRooms;
 	}
-	//Returns all facilities
+
+	/**
+	 * Returns all facilities
+	 * @return
+	 */
 		public Facility[] getLowerYearFacilities(){
 			
 			if(C == null){
@@ -362,7 +414,6 @@ public class Driver {
 
 					String info[] = {"name","type","image"};
 					RS.last();
-					//System.out.print(RS.last());
 					Facility[] facs = new Facility[RS.getRow()];
 					RS.beforeFirst();
 					int x = 0;
@@ -382,7 +433,10 @@ public class Driver {
 			
 		}
 	
-	//Returns all facilities
+	/**
+	 * Returns all facilities
+	 * @return
+	 */
 	public Facility[] getAllFacilities(){
 		
 		if(C == null){
@@ -399,7 +453,6 @@ public class Driver {
 
 				String info[] = {"name","type","image"};
 				RS.last();
-				//System.out.print(RS.last());
 				Facility[] facs = new Facility[RS.getRow()];
 				RS.beforeFirst();
 				int x = 0;
@@ -419,8 +472,13 @@ public class Driver {
 		
 	}
 
-	
-	//Makes a new bulletin
+	/**
+	 * Makes a new bulletin
+	 * @param title
+	 * @param date
+	 * @param message
+	 * @return
+	 */
 	public String postBulletin(String title, String date, String message){
 		
 		String newtitle = "";		
@@ -473,13 +531,22 @@ public class Driver {
 		}
 		return "Bulletin posted!";
 	}
+	
+	/**
+	 * Posts a bulletin
+	 * @param B
+	 * @return
+	 */
 	public String postBulletin(Bulletin B){
 		String response;
 		response=postBulletin(B.title, B.date, B.text);
 		return response;
 	}
 	
-	//Gets all bulletins
+	/**
+	 * Gets all bulletins
+	 * @return
+	 */
 	public Bulletin[] getBulletins(){
 		
 		if(C == null){
@@ -496,7 +563,6 @@ public class Driver {
 
 				String info[] = {"title","date","text"};
 				RS.last();
-				//System.out.print(RS.last());
 				Bulletin[] buls = new Bulletin[RS.getRow()];
 				RS.beforeFirst();
 				int x = 0;

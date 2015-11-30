@@ -23,7 +23,9 @@ public class Facility {
 		
 	}
 	
-	//Prints info for testing purposes
+	/**
+	 * Prints info for testing purposes
+	 */
 	public void printFacility(){
 		System.out.println("Name: "+this.name);
 		System.out.println("Type: "+this.type);

@@ -54,6 +54,9 @@ public class Student extends User {
 		this.age = clone.age;
 	}
 
+	/**
+	 * Prints all of the student info.  For testing purposes.
+	 */
 	public void printStudent(){
 		System.out.println("User: "+userName);
 		System.out.println("PW:"+password);

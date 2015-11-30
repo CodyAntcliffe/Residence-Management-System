@@ -7,7 +7,10 @@ public class StudentDriver extends Driver {
 
 	public static Connection C;
 	
-	//Attempts to connect to our database and returns the connection if successful, null if not
+	/**
+	 * Attempts to connect to our database and returns the connection if successful, null if not
+	 * @return
+	 */
 	public Connection connect(){
 		return super.connect(dbUser, dbPass);
 	}
@@ -16,7 +19,13 @@ public class StudentDriver extends Driver {
 		
 		C = connect();
 	}
-	//Allows the logged-on applicant to request a room
+	/**
+	 * Allows the logged-on applicant to request a room
+	 * @param facility
+	 * @param roomNum
+	 * @param userName
+	 * @return
+	 */
 	public String requestRoom(String facility, String roomNum, String userName){
 
 		//Connection C = connect();
@@ -44,10 +53,14 @@ public class StudentDriver extends Driver {
 		return "Request Submitted!";
 	}
 	
-
+	
+	/**
+	 * Adds new user to user table
+	 * @param R
+	 * @return
+	 */
 	public String addRegistration(Register R){
 
-		//Connection C = connect();
 		//Check if connection successful
 		if(C == null){
 			return "Could not connect to database. Registration Unsuccesful.";
@@ -78,12 +91,14 @@ public class StudentDriver extends Driver {
 	}
 
 
-	//Returns instance of Student by studentName
+	/**
+	 * Returns instance of Student by studentName
+	 * @param userName
+	 * @return
+	 */
 	public Student getStudentInfo(String userName){
 
-		//Connection C = connect();
 		userName = "'"+userName+"'";
-		//System.out.println(studentName);
 		//Check if connection successful
 		if(C == null){
 			System.out.println("Connection unsuccessful.");

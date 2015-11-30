@@ -39,6 +39,8 @@ public class LogIn {
 	public void setUserType(final String userType){
 		this.userType = userType;
 	}
+	
+	//Checks if log-in id is correct
 	public String tryLogin() {
 		System.out.println(userName + " attempting login.");
 		if (Driver.checkLogin(userName, password)) {
@@ -52,6 +54,7 @@ public class LogIn {
 		return null;
 	}
 	
+	//Logs user out of current session
 	public String logOut() {
 		System.out.println("Logging " + userName + " out of system.");
 		userName=null;

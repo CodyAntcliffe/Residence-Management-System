@@ -17,11 +17,15 @@ public class ManagerDriver extends Driver {
 		return super.connect(dbUser, dbPass);
 	}
 
+	//Constructor
 	public ManagerDriver(){
 		C = connect();
 	}
 
-	// Returns all Students who have requested a room, but have yet to be assigned
+	/**
+	 * Returns all Students who have requested a room, but have yet to be assigned
+	 * @return
+	 */
 	public Student[] getAllRoomRequests() {
 
 		// First get list of all applicants
@@ -47,6 +51,12 @@ public class ManagerDriver extends Driver {
 		return roomRequests;
 	}
 
+	
+	/**
+	 * Sets user's room and facility to null.
+	 * Used when a manager rejects a room request.
+	 * @param name
+	 */
 	public void setRoomNull(String name){
 
 		//Connection C = connect();
@@ -70,7 +80,12 @@ public class ManagerDriver extends Driver {
 		}
 	}
 
-	//Gets a specific student's info based on a roomNum
+	/**
+	 * Gets a list of all students in a specific room
+	 * @param facility
+	 * @param roomNum
+	 * @return
+	 */
 	public Student[] getStudentsFromRoom(String facility, String roomNum) {
 		Student[] students = getResidents();
 
@@ -94,8 +109,10 @@ public class ManagerDriver extends Driver {
 
 		return roomOccs;
 	}
-
-	// created this method to simply convert the student's type to resident
+	/**
+	 * Sets a user's accounttype to 'Resident"
+	 * @param userName
+	 */
 	public void setApplicantToResident(String userName) {
 
 		//Connection C = connect();
@@ -116,7 +133,12 @@ public class ManagerDriver extends Driver {
 		}
 	}
 
-	//Assigns a room to a student
+	/**
+	 * Assigns a room to a student
+	 * @param facility
+	 * @param roomNum
+	 * @param userName
+	 */
 	public void assignRoomToStudent(String facility, String roomNum, String userName) {
 
 		//First check if the room is full
@@ -154,8 +176,13 @@ public class ManagerDriver extends Driver {
 		}
 	}
 
-	//gets the first available open slot in the room.  
-	//Assists the assignRoomToStudent method
+	/**
+	 * Gets the first available open slot in the room. 
+	 * Assists the assignRoomToStudent method 
+	 * @param roomNum
+	 * @param facility
+	 * @return
+	 */
 	public String getAvailSlot(String roomNum, String facility){
 
 		String[] possibleSlots = getAllSlotsByRoom(roomNum, facility);
@@ -177,7 +204,13 @@ public class ManagerDriver extends Driver {
 
 	}
 
-	//way to access an available occupant slot in the room db
+	/**
+	 * Returns, as an array of strings, the list of possible slots in a room.
+	 * ie// A double-occupant room has two slots.
+	 * @param roomNum
+	 * @param facility
+	 * @return
+	 */
 	public String[] getAllSlotsByRoom(String roomNum, String facility){
 
 		RoomType RT = getRoomTypeInfoByRoomNum(roomNum,facility);
@@ -210,7 +243,10 @@ public class ManagerDriver extends Driver {
 		return slots;
 	}
 
-	// Returns a list of all registered student's names
+	/**
+	 * Returns a list of all registered student's names
+	 * @return
+	 */
 	public String[] getAllStudentsNames() {
 
 		//Connection C = connect();
@@ -229,7 +265,6 @@ public class ManagerDriver extends Driver {
 				RS = myStmt.executeQuery(getNames);
 
 				int i = 0;
-				// Add the user to the table otherwise
 				while (RS.next()) {
 					String n = RS.getString("name");
 					if (n != null) {
@@ -252,10 +287,12 @@ public class ManagerDriver extends Driver {
 		return null;
 	}
 
-	//returns a list of all student user names
+	/**
+	 * Returns a list of all student user names.
+	 * @return
+	 */
 	public String[] getAllUserNames(){
 
-		//Connection C = connect();
 		String userNames[] = new String[99];
 		// Check if connection successful
 		if (C == null) {
@@ -294,7 +331,10 @@ public class ManagerDriver extends Driver {
 		return null;
 	}
 
-	// Returns all users with accountType==resident
+	/**
+	 * Returns all users with accountType==resident
+	 * @return
+	 */
 	public Student[] getResidents() {
 
 		Student[] allStudents = getAllStudents();
@@ -315,12 +355,14 @@ public class ManagerDriver extends Driver {
 		return residents;
 	}
 
-	// Returns instance of Student by studentName
+	/**
+	 * Returns instance of Student by studentName
+	 * @param studentName
+	 * @return
+	 */
 	public Student getStudentInfo(String studentName) {
 
-		//Connection C = connect();
 		studentName = "'" + studentName + "'";
-		// System.out.println(studentName);
 		// Check if connection successful
 		if (C == null) {
 			System.out.println("Connection unsuccessful.");
@@ -350,12 +392,15 @@ public class ManagerDriver extends Driver {
 
 	}
 
-	//Returns studentInfo by userName
+	/**
+	 * Returns studentInfo by userName
+	 * @param userName
+	 * @return
+	 */
 	public Student getStudentInfoByUserName(String userName){
 
 		//Connection C = connect();
 		userName = "'" + userName + "'";
-		// System.out.println(studentName);
 		// Check if connection successful
 		if (C == null) {
 			System.out.println("Connection unsuccessful.");
@@ -383,7 +428,11 @@ public class ManagerDriver extends Driver {
 			}
 		return null;
 	}
-	// returns all applicants
+	
+	/**
+	 * Returns all applicants
+	 * @return
+	 */
 	public Student[] getApplicants() {
 
 		String[] studentNames = getAllStudentsNames();
@@ -403,7 +452,10 @@ public class ManagerDriver extends Driver {
 		return applicants;
 	}
 
-	//Returns all students
+	/**
+	 * Returns all students
+	 * @return
+	 */
 	public Student[] getAllStudents() {
 		
 		String[] studentNames = getAllUserNames();
@@ -419,7 +471,13 @@ public class ManagerDriver extends Driver {
 		return students;
 
 	}
-	//Creates a new room 
+	
+	/**
+	 * Creates a new room 
+	 * @param facility
+	 * @param roomNum
+	 * @param typeID
+	 */
 	public void createRoom(String facility, String roomNum, String typeID){
 
 		facility = "'"+facility+"'";
@@ -444,7 +502,13 @@ public class ManagerDriver extends Driver {
 		}
 	}
 
-	//Creates a whole new facility
+	/**
+	 * Creates a whole new facility
+	 * @param name
+	 * @param facilityType
+	 * @param roomTypeID
+	 * @return
+	 */
 	public String createFacility(String name, String facilityType, String roomTypeID){
 
 		name = "'"+name+"'";
@@ -477,7 +541,11 @@ public class ManagerDriver extends Driver {
 		return "Facility " + name + " created!";
 	}
 
-	//Deletes a facility
+	/**
+	 * Deletes a facility
+	 * @param facilityName
+	 * @return
+	 */
 	public String removeFacility(String facilityName){
 
 		//Set all students back to applicant that are in that facility
@@ -521,7 +589,11 @@ public class ManagerDriver extends Driver {
 		return "Facility " + facilityName + " removed!";
 	}
 
-	//Removes room from facility
+	/**
+	 * Removes room from facility
+	 * @param roomNum
+	 * @param facility
+	 */
 	public void removeRoom(String roomNum, String facility){
 
 		facility = "'"+facility+"'";
@@ -545,7 +617,10 @@ public class ManagerDriver extends Driver {
 		}
 	}
 
-	//Removes a student from a room and sets them back to applicant
+	/**
+	 * Removes a student from a room and sets them back to applicant
+	 * @param userName
+	 */
 	public void removeStudentFromRoom(String userName){
 
 		Student[] allResidents = getResidents();
@@ -569,7 +644,6 @@ public class ManagerDriver extends Driver {
 						//Make changes in users table
 						String sql = "update Users set roomNum= NULL, facility = NULL, accountType = 'applicant' where userName= "+userName;
 						myStmt.executeUpdate(sql);
-
 
 						//Make changes in Rooms table
 						String space = "";
@@ -597,7 +671,10 @@ public class ManagerDriver extends Driver {
 		}
 	}
 
-	//Rejects a room request by userName
+	/**
+	 * Rejects a room request by userName
+	 * @param userName
+	 */
 	public void rejectRoomRequest(String userName){
 
 		Student[] roomRequests = getAllRoomRequests();
@@ -628,7 +705,10 @@ public class ManagerDriver extends Driver {
 
 	}
 
-	//Gets a list of all student email addresses
+	/**
+	 * Gets a list of all student email addresses
+	 * @return
+	 */
 	public String[] getAllEmail(){
 
 		Student[] allStudents = getAllStudents();
@@ -644,7 +724,11 @@ public class ManagerDriver extends Driver {
 		return studentEmailAddresses;
 	}
 
-	//Returns a specific email address
+	/**
+	 * Returns a specific email address
+	 * @param userName
+	 * @return
+	 */
 	public String getEmailByName(String userName){
 
 		Student S = getStudentInfoByUserName(userName);
@@ -653,7 +737,10 @@ public class ManagerDriver extends Driver {
 
 	}
 
-	//Removes a bulletin
+	/**
+	 * Removes a bulletin
+	 * @param title
+	 */
 	public void removeBulletin(String title){
 
 		title = "'"+title+"'";
@@ -675,6 +762,11 @@ public class ManagerDriver extends Driver {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Returns all students who are residents in a specific facility
+	 * @param facilityName
+	 * @return
+	 */
 	public Student[] getResidentsByFacility(String facilityName) {
 		Student[] residentList = getResidents();
 		Student tempHold[] = new Student[residentList.length];
