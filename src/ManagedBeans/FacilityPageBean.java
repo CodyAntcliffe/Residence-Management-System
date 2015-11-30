@@ -103,9 +103,7 @@ public class FacilityPageBean {
 		facilityList=md.getAllFacilities();
 	}
 	
-	/**
-	 * get and set methods
-	 */
+	//get and set methods
 	public String[] getFacilityType() {
 		return facilityType;
 	}

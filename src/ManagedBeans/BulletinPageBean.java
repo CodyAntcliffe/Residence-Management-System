@@ -88,122 +88,63 @@ public class BulletinPageBean {
 		return bulletinList;
 	}
 	
-	/**
-	 * get method for title
-	 * @return
-	 */
+	//get and set methods
 	public String getTitle(){
 		return title;
 	}
-	
-	/**
-	 * set method for title
-	 * @param title
-	 */
+
 	public void setTitle(final String title){
 		this.title = title;
 	}
-	
-	/**
-	 * get method for date
-	 * @return
-	 */
+
 	public String getDate(){
 		return date;
 	}
 	
-	/**
-	 * set method for date
-	 * @param date
-	 */
 	public void setDate(final String date){
 		this.date = date;
 	}
 	
-	/**
-	 * get method for message
-	 * @return
-	 */
 	public String getMessage(){
 		return message;
 	}
 	
-	/**
-	 * set method for message
-	 * @param message
-	 */
 	public void setMessage(final String message){
 		this.message = message;
 	}
 	
-	/**
-	 * get method for bulletinList
-	 * @return
-	 */
 	public Bulletin[] getBulletinList(){
 		return bulletinList;
 	}
 	
-	/**
-	 * set method for bulletinList
-	 * @param bulletinList
-	 */
 	public void setBulletinList(final Bulletin[] bulletinList){
 		this.bulletinList = bulletinList;
 	}
-	
-	/**
-	 * get method for serverResponse
-	 * @return
-	 */
+
 	public String getServerResponse() {
 		return serverResponse;
 	}
 
-	/**
-	 * set method for serverResponse
-	 * @param serverReponse
-	 */
 	public void setServerResponse(String serverReponse) {
 		this.serverResponse = serverReponse;
 	}
 
-	/**
-	 * get method for bulletin
-	 * @return
-	 */
 	public Bulletin getBulletin() {
 		return bulletin;
 	}
 
-	/**
-	 * set method for bulletin
-	 * @param bulletin
-	 */
 	public void setBulletin(Bulletin bulletin) {
 		this.bulletin = bulletin;
 	}
 
-	/**
-	 * get method for removedBulletinTitle
-	 * @return
-	 */
 	public String getRemovedBulletinTitle() {
 		return removedBulletinTitle;
 	}
 
-	/**
-	 * set method for removedBulletinTitle
-	 * @param removedBulletinTitle
-	 */
 	public void setRemovedBulletinTitle(String removedBulletinTitle) {
 		this.removedBulletinTitle = removedBulletinTitle;
 	}
 
-	/**
-	 * set method for bulletinTitles
-	 * @param bulletinTitles
-	 */
 	public void setBulletinTitles(String[] bulletinTitles) {
 		this.bulletinTitles = bulletinTitles;
 	}

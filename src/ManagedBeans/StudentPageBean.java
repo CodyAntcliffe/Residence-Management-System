@@ -66,83 +66,44 @@ public class StudentPageBean {
 		}
 		return "";
 	}
-	
-	/**
-	 * get method for studentList
-	 * @return
-	 */
+
+	//get and set methods
 	public Student[] getStudentList(){
 		return studentList;
 	}
 	
-	/**
-	 * set method for studentList
-	 * @param studentList
-	 */
 	public void setStudentList(final Student[] studentList){
 		this.studentList = studentList;
 	}
 
-	/**
-	 * get method for resultStudent
-	 * @return
-	 */
 	public Student getResultStudent() {
 		return resultStudent;
 	}
 
-	/**
-	 * set method for resultStudent
-	 * @param resultStudent
-	 */
 	public void setResultStudent(Student resultStudent) {
 		this.resultStudent = resultStudent;
 	}
-
-	/**
-	 * get method for searchTerm
-	 * @return
-	 */
+	
 	public String getSearchTerm() {
 		return searchTerm;
 	}
 
-	/**
-	 * set method for searchTerm
-	 * @param searchTerm
-	 */
 	public void setSearchTerm(String searchTerm) {
 		this.searchTerm = searchTerm;
 	}
 
-	/**
-	 * get method for searchCriteria
-	 * @return
-	 */
 	public String getSearchCriteria() {
 		return searchCriteria;
 	}
 
-	/**
-	 * set method for searchCriteria
-	 * @param searchCriteria
-	 */
 	public void setSearchCriteria(String searchCriteria) {
 		this.searchCriteria = searchCriteria;
 	}
-	
-	/**
-	 * get method for serverResponse
-	 * @return
-	 */
+
 	public String getServerResponse() {
 		return serverResponse;
 	}
 	
-	/**
-	 * set method for serverResponse
-	 * @param serverResponse
-	 */
 	public void setServerResponse(String serverResponse) {
 		this.serverResponse = serverResponse;
 	}

@@ -1,5 +1,7 @@
 package ManagedBeans;
-
+/**
+ * This class contains validation methods
+ */
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
@@ -11,8 +13,14 @@ import javax.faces.validator.ValidatorException;
 @FacesValidator(value="validator")
 public class ValidationBean implements Validator{
 	
-	//Customer validator for making sure the password and confirmPassword fields on the register page are the same
-	//Throwing a validator exception causes the page to display the error message
+	/**
+	 * Customer validator for the matching of password and confirmPassword fields on the register page.
+	 * Throwing a validator execption causes the page to display the error message
+	 * @param context
+	 * @param component
+	 * @param value
+	 * @throws ValidatorException
+	 */
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException{
 		//Values are pulled directly from the page before being submitted to the register backing bean
 		String password = value.toString();

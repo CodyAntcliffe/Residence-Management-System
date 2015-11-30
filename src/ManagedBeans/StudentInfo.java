@@ -1,5 +1,7 @@
 package ManagedBeans;
-
+/**
+ * This class manipulates the information of a student
+ */
 import Types.Student;
 
 import javax.annotation.PostConstruct;
@@ -9,6 +11,9 @@ import Controls.ManagerDriver;
 import Controls.StudentDriver;
 
 public class StudentInfo {
+	/**
+	 * variables used by StudentInfo
+	 */
 	private Student myInfo;
 	private StudentDriver SD = new StudentDriver();
 	private ManagerDriver MD = new ManagerDriver();
@@ -20,7 +25,9 @@ public class StudentInfo {
 	@ManagedProperty (value="{emailBean}")
 	EmailBean emailBeanInstance = new EmailBean();
 	
-	//Gets the user's information from DB and changes local values so it can be displayed
+	/**
+	 * 	Gets the user's information from DB and changes local values so it can be displayed
+	 */
 	@PostConstruct
 	public void init() {
 		
@@ -34,8 +41,10 @@ public class StudentInfo {
 		userType = SD.getAccountTypeByUserName(userName);
 	}
 	
-	//Leaves residence or cancels application depending on the status of the student's usertype
-	//Sends an email confirmation based to their email address
+	/**
+	 * Leaves residence or cancels application depending on the status of the student's usertype
+	 * Sends an email confirmation based to their email address
+	 */
 	public void leaveRoom() {
 		String previousRoom = myInfo.getRoomNum();
 		String previousFacility = myInfo.getFacility();

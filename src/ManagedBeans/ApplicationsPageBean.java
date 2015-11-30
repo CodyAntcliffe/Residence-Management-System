@@ -69,7 +69,7 @@ public class ApplicationsPageBean {
 
 	/**
 	 * get method for applicationSelected
-	 * @return
+	 * @return String
 	 */
 	public String getApplicationSelected(){
 		return applicationSelected;
@@ -85,7 +85,7 @@ public class ApplicationsPageBean {
 
 	/**
 	 * get method for appliedStudents
-	 * @return
+	 * @return Student[]
 	 */
 	public Student[] getAppliedStudents(){
 		return appliedStudents;
@@ -109,7 +109,7 @@ public class ApplicationsPageBean {
 	
 	/**
 	 * get method for studentName
-	 * @return
+	 * @return String[]
 	 */
 	public String[] getStudentName () {
 		studentName = new String[appliedStudents.length];

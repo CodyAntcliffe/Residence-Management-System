@@ -5,14 +5,14 @@ import javax.faces.validator.ValidatorException;
 
 import Controls.StudentDriver;
 
-
-/*
+/**
  * Contains methods relating to:
- * Register as a new user
+ * Registering as a new user
  * Applying for residence
  */
+
 public class Register{
-	/*
+	/**
 	 * ManagedBean standardized properties to read input from HTML file
 	 * Register.java class is now a 'managed bean' class
 	 * HTML code on page WebContent/register.xhtml automatically calls get and set methods depending on context of call
@@ -32,13 +32,17 @@ public class Register{
 	private String serverResponse;
 	StudentDriver SD = new StudentDriver();
 	
-	
+	/**
+	 * creates a new instance of EmailBean
+	 */
 	@ManagedProperty(value="#{emailBean}")
 	EmailBean emailBeanInstance = new EmailBean();
 	
-	
+	/**
+	 * function parses string and returns relevant info for page redirect
+	 * @return String
+	 */
 	public String validateRegistration() {
-		//function parses string and returns relevant info for page redirect
 		serverResponse = SD.addRegistration(this);
 		if (serverResponse.equals("Registration successful!")){
 			emailBeanInstance.sendEmail(email, "Residence Managemeny System Registration", "You have registered successfully!\r\n Save this email somewhere safe so you have a copy of your personal info.\r\nUsername: " + userName + "\r\nEmail: " + email + "\r\nName: " + name+ "\r\nStudent Number: " + studentNumber);

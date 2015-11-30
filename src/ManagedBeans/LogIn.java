@@ -1,12 +1,16 @@
 package ManagedBeans;
-/* This class houses all of our log-in related methods*/
+/**
+ * this classes houses all our log-in related methods
+ */
 
 import Controls.Driver;
 
 public class LogIn {
 
-	//This bean is sessionScoped, private variables have life-span of single user session
-	//userName can be used to uniquely identify rows in database that are relevant to the user
+	/**
+	 * This bean is sessionScoped, private variables have life-span of single user session
+	 * UserName can be used to uniquely identify rows in database that are relevant to the user
+	 */
 	Driver D = new Driver();
 	private String userName;
 	private String password;
@@ -14,6 +18,7 @@ public class LogIn {
 	private String result;
 	
 	
+	//get and set methods
 	public String getResult() {
 		return result;
 	}
@@ -41,7 +46,10 @@ public class LogIn {
 		this.userType = userType;
 	}
 	
-	//Checks if log-in id is correct
+	/**
+	 * Checks if log-in id is correct
+	 * @return String
+	 */
 	public String tryLogin() {
 		System.out.println(userName + " attempting login.");
 		if (Driver.checkLogin(userName, password)) {
@@ -55,7 +63,10 @@ public class LogIn {
 		return null;
 	}
 	
-	//Logs user out of current session
+	/**
+	 * Logs user out of current session
+	 * @return String
+	 */
 	public String logOut() {
 		System.out.println("Logging " + userName + " out of system.");
 		userName=null;
@@ -65,8 +76,12 @@ public class LogIn {
 		return "toLogin";
 	}
 
-	//Passwords should never be stored plain-text. We will use simple shift cipher as an example.
-	//Returns the password in cipher text for storing.
+	/**
+	 * Passwords should never be stored plain-text. We will use simple shift cipher as an example.
+	 * Returns the password in cipher text for storing.
+	 * @param plainPW
+	 * @return String
+	 */
 	public static String encryptPassword(String plainPW){ 
 		//Encrypt...
 		char[] plainArray = plainPW.toCharArray();
@@ -78,7 +93,11 @@ public class LogIn {
 		return cipherPW;
 	}
 
-	//Returns the password in plainText
+	/**
+	 * Returns the password in plainText
+	 * @param cipherPW
+	 * @return
+	 */
 	public static String decryptPassword(String cipherPW){
 		//Decrypt...
 		char[] cipherArray = cipherPW.toCharArray();
