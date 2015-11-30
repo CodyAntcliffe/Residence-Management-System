@@ -1,29 +1,47 @@
 package Types;
-
+/**
+ * Holds all the information of a user
+ */
 public class Student extends User {
 
-	public Facility residence; //Which facility they occupy
-	public String roomNum;// Identifier Variable
-	public String facility;
-	public String userName;
-	public String password;
-	public String accountType;
-	public String confirmPassword;
-	public String name;
-	public String email;
-	public String phone;
-	public String major;
-	public String yearLevel;
-	public String studentNumber;
-	public String age;
+	public Facility residence; 		//Which facility they occupy
+	public String roomNum;			//Identifier Variable
+	public String facility;			//Name of the facility
+	public String userName;			//The user's username
+	public String password;			//The user's password
+	public String accountType;		//The account type of a user
+	public String confirmPassword;	//For the confirmation of a password when registering
+	public String name;				//User's name
+	public String email;			//User's email
+	public String phone;			//User's phone number 
+	public String major;			//User's major
+	public String yearLevel;		//USer's year level
+	public String studentNumber;	//User's student number
+	public String age;				//User's age
 
+	//get and set methods for facility
 	public String getFacility() {
 		return facility;
 	}
-	
 	public void setFacility(String facility) {
 		this.facility = facility;
 	}
+	
+	/**
+	 * Student constructor
+	 * @param UN
+	 * @param PW
+	 * @param AT
+	 * @param N
+	 * @param E
+	 * @param P
+	 * @param M
+	 * @param Y
+	 * @param SN
+	 * @param RN
+	 * @param AGE
+	 * @param FAC
+	 */
 	public Student(String UN, String PW, String AT, String N, String E, String P, String M, String Y, String SN, String RN, String AGE, String FAC ) {
 		super(UN, PW);
 		this.userName = UN;
@@ -39,6 +57,11 @@ public class Student extends User {
 		this.age = AGE;
 		this.facility = FAC;
 	}
+	
+	/**
+	 * Clones a student to make an identical copy
+	 * @param clone
+	 */
 	public Student(Student clone) {
 		super(clone.userName, clone.passWord);
 		this.userName = clone.userName;
@@ -86,6 +109,8 @@ public class Student extends User {
 				"Room Number: " + roomNum + "<br>" +
 				"Age: " + age;
 	}
+	
+	//get and set methods
 	public Facility getResidence() {
 		return residence;
 	}

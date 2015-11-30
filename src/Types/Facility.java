@@ -2,16 +2,24 @@ package Types;
 
 import Controls.*;
 
-/* Each facility is a collection of rooms */
+/**
+ * Each facility is a collection of rooms
+ */
 
 public class Facility {
-	Driver D = new Driver(); //For accessing db info
+	Driver D = new Driver(); 	//For accessing db info
 	
-	public Room[] rooms; //The collection of rooms associated with the facility
-	public String name; //Name of the facility
-	public String type; //Apartment, residence hall, town-house etc.
-	public String image; //Location of image on disk
+	public Room[] rooms; 		//The collection of rooms associated with the facility
+	public String name; 		//Name of the facility
+	public String type; 		//Apartment, residence hall, town-house etc.
+	public String image; 		//Location of image on disk
 	
+	/**
+	 * Facility constructor
+	 * @param name
+	 * @param type
+	 * @param image
+	 */
 	public Facility(String name, String type, String image){
 
 		this.name = name;
@@ -35,6 +43,7 @@ public class Facility {
 		return name;
 	}
 
+	//get and set methods
 	public Room[] getRooms() {
 		return rooms;
 	}

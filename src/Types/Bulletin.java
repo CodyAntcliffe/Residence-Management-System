@@ -1,16 +1,28 @@
 package Types;
 
+/**
+ * Holds the info of a bulletin
+ */
+
 public class Bulletin {
-	public String title;
-	public String date;
-	public String text;
+
+	public String title;	//the title of the bulletin
+	public String date;		//date of when the bulletin was posted
+	public String text;		//the message of the bulletin
 	
+	/**
+	 * Bulletin constructor
+	 * @param title
+	 * @param date
+	 * @param text
+	 */
 	public Bulletin (String title, String date, String text) {
 		this.title=title;
 		this.date=date;
 		this.text=text;
 	}
 	
+	//get and set methods
 	public String getTitle() {
 		return title;
 	}
@@ -30,6 +42,9 @@ public class Bulletin {
 		this.text = text;
 	}
 	
+	/**
+	 * prints a bulletin
+	 */
 	public void printBulletin(){
 		
 		System.out.println("Title: "+title);

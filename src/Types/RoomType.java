@@ -1,15 +1,27 @@
 package Types;
 
-//Each room has a type, which by itself has specific attributes
+/**
+ * Each room has a type, which by itself has specific attributes
+ */
+
 public class RoomType {
 
-	public String typeID; //From the db
-	public String name; //Name of the room type
-	public String capacity; //How many people can be in a specific room
-	public String image; //Location of the image
-	public String accessible; //Whether the room is accessible
-	public String description;//What the room contains for furniture, internet, etc.
+	public String typeID; 		//From the db
+	public String name; 		//Name of the room type
+	public String capacity; 	//How many people can be in a specific room
+	public String image; 		//Location of the image
+	public String accessible; 	//Whether the room is accessible
+	public String description;	//What the room contains for furniture, internet, etc.
 	
+	/**
+	 * RoomType constructor
+	 * @param t
+	 * @param n
+	 * @param c
+	 * @param i
+	 * @param a
+	 * @param d
+	 */
 	public RoomType(String t, String n, String c, String i, String a, String d){
 		this.typeID = t;
 		this.name = n;
@@ -19,11 +31,17 @@ public class RoomType {
 		this.description = d;
 	}
 	
+	/**
+	 * prints out the room type
+	 */
 	public void printRoomType(){
 		System.out.println("TypeID: "+typeID);
-		
 	}
 	
+	/**
+	 * returns the information of the room type
+	 * @return String
+	 */
 	public String roomTypeInfo() {
 		String niceName;
 		if (name.equals("bartleySingle"))
@@ -35,8 +53,7 @@ public class RoomType {
 				"Name:  " + niceName + "<br>";
 	}
 	
-	
-	
+	//get and set methods
 	public String getTypeID() {
 		return typeID;
 	}
