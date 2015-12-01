@@ -100,7 +100,6 @@ public class Driver {
 			//Now check to make sure the password matches the stored encrypted password.
 			else{
 				String checkPW = "SELECT 1 FROM users where passWord = '"+LogIn.encryptPassword(PW)+"'";
-				System.out.println(LogIn.encryptPassword(PW));
 				RS = myStmt.executeQuery(checkPW);
 
 				//If does not match

@@ -46,6 +46,7 @@ public class BulletinPageBean {
 		this.date = date;
 		this.message = message;
 		driver.postBulletin(this.title, this.date, this.message);
+		bulletinList = driver.getBulletins();
 	}
 	
 	/**

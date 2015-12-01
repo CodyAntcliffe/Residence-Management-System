@@ -29,7 +29,6 @@ public class LogIn {
 		this.userName=userName;
 	}
 	public void setPassword(final String password) {
-		System.out.print("Password: " + password);
 		this.password=password;
 	}
 	public String getUserName() {
@@ -56,7 +55,6 @@ public class LogIn {
 			System.out.println(userName + " logged in.");
 
 			userType = D.getAccountTypeByUserName(userName);
-			System.out.println("Usertype for " + userName + " :" + userType);
 			return "toHome";
 		}
 		result = "Invalid Username and/or Password";
